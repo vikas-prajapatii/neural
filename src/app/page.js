@@ -16,6 +16,7 @@ export default function Home() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    phone: '',
     types: [],
     philosophy: ''
   });
@@ -77,7 +78,7 @@ export default function Home() {
     setSubmitted(true);
     setTimeout(() => {
       // Reset form
-      setFormState({ name: '', email: '', types: [], philosophy: '' });
+      setFormState({ name: '', email: '', phone: '', types: [], philosophy: '' });
       setSubmitted(false);
       closeModal();
     }, 3000);
@@ -170,12 +171,15 @@ export default function Home() {
         
         {/* Left Content */}
         <div className="lg:col-span-6 flex flex-col justify-center">
-          <div className="border-l-2 border-cyan-500/30 pl-6 mb-6">
-            <p className="text-sm font-medium text-cyan-400 uppercase tracking-[0.25em] mb-3">Est. 2026 / Global AI Studio</p>
-            <h1 className="text-xl md:text-2xl font-serif italic text-slate-300 font-light leading-relaxed">
-              &ldquo;What garlic is to food, insanity is to art.&rdquo;
+          <div className="relative border-l-4 border-cyan-400/60 pl-6 py-4 mb-8 bg-slate-950/20 backdrop-blur-sm rounded-r-2xl shadow-[inset_0_1px_0px_rgba(255,255,255,0.05)] select-none">
+            {/* Absolute Background Quote Icon */}
+            <span className="absolute -top-3 left-2 text-7xl font-serif text-cyan-500/10 pointer-events-none select-none">&ldquo;</span>
+            
+            <p className="text-[10px] font-semibold text-cyan-400/80 uppercase tracking-[0.3em] mb-2 relative z-10">Aesthetic Philosophy</p>
+            <h1 className="text-2xl md:text-3xl font-serif italic text-slate-200 font-light leading-relaxed relative z-10">
+              &ldquo;What garlic is to food, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 font-semibold neon-text-cyan">insanity is to art</span>.&rdquo;
             </h1>
-            <p className="text-xs text-slate-500 mt-2 font-mono tracking-wider">— Augustus Saint-Gaudens</p>
+            <p className="text-[10px] text-slate-500 mt-2 font-mono tracking-widest relative z-10">— Augustus Saint-Gaudens</p>
           </div>
 
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
@@ -440,7 +444,7 @@ export default function Home() {
                   </div>
 
                   {/* Inputs */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Name / Company</label>
                       <input
@@ -460,6 +464,17 @@ export default function Home() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="john@example.com"
+                        className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Mobile Number</label>
+                      <input
+                        type="tel"
+                        required
+                        value={formState.phone}
+                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                        placeholder="+1 (555) 000-0000"
                         className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors"
                       />
                     </div>
