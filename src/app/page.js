@@ -171,15 +171,15 @@ export default function Home() {
         
         {/* Left Content */}
         <div className="lg:col-span-6 flex flex-col justify-center">
-          <div className="relative border-l-4 border-cyan-400/60 pl-6 py-4 mb-8 bg-slate-950/20 backdrop-blur-sm rounded-r-2xl shadow-[inset_0_1px_0px_rgba(255,255,255,0.05)] select-none">
+          <div className="relative border-l-4 border-cyan-400 pl-6 py-5 mb-8 bg-slate-950/65 border border-white/5 backdrop-blur-md rounded-r-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] select-none">
             {/* Absolute Background Quote Icon */}
-            <span className="absolute -top-3 left-2 text-7xl font-serif text-cyan-500/10 pointer-events-none select-none">&ldquo;</span>
+            <span className="absolute -top-3 left-2 text-7xl font-serif text-cyan-400/20 pointer-events-none select-none">&ldquo;</span>
             
-            <p className="text-[10px] font-semibold text-cyan-400/80 uppercase tracking-[0.3em] mb-2 relative z-10">Aesthetic Philosophy</p>
-            <h1 className="text-2xl md:text-3xl font-serif italic text-slate-200 font-light leading-relaxed relative z-10">
-              &ldquo;What garlic is to food, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 font-semibold neon-text-cyan">insanity is to art</span>.&rdquo;
+            <p className="text-[10px] font-semibold text-cyan-400 uppercase tracking-[0.3em] mb-2 relative z-10">Aesthetic Philosophy</p>
+            <h1 className="text-2xl md:text-3xl font-serif italic text-slate-100 font-normal leading-relaxed relative z-10">
+              &ldquo;What garlic is to food, <span className="text-cyan-400 font-bold neon-text-cyan">insanity is to art</span>.&rdquo;
             </h1>
-            <p className="text-[10px] text-slate-500 mt-2 font-mono tracking-widest relative z-10">— Augustus Saint-Gaudens</p>
+            <p className="text-[10px] text-slate-400 mt-2.5 font-mono tracking-widest relative z-10">— Augustus Saint-Gaudens</p>
           </div>
 
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">

@@ -22,9 +22,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
+    { name: 'Work', href: '/work' },
+    { name: 'Services', href: '/#services' },
+    { name: 'About', href: '/#about' },
   ];
 
   return (
@@ -38,7 +38,7 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a 
-          href="#home" 
+          href="/" 
           className="text-xl font-bold tracking-[0.3em] text-white hover:text-cyan-400 transition-colors duration-300"
         >
           NEURAL <span className="text-cyan-400">NOIR</span>
