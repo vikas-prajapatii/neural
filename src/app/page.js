@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useModal } from '@/context/ModalContext';
-import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { 
   Play, Volume2, VolumeX, Sparkles, Layers, Video, 
   Smartphone, BarChart3, Film, Music, Camera, Image as ImageIcon, 
@@ -12,20 +12,37 @@ import {
 function ServiceCard({ service, index }) {
   const Icon = service.icon;
   const [hovered, setHovered] = useState(false);
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  // High-performance Framer Motion values for GPU-driven cursor tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Elastic spring physics for smooth tracking lag
+  const springX = useSpring(mouseX, { damping: 25, stiffness: 250 });
+  const springY = useSpring(mouseY, { damping: 25, stiffness: 250 });
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - 96; // Center horizontally
-    const y = e.clientY - rect.top - 56;  // Center vertically
-    setCoords({ x, y });
+    const x = e.clientX - rect.left - 96; // Center horizontally (w-48 / 2)
+    const y = e.clientY - rect.top - 56;  // Center vertically (h-28 / 2)
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseEnter = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - 96;
+    const y = e.clientY - rect.top - 56;
+    mouseX.set(x);
+    mouseY.set(y);
+    setHovered(true);
   };
 
   const rotation = index % 2 === 0 ? 'rotate-6' : '-rotate-6';
 
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
       className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full transition-all duration-500 hover:scale-[1.02] hover:border-cyan-500/30 relative overflow-visible cursor-pointer"
@@ -58,11 +75,10 @@ function ServiceCard({ service, index }) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ type: 'spring', damping: 20, stiffness: 220 }}
             style={{
               position: 'absolute',
-              left: coords.x,
-              top: coords.y,
+              x: springX,
+              y: springY,
             }}
             className={`absolute z-50 pointer-events-none w-48 h-28 rounded-xl overflow-hidden border border-cyan-500/30 shadow-[0_15px_35px_rgba(6,182,212,0.3)] ${rotation}`}
           >
