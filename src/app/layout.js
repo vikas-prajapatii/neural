@@ -24,12 +24,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth bg-[#02040c]">
       <body
-        className={`${inter.variable} ${outfit.variable} text-slate-100 font-sans antialiased relative min-h-screen bg-[#02040c]`}
+        className={`${inter.variable} ${outfit.variable} text-slate-100 font-sans antialiased relative min-h-screen bg-transparent`}
       >
         {/* Global Continuous Background Video Layer */}
-        <div className="fixed inset-0 z-0 overflow-hidden select-none pointer-events-none">
+        <div className="fixed inset-0 -z-10 overflow-hidden select-none pointer-events-none">
           <video
             autoPlay
             muted
