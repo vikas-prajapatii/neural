@@ -162,43 +162,23 @@ export default function Home() {
         
         {/* Left Content */}
         <div className="lg:col-span-6 flex flex-col justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="border-l-2 border-cyan-500/30 pl-6 mb-6"
-          >
+          <div className="border-l-2 border-cyan-500/30 pl-6 mb-6">
             <p className="text-sm font-medium text-cyan-400 uppercase tracking-[0.25em] mb-3">Est. 2026 / Global AI Studio</p>
             <h1 className="text-xl md:text-2xl font-serif italic text-slate-300 font-light leading-relaxed">
               &ldquo;What garlic is to food, insanity is to art.&rdquo;
             </h1>
             <p className="text-xs text-slate-500 mt-2 font-mono tracking-wider">— Augustus Saint-Gaudens</p>
-          </motion.div>
+          </div>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6"
-          >
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
             We only hire <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 neon-text-cyan">insanes</span>.
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-slate-400 text-base md:text-lg mb-10 max-w-xl leading-relaxed"
-          >
+          <p className="text-slate-400 text-base md:text-lg mb-10 max-w-xl leading-relaxed">
             We are an ultra-premium AI Video Production house. We do not copy realities; we build insane visual dimensions for visionary brands.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap gap-5"
-          >
+          <div className="flex flex-wrap gap-5">
             <button
               onClick={openModal}
               className="relative px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105"
@@ -211,7 +191,7 @@ export default function Home() {
             >
               Studio Services
             </a>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Video Mockup with 3D Hover */}
@@ -220,10 +200,7 @@ export default function Home() {
             style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative w-full max-w-[500px] aspect-[16/10] rounded-2xl p-1 bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-transparent shadow-[0_30px_60px_-15px_rgba(3,7,18,0.9)] cursor-pointer"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            className="relative w-full max-w-[500px] aspect-[16/10] rounded-2xl p-1 bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-transparent shadow-[0_30px_60px_-15px_rgba(3,7,18,0.9)] cursor-pointer animate-fade-in-up"
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950 border border-white/10">
               
@@ -282,13 +259,9 @@ export default function Home() {
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <motion.div
+                <div
                   key={service.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-100px' }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full"
+                  className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full transition-all duration-500 hover:scale-[1.02] hover:border-cyan-500/30"
                 >
                   <div>
                     <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
@@ -310,7 +283,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -336,13 +309,9 @@ export default function Home() {
           <div className="relative border-l border-cyan-500/10 max-w-4xl mx-auto pl-8 md:pl-16 space-y-16 py-4">
             
             {workflowSteps.map((step, idx) => (
-              <motion.div
+              <div
                 key={step.step}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
-                className="relative"
+                className="relative transition-all duration-500 hover:translate-x-2"
               >
                 {/* Flowing Dot Indicator */}
                 <div className="absolute left-[-41px] md:left-[-73px] top-1.5 w-6 h-6 rounded-full bg-slate-900 border-2 border-cyan-500/50 flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.3)]">
@@ -357,7 +326,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold text-slate-100 mb-3">{step.title}</h3>
                   <p className="text-sm text-slate-400 leading-relaxed max-w-2xl">{step.desc}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
 
           </div>
