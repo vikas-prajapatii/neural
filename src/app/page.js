@@ -1,101 +1,589 @@
-import Image from "next/image";
+'use client';
+
+import React, { useState, useRef } from 'react';
+import { useModal } from '@/context/ModalContext';
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { 
+  Play, Volume2, VolumeX, Sparkles, Layers, Video, 
+  Smartphone, BarChart3, Film, Music, Camera, Image as ImageIcon, 
+  Settings, Users, Zap, CheckCircle2, X, Send
+} from 'lucide-react';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const { isModalOpen, closeModal, openModal } = useModal();
+  const [isMuted, setIsMuted] = useState(true);
+  const [submitted, setSubmitted] = useState(false);
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    types: [],
+    philosophy: ''
+  });
+  
+  const videoRef = useRef(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  // 3D Hover Tilt Effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-12, 12]);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const xVal = (e.clientX - rect.left) / width - 0.5;
+    const yVal = (e.clientY - rect.top) / height - 0.5;
+    mouseX.set(xVal);
+    mouseY.set(yVal);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
+  const handleCheckboxChange = (type) => {
+    if (formState.types.includes(type)) {
+      setFormState({
+        ...formState,
+        types: formState.types.filter((t) => t !== type)
+      });
+    } else {
+      setFormState({
+        ...formState,
+        types: [...formState.types, type]
+      });
+    }
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      // Reset form
+      setFormState({ name: '', email: '', types: [], philosophy: '' });
+      setSubmitted(false);
+      closeModal();
+    }, 3000);
+  };
+
+  const services = [
+    {
+      id: 'ai-video',
+      title: 'AI Video Production',
+      description: 'Lock-in character consistency, multi-angle lighting synthesis, and custom world-building environments.',
+      icon: Video,
+      features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building']
+    },
+    {
+      id: 'short-form',
+      title: 'Short-Form Video Content',
+      description: 'Engineered for viral velocity with 2-second visual hooks, vertical layout optimizations, and high-volume iterations.',
+      icon: Smartphone,
+      features: ['2-second visual hooks', 'Vertical layout optimization', 'High-volume rapid asset variations']
+    },
+    {
+      id: 'video-ads',
+      title: 'Video Ads Production',
+      description: 'Psychological marketing layout blended with premium material texture rendering and persona-targeted color grading.',
+      icon: BarChart3,
+      features: ['Psychological marketing layout', 'Material texture rendering', 'Persona-targeted color grading']
+    },
+    {
+      id: 'branded-film',
+      title: 'Branded Film Production',
+      description: 'Unified visual bibles, complex emotional storytelling pacing, and deep "noir" cinematic atmospheres.',
+      icon: Film,
+      features: ['Unified visual bibles', 'Emotional storytelling pacing', 'Deep "noir" cinematic atmospheres']
+    },
+    {
+      id: 'music-video',
+      title: 'Music AI Video Content',
+      description: 'Audio-reactive frequency mapping with rhythmic continuity transitions and surreal digital art direction.',
+      icon: Music,
+      features: ['Audio-reactive frequency mapping', 'Rhythmic continuity transitions', 'Surreal art direction']
+    },
+    {
+      id: 'photoshoots',
+      title: 'Product Photoshoots',
+      description: 'Flawless macro precision with infinite virtual lighting setups and structural integrity masking.',
+      icon: Camera,
+      features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking']
+    },
+    {
+      id: 'brand-poster',
+      title: 'Brand Poster Creation',
+      description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
+      icon: ImageIcon,
+      features: ['Print-ready canvas upscaling', 'Impactful graphic composition', 'Unified campaign styling']
+    }
+  ];
+
+  const workflowSteps = [
+    {
+      step: '01',
+      title: 'Pre-Production',
+      desc: 'Concept generation, AI scriptwriting, visual art direction guidelines, storyboarding, and defining visual hooks.'
+    },
+    {
+      step: '02',
+      title: 'Creation',
+      desc: 'Custom AI model training (LORA, character weights) for absolute product and persona consistency across scenes.'
+    },
+    {
+      step: '03',
+      title: 'Animation',
+      desc: 'Injecting physics-based motion, fluid dynamics, camera flythrough synthesis, and physical weight simulation.'
+    },
+    {
+      step: '04',
+      title: 'Post-Production & Editing',
+      desc: 'Rigorous frame-by-frame editing, upscaling, cinematic color grading, custom sound effects, and musical orchestration.'
+    }
+  ];
+
+  return (
+    <div id="home" className="relative bg-[#02040c] overflow-hidden min-h-screen">
+      
+      {/* BACKGROUND EFFECTS */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
+      <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-blue-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
+      
+      {/* HERO SECTION */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-36 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        
+        {/* Left Content */}
+        <div className="lg:col-span-6 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="border-l-2 border-cyan-500/30 pl-6 mb-6"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <p className="text-sm font-medium text-cyan-400 uppercase tracking-[0.25em] mb-3">Est. 2026 / Global AI Studio</p>
+            <h1 className="text-xl md:text-2xl font-serif italic text-slate-300 font-light leading-relaxed">
+              &ldquo;What garlic is to food, insanity is to art.&rdquo;
+            </h1>
+            <p className="text-xs text-slate-500 mt-2 font-mono tracking-wider">— Augustus Saint-Gaudens</p>
+          </motion.div>
+
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6"
           >
-            Read our docs
-          </a>
+            We only hire <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 neon-text-cyan">insanes</span>.
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-slate-400 text-base md:text-lg mb-10 max-w-xl leading-relaxed"
+          >
+            We are an ultra-premium AI Video Production house. We do not copy realities; we build insane visual dimensions for visionary brands.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-wrap gap-5"
+          >
+            <button
+              onClick={openModal}
+              className="relative px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105"
+            >
+              Launch Project
+            </button>
+            <a
+              href="#services"
+              className="px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-slate-300 border border-slate-700 hover:border-cyan-500 hover:text-white transition-all duration-300 backdrop-blur-sm"
+            >
+              Studio Services
+            </a>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Right Video Mockup with 3D Hover */}
+        <div className="lg:col-span-6 flex justify-center items-center">
+          <motion.div
+            style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="relative w-full max-w-[500px] aspect-[16/10] rounded-2xl p-1 bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-transparent shadow-[0_30px_60px_-15px_rgba(3,7,18,0.9)] cursor-pointer"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950 border border-white/10">
+              
+              {/* Loop Video */}
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover opacity-80"
+                autoPlay
+                muted
+                loop
+                playsInline
+                src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-subway-station-with-neon-lights-43956-large.mp4"
+              />
+
+              {/* Glossy Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+
+              {/* Video Title Card Overlay */}
+              <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 bg-slate-950/70 backdrop-blur-md border border-white/5 px-3 py-1.5 rounded-lg">
+                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+                <span className="text-[10px] font-mono tracking-widest uppercase text-slate-300">NEURAL NOIR DEMO LOOP</span>
+              </div>
+
+              {/* Mute/Unmute Float Button */}
+              <button
+                onClick={toggleMute}
+                className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-slate-950/80 hover:bg-cyan-950/90 border border-white/5 text-slate-300 hover:text-cyan-400 transition-all shadow-lg"
+              >
+                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+
+              {/* Visual 3D Ring */}
+              <div className="absolute -inset-10 border border-cyan-500/10 rounded-full pointer-events-none opacity-50 animate-pulse-slow"></div>
+            </div>
+          </motion.div>
+        </div>
+
+      </section>
+
+      {/* SECTION 2: SERVICES */}
+      <section id="services" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-gradient-to-b from-transparent to-[#030612]">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          <div className="max-w-3xl mb-20">
+            <p className="text-xs font-semibold text-cyan-400 uppercase tracking-[0.25em] mb-4">Core Competencies</p>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8">
+              What Neural Noir can do for you?
+            </h2>
+            <p className="text-slate-400 text-base md:text-lg leading-relaxed font-light">
+              We are not just a studio; we are digital artists. We blend raw creative vision with cutting-edge AI to build immersive worlds for your brand. Most importantly, we guarantee <span className="text-slate-200 font-semibold underline decoration-cyan-400 underline-offset-4">strict product consistency</span> across every frame and pixel, ensuring your brand identity remains flawless.
+            </p>
+          </div>
+
+          {/* Interactive Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-100px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-4 text-slate-100 group-hover:text-cyan-400 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                  </div>
+                  
+                  <ul className="space-y-2.5 border-t border-white/5 pt-5">
+                    {service.features.map((feat, i) => (
+                      <li key={i} className="flex items-center text-xs text-slate-400">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500/70 mr-2 flex-shrink-0" />
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* SECTION 3: WORKFLOW */}
+      <section className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-[#02040c]">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          <div className="max-w-3xl mb-20">
+            <p className="text-xs font-semibold text-cyan-400 uppercase tracking-[0.25em] mb-4">Our Method</p>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+              The Production Pipeline
+            </h2>
+            <p className="text-slate-400 mt-4 text-base md:text-lg">
+              How we orchestrate thoughts, bytes, and frames from raw conceptualization to blockbusters.
+            </p>
+          </div>
+
+          {/* Timeline Layout */}
+          <div className="relative border-l border-cyan-500/10 max-w-4xl mx-auto pl-8 md:pl-16 space-y-16 py-4">
+            
+            {workflowSteps.map((step, idx) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="relative"
+              >
+                {/* Flowing Dot Indicator */}
+                <div className="absolute left-[-41px] md:left-[-73px] top-1.5 w-6 h-6 rounded-full bg-[#02040c] border-2 border-cyan-500/50 flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></div>
+                </div>
+
+                <div className="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-6 text-6xl font-extrabold text-white/5 font-mono select-none group-hover:text-cyan-500/5 transition-all">
+                    {step.step}
+                  </div>
+                  <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest block mb-2">Phase {step.step}</span>
+                  <h3 className="text-xl font-bold text-slate-100 mb-3">{step.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed max-w-2xl">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* SECTION 4: WHY CHOOSE US (About) */}
+      <section id="about" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-gradient-to-t from-transparent to-[#02040c]">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left text */}
+            <div className="lg:col-span-5">
+              <p className="text-xs font-semibold text-cyan-400 uppercase tracking-[0.25em] mb-4">Strategic Advantages</p>
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
+                Why Choose Us?
+              </h2>
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8">
+                Traditional video agencies rely on huge sets, hundreds of crew members, and massive overhead. We operate on a completely different model—coupling human directors with specialized AI.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <span className="text-sm font-medium text-slate-200">Production speed: Days instead of months</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <span className="text-sm font-medium text-slate-200">100% frame-by-frame asset consistency</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <span className="text-sm font-medium text-slate-200">Endless creative sandbox boundaries</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Pillars */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6">
+              
+              {/* Pillar 1 */}
+              <div className="glass-card p-6 rounded-2xl flex flex-col justify-between h-64 border-t border-l border-white/10">
+                <div className="w-10 h-10 rounded-lg bg-cyan-950/40 flex items-center justify-center text-cyan-400">
+                  <Users className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-100 mb-1">The Experts</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    A collective of dedicated film directors, visual effects animators, and senior AI researchers.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 2 */}
+              <div className="glass-card p-6 rounded-2xl flex flex-col justify-between h-64 border-t border-l border-white/10">
+                <div className="w-10 h-10 rounded-lg bg-cyan-950/40 flex items-center justify-center text-cyan-400">
+                  <Settings className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-100 mb-1">Deep Teamwork</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Collaborative approach driven by daily iterations, instant rendering, and transparent loops.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 3 */}
+              <div className="glass-card p-6 rounded-2xl flex flex-col justify-between h-64 border-cyan-500/20 border">
+                <div className="w-10 h-10 rounded-lg bg-cyan-950/40 flex items-center justify-center text-cyan-400 animate-pulse">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-3xl font-extrabold text-cyan-400 mb-1">80%</div>
+                  <h3 className="text-base font-bold text-slate-100 mb-1">Budget Cut</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    Blockbuster visual scale and render fidelity without traditional film production overhead.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* INQUIRY FORM MODAL OVERLAY */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 overflow-y-auto bg-slate-950/80 backdrop-blur-lg"
+          >
+            {/* Modal Box */}
+            <motion.div
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 250 }}
+              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-10 shadow-[0_20px_50px_-10px_rgba(6,182,212,0.3)] my-8"
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/5 text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Form Content */}
+              {!submitted ? (
+                <form onSubmit={handleFormSubmit} className="space-y-6">
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
+                      Let&apos;s Create the Insane Together
+                    </h3>
+                    <p className="text-xs text-slate-400">
+                      Submit your project details. We&apos;ll deploy custom AI weights specifically aligned to your brand.
+                    </p>
+                  </div>
+
+                  {/* Inputs */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Name / Company</label>
+                      <input
+                        type="text"
+                        required
+                        value={formState.name}
+                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                        placeholder="John Doe / Acme Corp"
+                        className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Email Address</label>
+                      <input
+                        type="email"
+                        required
+                        value={formState.email}
+                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                        placeholder="john@example.com"
+                        className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Creation Types Checkboxes */}
+                  <div className="space-y-3">
+                    <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest block">Project Types Needed</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {services.map((srv) => (
+                        <label 
+                          key={srv.id} 
+                          className={`flex items-center space-x-3 p-3 rounded-xl border cursor-pointer select-none transition-all ${
+                            formState.types.includes(srv.id)
+                              ? 'bg-cyan-950/40 border-cyan-500/50 text-cyan-400'
+                              : 'bg-slate-950 border-white/5 text-slate-400 hover:border-white/10'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            className="hidden"
+                            checked={formState.types.includes(srv.id)}
+                            onChange={() => handleCheckboxChange(srv.id)}
+                          />
+                          <div className={`w-4.5 h-4.5 rounded border flex items-center justify-center transition-all ${
+                            formState.types.includes(srv.id) ? 'bg-cyan-500 border-cyan-400' : 'border-slate-700'
+                          }`}>
+                            {formState.types.includes(srv.id) && <CheckCircle2 className="w-3 h-3 text-black stroke-[3]" />}
+                          </div>
+                          <span className="text-xs font-medium">{srv.title}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Philosophy & Scope */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Brand Philosophy & Project Scope</label>
+                    <textarea
+                      required
+                      value={formState.philosophy}
+                      onChange={(e) => setFormState({ ...formState, philosophy: e.target.value })}
+                      rows="4"
+                      placeholder="Outline your target visual themes, pacing requirements, custom assets to preserve, and conceptual targets..."
+                      className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors resize-none"
+                    ></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full relative px-6 py-4 rounded-xl text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-[1.01] flex items-center justify-center space-x-2"
+                  >
+                    <span>Submit Project Brief</span>
+                    <Send className="w-3.5 h-3.5" />
+                  </button>
+                </form>
+              ) : (
+                <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+                  <motion.div
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                    className="w-16 h-16 rounded-full bg-cyan-950 border border-cyan-400 flex items-center justify-center text-cyan-400 mb-2 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+                  >
+                    <CheckCircle2 className="w-8 h-8 stroke-[1.5]" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-slate-100 uppercase tracking-wider">Brief Deposited Successfully</h3>
+                  <p className="text-sm text-slate-400 max-w-sm">
+                    Your insanity has been registered. Our directors are matching concept spaces. We will reach back within 24 hours.
+                  </p>
+                </div>
+              )}
+
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
