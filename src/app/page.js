@@ -175,7 +175,7 @@ export default function Home() {
       title: 'AI Video Production',
       description: 'Lock-in character consistency, multi-angle lighting synthesis, and custom world-building environments.',
       icon: Video,
-      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop',
+      image: '/ai-video-preview.jpg',
       features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building']
     },
     {
