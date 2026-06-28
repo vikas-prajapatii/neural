@@ -9,6 +9,75 @@ import {
   Settings, Users, Zap, CheckCircle2, X, Send
 } from 'lucide-react';
 
+function ServiceCard({ service, index }) {
+  const Icon = service.icon;
+  const [hovered, setHovered] = useState(false);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - 96; // Center horizontally
+    const y = e.clientY - rect.top - 56;  // Center vertically
+    setCoords({ x, y });
+  };
+
+  const rotation = index % 2 === 0 ? 'rotate-6' : '-rotate-6';
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onMouseMove={handleMouseMove}
+      className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full transition-all duration-500 hover:scale-[1.02] hover:border-cyan-500/30 relative overflow-visible cursor-pointer"
+    >
+      <div>
+        <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
+          <Icon className="w-6 h-6" />
+        </div>
+        <h3 className="text-xl font-bold mb-4 text-slate-100 group-hover:text-cyan-400 transition-colors">
+          {service.title}
+        </h3>
+        <p className="text-sm text-slate-400 leading-relaxed mb-6">
+          {service.description}
+        </p>
+      </div>
+      
+      <ul className="space-y-2.5 border-t border-white/5 pt-5 relative z-10">
+        {service.features.map((feat, i) => (
+          <li key={i} className="flex items-center text-xs text-slate-400">
+            <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500/70 mr-2 flex-shrink-0" />
+            {feat}
+          </li>
+        ))}
+      </ul>
+
+      {/* Floating Image Preview Popup */}
+      <AnimatePresence>
+        {hovered && service.image && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ type: 'spring', damping: 20, stiffness: 220 }}
+            style={{
+              position: 'absolute',
+              left: coords.x,
+              top: coords.y,
+            }}
+            className={`absolute z-50 pointer-events-none w-48 h-28 rounded-xl overflow-hidden border border-cyan-500/30 shadow-[0_15px_35px_rgba(6,182,212,0.3)] ${rotation}`}
+          >
+            <img 
+              src={service.image} 
+              alt={service.title} 
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Home() {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [isMuted, setIsMuted] = useState(true);
@@ -90,6 +159,7 @@ export default function Home() {
       title: 'AI Video Production',
       description: 'Lock-in character consistency, multi-angle lighting synthesis, and custom world-building environments.',
       icon: Video,
+      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop',
       features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building']
     },
     {
@@ -97,6 +167,7 @@ export default function Home() {
       title: 'Short-Form Video Content',
       description: 'Engineered for viral velocity with 2-second visual hooks, vertical layout optimizations, and high-volume iterations.',
       icon: Smartphone,
+      image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop',
       features: ['2-second visual hooks', 'Vertical layout optimization', 'High-volume rapid asset variations']
     },
     {
@@ -104,6 +175,7 @@ export default function Home() {
       title: 'Video Ads Production',
       description: 'Psychological marketing layout blended with premium material texture rendering and persona-targeted color grading.',
       icon: BarChart3,
+      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop',
       features: ['Psychological marketing layout', 'Material texture rendering', 'Persona-targeted color grading']
     },
     {
@@ -111,6 +183,7 @@ export default function Home() {
       title: 'Branded Film Production',
       description: 'Unified visual bibles, complex emotional storytelling pacing, and deep "noir" cinematic atmospheres.',
       icon: Film,
+      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=600&auto=format&fit=crop',
       features: ['Unified visual bibles', 'Emotional storytelling pacing', 'Deep "noir" cinematic atmospheres']
     },
     {
@@ -118,6 +191,7 @@ export default function Home() {
       title: 'Music AI Video Content',
       description: 'Audio-reactive frequency mapping with rhythmic continuity transitions and surreal digital art direction.',
       icon: Music,
+      image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=600&auto=format&fit=crop',
       features: ['Audio-reactive frequency mapping', 'Rhythmic continuity transitions', 'Surreal art direction']
     },
     {
@@ -125,6 +199,7 @@ export default function Home() {
       title: 'Product Photoshoots',
       description: 'Flawless macro precision with infinite virtual lighting setups and structural integrity masking.',
       icon: Camera,
+      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop',
       features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking']
     },
     {
@@ -132,6 +207,7 @@ export default function Home() {
       title: 'Brand Poster Creation',
       description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
       icon: ImageIcon,
+      image: 'https://images.unsplash.com/photo-1561070791-26c113006238?q=80&w=600&auto=format&fit=crop',
       features: ['Print-ready canvas upscaling', 'Impactful graphic composition', 'Unified campaign styling']
     }
   ];
@@ -253,36 +329,9 @@ export default function Home() {
 
           {/* Interactive Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={service.id}
-                  className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full transition-all duration-500 hover:scale-[1.02] hover:border-cyan-500/30"
-                >
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-4 text-slate-100 group-hover:text-cyan-400 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                      {service.description}
-                    </p>
-                  </div>
-                  
-                  <ul className="space-y-2.5 border-t border-white/5 pt-5">
-                    {service.features.map((feat, i) => (
-                      <li key={i} className="flex items-center text-xs text-slate-400">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500/70 mr-2 flex-shrink-0" />
-                        {feat}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
+            {services.map((service, index) => (
+              <ServiceCard key={service.id} service={service} index={index} />
+            ))}
           </div>
 
         </div>
