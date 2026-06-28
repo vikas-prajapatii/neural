@@ -235,7 +235,7 @@ export default function Home() {
                 muted
                 loop
                 playsInline
-                src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-subway-station-with-neon-lights-43956-large.mp4"
+                src="/bg-cinematic.mp4"
               />
 
               {/* Glossy Overlay */}
