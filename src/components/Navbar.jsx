@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useModal } from '@/context/ModalContext';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
-import Logo from './Logo';
 
 export default function Navbar() {
   const { openModal } = useModal();
@@ -42,7 +41,11 @@ export default function Navbar() {
           href="/" 
           className="flex items-center space-x-3 group"
         >
-          <Logo className="w-10 h-8" />
+          <img 
+            src="/logo-icon.png" 
+            alt="Neural Noir Logo" 
+            className="w-9 h-8 object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.45)] transition-transform duration-300 group-hover:scale-105" 
+          />
           <span className="text-xl font-bold tracking-[0.3em] text-white group-hover:text-cyan-400 transition-colors duration-300">
             NEURAL <span className="text-cyan-400">NOIR</span>
           </span>
