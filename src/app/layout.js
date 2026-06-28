@@ -36,11 +36,11 @@ export default function RootLayout({ children }) {
             loop
             playsInline
             src="/bg-cinematic.mp4"
-            className="w-full h-full object-cover opacity-[0.45] scale-[1.02]"
+            className="w-full h-full object-cover opacity-[0.72] scale-[1.02]"
           />
           {/* Ambient Overlay Mask - Deep Navy & Midnight Tints */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#02040a] via-[#080d1a]/60 to-[#0b152d]/50 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-slate-950/45"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#02040a] via-[#080d1a]/28 to-[#0b152d]/22 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-slate-950/15"></div>
         </div>
 
         {/* Content Container (Lying on top of video layer) */}

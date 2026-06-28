@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useModal } from '@/context/ModalContext';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { 
@@ -21,6 +21,14 @@ export default function Home() {
   });
   
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.log("Mockup video autoplay blocked:", err);
+      });
+    }
+  }, []);
 
   // 3D Hover Tilt Effect
   const mouseX = useMotionValue(0);
