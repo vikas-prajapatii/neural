@@ -486,7 +486,7 @@ export default function Home() {
           >
             {/* Modal Box */}
             <div
-              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-10 shadow-[0_20px_50px_-10px_rgba(6,182,212,0.3)] my-8 animate-fade-in-up"
+              className="relative w-full max-w-4xl mx-auto md:w-[90vw] max-h-[95vh] md:max-h-[90vh] overflow-y-auto bg-slate-900 border border-white/10 rounded-3xl p-4 sm:p-8 shadow-[0_20px_50px_-10px_rgba(6,182,212,0.3)] my-8 animate-fade-in-up"
             >
               {/* Close Button */}
               <button
@@ -500,7 +500,7 @@ export default function Home() {
               {!submitted ? (
                 <form onSubmit={handleFormSubmit} className="space-y-6">
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-bold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
+                    <h3 className="text-xl sm:text-3xl font-bold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
                       Let&apos;s Create the Insane Together
                     </h3>
                     <p className="text-xs text-slate-400">
@@ -509,7 +509,7 @@ export default function Home() {
                   </div>
 
                   {/* Inputs */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-2">
                       <label className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Name / Company</label>
                       <input
@@ -582,9 +582,8 @@ export default function Home() {
                       required
                       value={formState.philosophy}
                       onChange={(e) => setFormState({ ...formState, philosophy: e.target.value })}
-                      rows="4"
                       placeholder="Outline your target visual themes, pacing requirements, custom assets to preserve, and conceptual targets..."
-                      className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors resize-none"
+                      className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none transition-colors resize-none h-24 md:h-32"
                     ></textarea>
                   </div>
 
