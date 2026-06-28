@@ -211,37 +211,22 @@ export default function Home() {
             className="relative w-full max-w-[500px] aspect-[16/10] rounded-2xl p-1 bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-transparent shadow-[0_30px_60px_-15px_rgba(3,7,18,0.9)] cursor-pointer animate-fade-in-up"
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950 border border-white/10">
-              
-              {/* Loop Video */}
+              {/* Loop Video in Normal Form */}
               <video
                 ref={videoRef}
-                className="w-full h-full object-cover opacity-80"
+                className="w-full h-full object-cover opacity-90 rounded-2xl"
                 autoPlay
                 muted
                 loop
                 playsInline
+                controls
                 src="/bg-cinematic.mp4"
+                onLoadedData={(e) => {
+                  e.target.play().catch((err) => {
+                    console.log("Mockup play failed in event:", err);
+                  });
+                }}
               />
-
-              {/* Glossy Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
-
-              {/* Video Title Card Overlay */}
-              <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 bg-slate-950/70 backdrop-blur-md border border-white/5 px-3 py-1.5 rounded-lg">
-                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-slate-300">NEURAL NOIR DEMO LOOP</span>
-              </div>
-
-              {/* Mute/Unmute Float Button */}
-              <button
-                onClick={toggleMute}
-                className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-slate-950/80 hover:bg-cyan-950/90 border border-white/5 text-slate-300 hover:text-cyan-400 transition-all shadow-lg"
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-
-              {/* Visual 3D Ring */}
-              <div className="absolute -inset-10 border border-cyan-500/10 rounded-full pointer-events-none opacity-50 animate-pulse-slow"></div>
             </div>
           </motion.div>
         </div>
