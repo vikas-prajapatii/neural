@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useModal } from '@/context/ModalContext';
+import Logo from './Logo';
 
 export default function Footer() {
   const { openModal } = useModal();
@@ -15,8 +16,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
           <div className="md:col-span-2">
-            <a href="#home" className="text-xl font-bold tracking-[0.3em] text-white">
-              NEURAL <span className="text-cyan-400">NOIR</span>
+            <a href="/" className="flex items-center space-x-3 group">
+              <Logo className="w-10 h-8" />
+              <span className="text-xl font-bold tracking-[0.3em] text-white group-hover:text-cyan-400 transition-colors duration-300">
+                NEURAL <span className="text-cyan-400">NOIR</span>
+              </span>
             </a>
             <p className="mt-4 text-sm text-slate-400 max-w-sm leading-relaxed">
               An ultra-premium Global AI Video Production Studio. We blend raw creative vision with cutting-edge AI to forge cinematic realities for forward-thinking brands.
