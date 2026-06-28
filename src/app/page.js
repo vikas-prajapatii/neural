@@ -151,7 +151,7 @@ export default function Home() {
   ];
 
   return (
-    <div id="home" className="relative bg-[#02040c] overflow-hidden min-h-screen">
+    <div id="home" className="relative bg-transparent overflow-hidden min-h-screen">
       
       {/* BACKGROUND EFFECTS */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
@@ -264,7 +264,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 2: SERVICES */}
-      <section id="services" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-gradient-to-b from-transparent to-[#030612]">
+      <section id="services" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-transparent">
         <div className="max-w-7xl mx-auto px-6">
           
           <div className="max-w-3xl mb-20">
@@ -319,7 +319,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 3: WORKFLOW */}
-      <section className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-[#02040c]">
+      <section className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-transparent">
         <div className="max-w-7xl mx-auto px-6">
           
           <div className="max-w-3xl mb-20">
@@ -345,7 +345,7 @@ export default function Home() {
                 className="relative"
               >
                 {/* Flowing Dot Indicator */}
-                <div className="absolute left-[-41px] md:left-[-73px] top-1.5 w-6 h-6 rounded-full bg-[#02040c] border-2 border-cyan-500/50 flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                <div className="absolute left-[-41px] md:left-[-73px] top-1.5 w-6 h-6 rounded-full bg-slate-900 border-2 border-cyan-500/50 flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.3)]">
                   <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></div>
                 </div>
 
@@ -366,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 4: WHY CHOOSE US (About) */}
-      <section id="about" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-gradient-to-t from-transparent to-[#02040c]">
+      <section id="about" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-transparent">
         <div className="max-w-7xl mx-auto px-6">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">

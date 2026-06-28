@@ -7,7 +7,7 @@ export default function Footer() {
   const { openModal } = useModal();
 
   return (
-    <footer className="relative bg-[#02040c] border-t border-white/5 pt-20 pb-10 overflow-hidden">
+    <footer className="relative bg-transparent border-t border-white/5 pt-20 pb-10 overflow-hidden">
       {/* Decorative Blur Background */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-cyan-950/20 rounded-full blur-[120px] pointer-events-none"></div>
 

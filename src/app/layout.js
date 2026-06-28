@@ -26,15 +26,33 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${outfit.variable} bg-[#02040c] text-slate-100 font-sans antialiased`}
+        className={`${inter.variable} ${outfit.variable} text-slate-100 font-sans antialiased relative min-h-screen bg-[#02040c]`}
       >
-        <ModalProvider>
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </ModalProvider>
+        {/* Global Continuous Background Video Layer */}
+        <div className="fixed inset-0 z-0 overflow-hidden select-none pointer-events-none">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            src="/bg-cinematic.mp4"
+            className="w-full h-full object-cover opacity-[0.22] scale-[1.02]"
+          />
+          {/* Ambient Overlay Mask - Deep Navy & Midnight Tints */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#02040a] via-[#080d1a]/85 to-[#0b152d]/80 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-slate-950/70"></div>
+        </div>
+
+        {/* Content Container (Lying on top of video layer) */}
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <ModalProvider>
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </ModalProvider>
+        </div>
       </body>
     </html>
   );
