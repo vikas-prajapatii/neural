@@ -427,19 +427,12 @@ export default function Home() {
       {/* INQUIRY FORM MODAL OVERLAY */}
       <AnimatePresence>
         {isModalOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div 
             className="fixed inset-0 z-50 flex items-center justify-center px-4 overflow-y-auto bg-slate-950/80 backdrop-blur-lg"
           >
             {/* Modal Box */}
-            <motion.div
-              initial={{ scale: 0.9, y: 20, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.9, y: 20, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-10 shadow-[0_20px_50px_-10px_rgba(6,182,212,0.3)] my-8"
+            <div
+              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-10 shadow-[0_20px_50px_-10px_rgba(6,182,212,0.3)] my-8 animate-fade-in-up"
             >
               {/* Close Button */}
               <button
@@ -541,14 +534,11 @@ export default function Home() {
                 </form>
               ) : (
                 <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
-                  <motion.div
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                  <div
                     className="w-16 h-16 rounded-full bg-cyan-950 border border-cyan-400 flex items-center justify-center text-cyan-400 mb-2 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
                   >
                     <CheckCircle2 className="w-8 h-8 stroke-[1.5]" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-xl font-bold text-slate-100 uppercase tracking-wider">Brief Deposited Successfully</h3>
                   <p className="text-sm text-slate-400 max-w-sm">
                     Your insanity has been registered. Our directors are matching concept spaces. We will reach back within 24 hours.
@@ -556,8 +546,8 @@ export default function Home() {
                 </div>
               )}
 
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
 
