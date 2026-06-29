@@ -2,7 +2,6 @@ package com.neuralnoir.backend.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "inquiries")
@@ -21,10 +20,8 @@ public class Inquiry {
     @Column(nullable = false)
     private String phone;
 
-    @ElementCollection
-    @CollectionTable(name = "inquiry_types", joinColumns = @JoinColumn(name = "inquiry_id"))
-    @Column(name = "project_type")
-    private List<String> types;
+    @Column(name = "project_types", columnDefinition = "TEXT")
+    private String projectTypes;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String philosophy;
@@ -50,8 +47,8 @@ public class Inquiry {
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
-    public List<String> getTypes() { return types; }
-    public void setTypes(List<String> types) { this.types = types; }
+    public String getProjectTypes() { return projectTypes; }
+    public void setProjectTypes(String projectTypes) { this.projectTypes = projectTypes; }
 
     public String getPhilosophy() { return philosophy; }
     public void setPhilosophy(String philosophy) { this.philosophy = philosophy; }

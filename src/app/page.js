@@ -170,7 +170,7 @@ export default function Home() {
           name: formState.name,
           email: formState.email,
           phone: formState.phone,
-          types: formState.types,
+          projectTypes: formState.types.join(', '),
           philosophy: formState.philosophy,
         }),
       });
