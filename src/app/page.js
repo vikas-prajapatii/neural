@@ -245,7 +245,7 @@ export default function Home() {
       title: 'Music AI Video Content',
       description: 'Audio-reactive frequency mapping with rhythmic continuity transitions and surreal digital art direction.',
       icon: Music,
-      image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=600&auto=format&fit=crop',
+      image: '/hover-music-video.jpg',
       features: ['Audio-reactive frequency mapping', 'Rhythmic continuity transitions', 'Surreal art direction']
     },
     {
@@ -253,7 +253,7 @@ export default function Home() {
       title: 'Product Photoshoots',
       description: 'Flawless macro precision with infinite virtual lighting setups and structural integrity masking.',
       icon: Camera,
-      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop',
+      image: '/hover-photoshoots.jpg',
       features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking']
     },
     {
@@ -261,7 +261,7 @@ export default function Home() {
       title: 'Brand Poster Creation',
       description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
       icon: ImageIcon,
-      image: 'https://images.unsplash.com/photo-1561070791-26c113006238?q=80&w=600&auto=format&fit=crop',
+      image: '/hover-brand-poster.jpg',
       features: ['Print-ready canvas upscaling', 'Impactful graphic composition', 'Unified campaign styling']
     }
   ];
