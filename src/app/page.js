@@ -109,10 +109,25 @@ export default function Home() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch((err) => {
-        console.log("Mockup video autoplay blocked:", err);
-      });
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      
+      const playVideo = () => {
+        video.play().catch((err) => {
+          console.log("Mockup video autoplay blocked:", err);
+        });
+      };
+
+      if (video.readyState >= 2) {
+        playVideo();
+      } else {
+        video.addEventListener('canplay', playVideo);
+        return () => {
+          video.removeEventListener('canplay', playVideo);
+        };
+      }
     }
   }, []);
 
@@ -340,11 +355,7 @@ export default function Home() {
                 playsInline
                 controls
                 src="/bg-cinematic.mp4"
-                onLoadedData={(e) => {
-                  e.target.play().catch((err) => {
-                    console.log("Mockup play failed in event:", err);
-                  });
-                }}
+                poster="/ai-video-preview.jpg"
               />
             </div>
           </motion.div>
