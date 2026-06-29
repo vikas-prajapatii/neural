@@ -80,12 +80,12 @@ function ServiceCard({ service, index }) {
               x: springX,
               y: springY,
             }}
-            className={`absolute z-50 pointer-events-none w-48 h-28 rounded-xl overflow-hidden border border-cyan-500/30 shadow-[0_15px_35px_rgba(6,182,212,0.3)] ${rotation}`}
+            className={`absolute z-50 pointer-events-none w-64 h-96 rounded-2xl overflow-hidden border border-cyan-500/30 bg-black/90 shadow-[0_20px_50px_rgba(6,182,212,0.35)] ${rotation}`}
           >
             <img 
               src={service.image} 
               alt={service.title} 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </motion.div>
         )}
