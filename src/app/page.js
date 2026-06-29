@@ -213,7 +213,7 @@ export default function Home() {
       title: 'AI Video Production',
       description: 'Lock-in character consistency, multi-angle lighting synthesis, and custom world-building environments.',
       icon: Video,
-      image: '/ai-video-preview.jpg',
+      image: '/ai-video-hover.jpg',
       features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building']
     },
     {
@@ -221,7 +221,7 @@ export default function Home() {
       title: 'Short-Form Video Content',
       description: 'Engineered for viral velocity with 2-second visual hooks, vertical layout optimizations, and high-volume iterations.',
       icon: Smartphone,
-      image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop',
+      image: '/short-form-hover.jpg',
       features: ['2-second visual hooks', 'Vertical layout optimization', 'High-volume rapid asset variations']
     },
     {
@@ -229,7 +229,7 @@ export default function Home() {
       title: 'Video Ads Production',
       description: 'Psychological marketing layout blended with premium material texture rendering and persona-targeted color grading.',
       icon: BarChart3,
-      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop',
+      image: '/video-ads-hover.jpg',
       features: ['Psychological marketing layout', 'Material texture rendering', 'Persona-targeted color grading']
     },
     {
@@ -237,7 +237,7 @@ export default function Home() {
       title: 'Branded Film Production',
       description: 'Unified visual bibles, complex emotional storytelling pacing, and deep "noir" cinematic atmospheres.',
       icon: Film,
-      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=600&auto=format&fit=crop',
+      image: '/branded-film-hover.jpg',
       features: ['Unified visual bibles', 'Emotional storytelling pacing', 'Deep "noir" cinematic atmospheres']
     },
     {
