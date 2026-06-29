@@ -158,15 +158,38 @@ export default function Home() {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      // Reset form
-      setFormState({ name: '', email: '', phone: '', types: [], philosophy: '' });
-      setSubmitted(false);
-      closeModal();
-    }, 3000);
+    try {
+      const response = await fetch('http://localhost:8080/api/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          types: formState.types,
+          philosophy: formState.philosophy,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setFormState({ name: '', email: '', phone: '', types: [], philosophy: '' });
+          setSubmitted(false);
+          closeModal();
+        }, 3000);
+      } else {
+        console.error('Failed to submit brief:', response.statusText);
+        alert('Failed to deposit brief. Please check if the Spring Boot backend server is running.');
+      }
+    } catch (error) {
+      console.error('Error submitting brief:', error);
+      alert('Connection error. Please make sure the Spring Boot backend server is active at localhost:8080.');
+    }
   };
 
   const services = [

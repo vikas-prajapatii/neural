@@ -1,0 +1,4 @@
+com\neuralnoir\backend\entity\Inquiry.class
+com\neuralnoir\backend\repository\InquiryRepository.class
+com\neuralnoir\backend\controller\InquiryController.class
+com\neuralnoir\backend\BackendApplication.class
