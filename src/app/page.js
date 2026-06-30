@@ -11,11 +11,42 @@ import {
 
 function ServiceCard({ service, index, onClick }) {
   const Icon = service.icon;
+  const [hovered, setHovered] = useState(false);
+
+  // High-performance Framer Motion values for GPU-driven cursor tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Elastic spring physics for smooth tracking lag
+  const springX = useSpring(mouseX, { damping: 25, stiffness: 250 });
+  const springY = useSpring(mouseY, { damping: 25, stiffness: 250 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - 128; // Center horizontally (w-64 / 2 -> 256 / 2 = 128)
+    const y = e.clientY - rect.top - 192;  // Center vertically (h-96 / 2 -> 384 / 2 = 192)
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseEnter = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - 128;
+    const y = e.clientY - rect.top - 192;
+    mouseX.set(x);
+    mouseY.set(y);
+    setHovered(true);
+  };
+
+  const rotation = index % 2 === 0 ? 'rotate-6' : '-rotate-6';
 
   return (
     <div
       onClick={onClick}
-      className="border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900/60 hover:border-neutral-600 transition-all duration-500 rounded-2xl p-8 flex flex-col justify-between group h-full cursor-pointer hover:scale-[1.01]"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setHovered(false)}
+      onMouseMove={handleMouseMove}
+      className="border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900/60 hover:border-neutral-600 transition-all duration-500 rounded-2xl p-8 flex flex-col justify-between group h-full cursor-pointer hover:scale-[1.01] relative overflow-visible"
     >
       <div>
         <div className="w-12 h-12 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 mb-6 group-hover:text-white group-hover:border-neutral-500 transition-all duration-300">
@@ -37,6 +68,29 @@ function ServiceCard({ service, index, onClick }) {
           </li>
         ))}
       </ul>
+
+      {/* Floating Image Preview Popup */}
+      <AnimatePresence>
+        {hovered && service.image && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            style={{
+              position: 'absolute',
+              x: springX,
+              y: springY,
+            }}
+            className={`absolute z-50 pointer-events-none w-64 h-96 rounded-2xl overflow-hidden border border-neutral-800 bg-black/90 shadow-[0_20px_50px_rgba(0,0,0,0.8)] ${rotation}`}
+          >
+            <img 
+              src={service.image} 
+              alt={service.title} 
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -204,6 +258,7 @@ export default function Home() {
       title: 'AI Video Production',
       description: 'Lock-in character consistency, multi-angle lighting synthesis, and custom world-building environments.',
       icon: Video,
+      image: '/hover-ai-video.jpg',
       features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building'],
       targetAudience: 'Hollywood Indies, UK/US Creative Agencies, Enterprise Brand Directors.',
       header: 'Next-Gen AI Cinematic Video Production Studio',
@@ -215,6 +270,7 @@ export default function Home() {
       title: 'Short-Form Video Content',
       description: 'Engineered for viral velocity with 2-second visual hooks, vertical layout optimizations, and high-volume iterations.',
       icon: Smartphone,
+      image: '/hover-short-form.jpg',
       features: ['2-second visual hooks', 'Vertical layout optimization', 'High-volume rapid asset variations'],
       targetAudience: 'Premium Direct-to-Consumer (DTC) Brands, FinTech Startups, Global Content Creators.',
       header: 'High-Volume Viral Short-Form Engine (TikTok, Reels, Shorts)',
@@ -226,6 +282,7 @@ export default function Home() {
       title: 'Video Ads Production',
       description: 'Psychological marketing layout blended with premium material texture rendering and persona-targeted color grading.',
       icon: BarChart3,
+      image: '/hover-video-ads.jpg',
       features: ['Psychological marketing layout', 'Material texture rendering', 'Persona-targeted color grading'],
       targetAudience: 'High-Growth E-Commerce Brands, Performance Marketers in London/New York.',
       header: 'Psychological Performance-Driven AI Video Ads',
@@ -237,6 +294,7 @@ export default function Home() {
       title: 'Branded Film Production',
       description: 'Unified visual bibles, complex emotional storytelling pacing, and deep "noir" cinematic atmospheres.',
       icon: Film,
+      image: '/hover-branded-film.jpg',
       features: ['Unified visual bibles', 'Emotional storytelling pacing', 'Deep "noir" cinematic atmospheres'],
       targetAudience: 'Fortune 500 Corporate Communications, Luxury Brands in Europe/US.',
       header: 'High-Fidelity Branded AI Cinematic Films',
@@ -248,6 +306,7 @@ export default function Home() {
       title: 'Music AI Video Content',
       description: 'Audio-reactive frequency mapping with rhythmic continuity transitions and surreal digital art direction.',
       icon: Music,
+      image: '/hover-music-video.jpg',
       features: ['Audio-reactive frequency mapping', 'Rhythmic continuity transitions', 'Surreal art direction'],
       targetAudience: 'Record Labels, Independent Artists in Los Angeles/London/Berlin.',
       header: 'Audio-Reactive Frequency-Mapped AI Music Videos',
@@ -259,6 +318,7 @@ export default function Home() {
       title: 'Product Photoshoots',
       description: 'Flawless macro precision with infinite virtual lighting setups and structural integrity masking.',
       icon: Camera,
+      image: '/hover-photoshoots.jpg',
       features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking'],
       targetAudience: 'Luxury Apparel, Premium Cosmetics, Hardware Tech Brands.',
       header: 'Virtual Infinite-Environment Product Photoshoots',
