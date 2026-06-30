@@ -20,7 +20,7 @@ export default function Footer() {
               <img 
                 src="/logo-icon.png" 
                 alt="Neural Noir Logo" 
-                className="w-9 h-8 object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.45)] transition-transform duration-300 group-hover:scale-105" 
+                className="h-8 w-auto object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.45)] transition-transform duration-300 group-hover:scale-105" 
               />
               <span className="text-xl font-bold tracking-[0.3em] text-white group-hover:text-cyan-400 transition-colors duration-300">
                 NEURAL <span className="text-cyan-400">NOIR</span>
