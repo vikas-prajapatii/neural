@@ -9,87 +9,34 @@ import {
   Settings, Users, Zap, CheckCircle2, X, Send
 } from 'lucide-react';
 
-function ServiceCard({ service, index }) {
+function ServiceCard({ service, index, onClick }) {
   const Icon = service.icon;
-  const [hovered, setHovered] = useState(false);
-
-  // High-performance Framer Motion values for GPU-driven cursor tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Elastic spring physics for smooth tracking lag
-  const springX = useSpring(mouseX, { damping: 25, stiffness: 250 });
-  const springY = useSpring(mouseY, { damping: 25, stiffness: 250 });
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - 96; // Center horizontally (w-48 / 2)
-    const y = e.clientY - rect.top - 56;  // Center vertically (h-28 / 2)
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseEnter = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - 96;
-    const y = e.clientY - rect.top - 56;
-    mouseX.set(x);
-    mouseY.set(y);
-    setHovered(true);
-  };
-
-  const rotation = index % 2 === 0 ? 'rotate-6' : '-rotate-6';
 
   return (
     <div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={() => setHovered(false)}
-      onMouseMove={handleMouseMove}
-      className="glass-card glass-card-hover p-8 rounded-2xl flex flex-col justify-between group h-full transition-all duration-500 hover:scale-[1.02] hover:border-cyan-500/30 relative overflow-visible cursor-pointer"
+      onClick={onClick}
+      className="border border-neutral-800 bg-neutral-900/40 hover:bg-neutral-900/60 hover:border-neutral-600 transition-all duration-500 rounded-2xl p-8 flex flex-col justify-between group h-full cursor-pointer hover:scale-[1.01]"
     >
       <div>
-        <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
+        <div className="w-12 h-12 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 mb-6 group-hover:text-white group-hover:border-neutral-500 transition-all duration-300">
           <Icon className="w-6 h-6" />
         </div>
-        <h3 className="text-xl font-bold mb-4 text-slate-100 group-hover:text-cyan-400 transition-colors">
+        <h3 className="text-xl font-bold mb-4 text-white group-hover:text-neutral-200 transition-colors">
           {service.title}
         </h3>
-        <p className="text-sm text-slate-400 leading-relaxed mb-6">
+        <p className="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
           {service.description}
         </p>
       </div>
       
-      <ul className="space-y-2.5 border-t border-white/5 pt-5 relative z-10">
+      <ul className="space-y-2.5 border-t border-neutral-800 pt-5 relative z-10">
         {service.features.map((feat, i) => (
-          <li key={i} className="flex items-center text-xs text-slate-400">
-            <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500/70 mr-2 flex-shrink-0" />
+          <li key={i} className="flex items-center text-xs text-neutral-400">
+            <CheckCircle2 className="w-3.5 h-3.5 text-neutral-500 mr-2 flex-shrink-0" />
             {feat}
           </li>
         ))}
       </ul>
-
-      {/* Floating Image Preview Popup */}
-      <AnimatePresence>
-        {hovered && service.image && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            style={{
-              position: 'absolute',
-              x: springX,
-              y: springY,
-            }}
-            className={`absolute z-50 pointer-events-none w-64 h-96 rounded-2xl overflow-hidden border border-cyan-500/30 bg-black/90 shadow-[0_20px_50px_rgba(6,182,212,0.35)] ${rotation}`}
-          >
-            <img 
-              src={service.image} 
-              alt={service.title} 
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
@@ -105,6 +52,50 @@ export default function Home() {
     types: [],
     philosophy: ''
   });
+
+  // Service details modal state
+  const [activeModal, setActiveModal] = useState(null);
+  const [modalSubmitted, setModalSubmitted] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
+  const [modalError, setModalError] = useState(null);
+  const [modalForm, setModalForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    philosophy: ''
+  });
+
+  const handleModalFormSubmit = async (e) => {
+    e.preventDefault();
+    setModalLoading(true);
+    setModalError(null);
+    try {
+      const response = await fetch('http://localhost:8080/api/inquiries/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: modalForm.name,
+          email: modalForm.email,
+          phone: modalForm.phone,
+          philosophy: modalForm.philosophy,
+          projectTypes: activeModal.title, // aggregates selection with service title
+        }),
+      });
+
+      if (response.ok) {
+        setModalSubmitted(true);
+        setModalForm({ name: '', email: '', phone: '', philosophy: '' });
+      } else {
+        setModalError('Server responded with an error. Please try again.');
+      }
+    } catch (err) {
+      setModalError('Connection failed. Please check if backend server is active.');
+    } finally {
+      setModalLoading(false);
+    }
+  };
   
   const videoRef = useRef(null);
 
@@ -213,56 +204,66 @@ export default function Home() {
       title: 'AI Video Production',
       description: 'Lock-in character consistency, multi-angle lighting synthesis, and custom world-building environments.',
       icon: Video,
-      image: '/hover-ai-video.jpg',
-      features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building']
+      features: ['Character lock-in consistency', 'Multi-angle lighting synthesis', 'Infinite custom world-building'],
+      targetAudience: 'Hollywood Indies, UK/US Creative Agencies, Enterprise Brand Directors.',
+      header: 'Next-Gen AI Cinematic Video Production Studio',
+      valueProp: 'Eliminate $50,000+ logistics overhead. No location scouting, no massive crew management, no scheduling bottlenecks. We leverage generative diffusion networks to engineer multi-angle lighting synthesis and custom world-building environments within hours—not months.',
+      metrics: ['85% | Cost Reduction', '10x | Production Velocity', 'Frame-by-Frame | Asset Consistency']
     },
     {
       id: 'short-form',
       title: 'Short-Form Video Content',
       description: 'Engineered for viral velocity with 2-second visual hooks, vertical layout optimizations, and high-volume iterations.',
       icon: Smartphone,
-      image: '/hover-short-form.jpg',
-      features: ['2-second visual hooks', 'Vertical layout optimization', 'High-volume rapid asset variations']
+      features: ['2-second visual hooks', 'Vertical layout optimization', 'High-volume rapid asset variations'],
+      targetAudience: 'Premium Direct-to-Consumer (DTC) Brands, FinTech Startups, Global Content Creators.',
+      header: 'High-Volume Viral Short-Form Engine (TikTok, Reels, Shorts)',
+      valueProp: 'Scaling social presence across US/UK markets requires insane volume. Traditional editing teams take days per video. Our AI framework automates asset variations, engineers data-backed 2-second psychological hooks, and optimizes vertical layout tracking. We deploy hyper-targeted content pipelines that bypass creative fatigue.',
+      metrics: ['300% | Engagement Surge', 'Zero | Editing Retainers', '24-Hour | Deployment']
     },
     {
       id: 'video-ads',
       title: 'Video Ads Production',
       description: 'Psychological marketing layout blended with premium material texture rendering and persona-targeted color grading.',
       icon: BarChart3,
-      image: '/hover-video-ads.jpg',
-      features: ['Psychological marketing layout', 'Material texture rendering', 'Persona-targeted color grading']
+      features: ['Psychological marketing layout', 'Material texture rendering', 'Persona-targeted color grading'],
+      targetAudience: 'High-Growth E-Commerce Brands, Performance Marketers in London/New York.',
+      header: 'Psychological Performance-Driven AI Video Ads',
+      valueProp: 'Stop losing ROAS to ad fatigue. Our AI workflows allow rapid material texture rendering and persona-targeted color grading variants to A/B test hooks continuously. We combine psychological marketing frameworks with scalable AI asset manipulation to trigger direct-response actions from western buyers.',
+      metrics: ['+45% | Click-Through Rate', 'Infinite | Creative Variations', 'Maximized | ROAS']
     },
     {
       id: 'branded-film',
       title: 'Branded Film Production',
       description: 'Unified visual bibles, complex emotional storytelling pacing, and deep "noir" cinematic atmospheres.',
       icon: Film,
-      image: '/hover-branded-film.jpg',
-      features: ['Unified visual bibles', 'Emotional storytelling pacing', 'Deep "noir" cinematic atmospheres']
+      features: ['Unified visual bibles', 'Emotional storytelling pacing', 'Deep "noir" cinematic atmospheres'],
+      targetAudience: 'Fortune 500 Corporate Communications, Luxury Brands in Europe/US.',
+      header: 'High-Fidelity Branded AI Cinematic Films',
+      valueProp: 'Brand storytelling requires premium visual bibles and a deep "noir" cinematic atmosphere. We blend raw human directorial vision with custom trained AI hyper-realism models. This ensures absolute character lock-in consistency and complex emotional pacing without the multi-million dollar traditional studio budget constraints.',
+      metrics: ['Blockbuster | Scale Fidelity', 'Custom | Model Property', 'Global | Distribution Ready']
     },
     {
       id: 'music-video',
       title: 'Music AI Video Content',
       description: 'Audio-reactive frequency mapping with rhythmic continuity transitions and surreal digital art direction.',
       icon: Music,
-      image: '/hover-music-video.jpg',
-      features: ['Audio-reactive frequency mapping', 'Rhythmic continuity transitions', 'Surreal art direction']
+      features: ['Audio-reactive frequency mapping', 'Rhythmic continuity transitions', 'Surreal art direction'],
+      targetAudience: 'Record Labels, Independent Artists in Los Angeles/London/Berlin.',
+      header: 'Audio-Reactive Frequency-Mapped AI Music Videos',
+      valueProp: 'Turn sonic frequencies into high-art visuals. Our infrastructure utilizes advanced audio-reactive frequency mapping to generate rhythmic continuity transitions, dreamscape sequences, and surreal digital art assets that move perfectly to the beat. High-end visuals for international charts at zero production overhead.',
+      metrics: ['Seamless | Audio-Visual Sync', 'Immersive | Surreal Aesthetics', 'Independent | Budget Friendly']
     },
     {
       id: 'photoshoots',
       title: 'Product Photoshoots',
       description: 'Flawless macro precision with infinite virtual lighting setups and structural integrity masking.',
       icon: Camera,
-      image: '/hover-photoshoots.jpg',
-      features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking']
-    },
-    {
-      id: 'brand-poster',
-      title: 'Brand Poster Creation',
-      description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
-      icon: ImageIcon,
-      image: '/hover-brand-poster.jpg',
-      features: ['Print-ready canvas upscaling', 'Impactful graphic composition', 'Unified campaign styling']
+      features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking'],
+      targetAudience: 'Luxury Apparel, Premium Cosmetics, Hardware Tech Brands.',
+      header: 'Virtual Infinite-Environment Product Photoshoots',
+      valueProp: 'Shipping inventory to physical studios for commercial photography is an archaic bottleneck. Send us 3 clean images or a 3D asset model of your product. Our AI engine generates flawless macro precision styling, structural integrity masking, and maps it across infinite virtual lighting setups and global backgrounds effortlessly.',
+      metrics: ['Zero | Shipping/Studio Fees', '100% | Commercial Imagery', 'Retake | in 1-Click']
     }
   ];
 
@@ -380,7 +381,17 @@ export default function Home() {
           {/* Interactive Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
+              <ServiceCard 
+                key={service.id} 
+                service={service} 
+                index={index} 
+                onClick={() => {
+                  setActiveModal(service);
+                  setModalSubmitted(false);
+                  setModalError(null);
+                  setModalForm({ name: '', email: '', phone: '', philosophy: '' });
+                }}
+              />
             ))}
           </div>
 
@@ -645,6 +656,187 @@ export default function Home() {
               )}
 
             </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Interactive Service-Specific Modal Overlay */}
+      <AnimatePresence>
+        {activeModal && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 overflow-y-auto bg-neutral-950/90 backdrop-blur-md"
+            onClick={() => {
+              setActiveModal(null);
+              setModalSubmitted(false);
+              setModalError(null);
+            }}
+          >
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-5xl bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl my-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setActiveModal(null);
+                  setModalSubmitted(false);
+                  setModalError(null);
+                }}
+                className="absolute top-6 right-6 p-2 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white transition-colors z-10"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              {/* Asymmetrical Split Screen Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
+                
+                {/* Left Panel: SEO High-converting Copy */}
+                <div className="lg:col-span-6 p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-neutral-800 flex flex-col justify-between">
+                  <div>
+                    {/* Target Audience Label */}
+                    <div className="inline-block px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] font-semibold text-neutral-500 uppercase tracking-widest mb-6">
+                      Target: {activeModal.targetAudience}
+                    </div>
+                    
+                    {/* Header */}
+                    <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
+                      {activeModal.header}
+                    </h3>
+                    
+                    {/* Value Prop */}
+                    <p className="text-sm md:text-base text-neutral-400 leading-relaxed font-light mt-6">
+                      {activeModal.valueProp}
+                    </p>
+                  </div>
+
+                  {/* Metrics & Features Grid */}
+                  <div className="mt-8 pt-8 border-t border-neutral-900">
+                    <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-4">Key Metrics</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {activeModal.metrics.map((metric, idx) => (
+                        <div key={idx} className="p-4 rounded-xl border border-neutral-900 bg-neutral-900/30">
+                          <p className="text-sm font-extrabold text-white leading-snug">{metric.split(' | ')[0]}</p>
+                          <p className="text-[10px] text-neutral-500 uppercase tracking-wider mt-1">{metric.split(' | ')[1] || 'Metric'}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Panel: Lead Intake Form */}
+                <div className="lg:col-span-6 p-8 md:p-12 bg-neutral-950 flex flex-col justify-center">
+                  {!modalSubmitted ? (
+                    <form onSubmit={handleModalFormSubmit} className="space-y-5">
+                      <div>
+                        <h4 className="text-lg font-bold text-white mb-1">Brief Your Project</h4>
+                        <p className="text-xs text-neutral-500 leading-relaxed font-light">
+                          Select scope details below. We will deploy custom AI model weights tuned for {activeModal.title}.
+                        </p>
+                      </div>
+
+                      {modalError && (
+                        <div className="p-3 rounded-lg bg-red-950/20 border border-red-900/30 text-xs text-red-400">
+                          {modalError}
+                        </div>
+                      )}
+
+                      {/* Name */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">Name / Company</label>
+                        <input
+                          type="text"
+                          required
+                          value={modalForm.name}
+                          onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
+                          placeholder="John Doe / Acme Corp"
+                          className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder-neutral-800 focus:border-neutral-500 focus:outline-none transition-colors"
+                        />
+                      </div>
+
+                      {/* Email */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">Email Address</label>
+                        <input
+                          type="email"
+                          required
+                          value={modalForm.email}
+                          onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
+                          placeholder="john@example.com"
+                          className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder-neutral-800 focus:border-neutral-500 focus:outline-none transition-colors"
+                        />
+                      </div>
+
+                      {/* Phone */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">Mobile Number</label>
+                        <input
+                          type="tel"
+                          required
+                          value={modalForm.phone}
+                          onChange={(e) => setModalForm({ ...modalForm, phone: e.target.value })}
+                          placeholder="+1 (555) 000-0000"
+                          className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder-neutral-800 focus:border-neutral-500 focus:outline-none transition-colors"
+                        />
+                      </div>
+
+                      {/* Philosophy/Brief */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">Project Philosophy / Brief</label>
+                        <textarea
+                          required
+                          value={modalForm.philosophy}
+                          onChange={(e) => setModalForm({ ...modalForm, philosophy: e.target.value })}
+                          placeholder="Outline visual themes, pacing parameters, and brand assets to preserve..."
+                          className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder-neutral-800 focus:border-neutral-500 focus:outline-none transition-colors h-24 resize-none"
+                        />
+                      </div>
+
+                      {/* Submit */}
+                      <button
+                        type="submit"
+                        disabled={modalLoading}
+                        className="w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest text-black bg-white hover:bg-neutral-200 disabled:opacity-50 transition-all duration-300 flex items-center justify-center space-x-2"
+                      >
+                        {modalLoading ? (
+                          <span>Deploying Weights...</span>
+                        ) : (
+                          <>
+                            <span>Submit Project Brief</span>
+                            <Send className="w-3.5 h-3.5" />
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  ) : (
+                    <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+                      <div className="w-16 h-16 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white shadow-lg">
+                        <CheckCircle2 className="w-8 h-8 stroke-[1.5]" />
+                      </div>
+                      <h4 className="text-lg font-bold text-white uppercase tracking-wider">Brief Deposited</h4>
+                      <p className="text-xs text-neutral-400 max-w-sm font-light leading-relaxed">
+                        Your brand request has been mapped to our {activeModal.title} pipeline. Our AI directors will match concept spaces and contact you within 24 hours.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setActiveModal(null);
+                          setModalSubmitted(false);
+                          setModalError(null);
+                        }}
+                        className="mt-4 px-6 py-2.5 rounded-full text-xs font-semibold text-neutral-400 hover:text-white border border-neutral-800 hover:border-neutral-600 transition-colors"
+                      >
+                        Close Portal
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>

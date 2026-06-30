@@ -18,6 +18,11 @@ public class InquiryController {
 
     @PostMapping
     public ResponseEntity<Inquiry> createInquiry(@RequestBody Inquiry inquiry) {
+        return createInquirySubmit(inquiry);
+    }
+
+    @PostMapping("/submit")
+    public ResponseEntity<Inquiry> createInquirySubmit(@RequestBody Inquiry inquiry) {
         Inquiry savedInquiry = inquiryRepository.save(inquiry);
         return ResponseEntity.ok(savedInquiry);
     }
