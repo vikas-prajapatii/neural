@@ -1,12 +1,22 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Film, Play, Lock } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, Sparkles, Film, Play, Lock } from 'lucide-react';
 
 export default function Work() {
   return (
     <main className="flex-grow bg-transparent pt-32 pb-24 md:pt-40 md:pb-32 relative z-10 min-h-screen flex flex-col justify-center select-none">
       <div className="max-w-7xl mx-auto px-6 w-full">
+        
+        {/* Back button */}
+        <Link 
+          href="/" 
+          className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group mb-8"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Back to Home
+        </Link>
         
         {/* Title Header */}
         <header className="max-w-3xl mb-16 md:mb-24 animate-fade-in-up">

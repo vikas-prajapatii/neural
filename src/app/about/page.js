@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Sparkles, Film, Compass, Rocket } from 'lucide-react';
+import { ArrowLeft, Sparkles, Film, Compass, Rocket } from 'lucide-react';
 
 export default function AboutPage() {
   const leadership = [
@@ -22,6 +23,17 @@ export default function AboutPage() {
 
   return (
     <div className="relative min-h-screen bg-black/60 text-neutral-200 pt-32 pb-24 md:pt-44 md:pb-36 font-sans overflow-hidden">
+      
+      {/* Back button */}
+      <div className="max-w-7xl mx-auto px-6 mb-8">
+        <Link 
+          href="/" 
+          className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Back to Home
+        </Link>
+      </div>
       
       {/* 1. HERO SECTION */}
       <section className="relative max-w-7xl mx-auto px-6 mb-20 md:mb-28">

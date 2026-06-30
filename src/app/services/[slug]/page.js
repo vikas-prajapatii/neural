@@ -1,6 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
+import { CheckCircle2, ArrowLeft } from 'lucide-react';
 import { servicesData } from '@/data/servicesData';
 import InquiryForm from '@/components/InquiryForm';
 
@@ -40,6 +41,16 @@ export default function ServiceSlugPage({ params }) {
       <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-neutral-900/10 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Back button */}
+        <Link 
+          href="/" 
+          className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group mb-10"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Back to Home
+        </Link>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
           
           {/* Left Column: B2B SEO Value Proposition */}
