@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useModal } from '@/context/ModalContext';
 
 export default function Footer() {
@@ -61,13 +62,13 @@ export default function Footer() {
             <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-widest mb-4">Studio Navigation</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#home" className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">Home</a>
+                <Link href="/" className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">Home</Link>
               </li>
               <li>
-                <a href="#services" className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">Services</a>
+                <Link href="/#services" className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">Services</Link>
               </li>
               <li>
-                <a href="#about" className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">About Us</a>
+                <Link href="/about" className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">About Us</Link>
               </li>
               <li>
                 <button onClick={openModal} className="text-sm text-slate-400 hover:text-cyan-400 transition-colors text-left">

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useModal } from '@/context/ModalContext';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
@@ -24,7 +25,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Work', href: '/work' },
     { name: 'Services', href: '/#services' },
-    { name: 'About', href: '/#about' },
+    { name: 'About', href: '/about' },
   ];
 
   return (
@@ -54,14 +55,14 @@ export default function Navbar() {
         {/* Center Links (Desktop) */}
         <div className="hidden md:flex items-center space-x-10">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               className="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors duration-200 relative group"
             >
               {link.name}
               <span className="absolute bottom-[-4px] left-0 w-0 h-[1.5px] bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           ))}
           <button
             onClick={openModal}
@@ -100,14 +101,14 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 glass-card border-b border-white/5 py-6 px-6 flex flex-col space-y-4 animate-float">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-medium text-slate-300 hover:text-cyan-400 transition-colors"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <button
             onClick={() => {
