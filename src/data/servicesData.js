@@ -1,4 +1,4 @@
-import { Video, Smartphone, BarChart3, Film, Music, Camera } from 'lucide-react';
+import { Video, Smartphone, BarChart3, Film, Music, Camera, Image as ImageIcon } from 'lucide-react';
 
 export const servicesData = {
   'ai-video-production': {
@@ -114,5 +114,24 @@ export const servicesData = {
     ],
     seoTitle: 'Virtual AI Product Photoshoots | Infinite Environments & Studio Lighting',
     seoDescription: 'Scale cosmetic and tech commercial photography with virtual staging. Send 3 images or a 3D asset to render infinite studio lighting setups.'
+  },
+  'brand-poster-creation': {
+    id: 'brand-poster',
+    slug: 'brand-poster-creation',
+    title: 'Brand Poster Creation',
+    description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
+    icon: ImageIcon,
+    image: '/hover-brand-poster.jpg',
+    features: ['Print-ready canvas upscaling', 'Impactful graphic composition', 'Unified campaign styling'],
+    targetAudience: 'Hollywood Indies, Brand Advertisers, Luxury Print Campaigns',
+    header: 'High-Resolution Cinematic Brand Poster Creation',
+    valueProp: 'Elevate print and digital advertising campaigns with cinema-grade promotional assets. We scale conceptual designs to infinite print-ready canvases using neural upscaling networks. Avoid resolution distortion or graphic styling fragmentation across physical and digital banners.',
+    metrics: [
+      { value: 'Print-Ready', label: 'Canvas Upscaling' },
+      { value: 'Unified', label: 'Campaign Styling' },
+      { value: '100%', label: 'Aesthetic Consistency' }
+    ],
+    seoTitle: 'Cinematic Brand Poster Creation | High-Res Print Upscaling',
+    seoDescription: 'Scale conceptual designs to infinite print-ready canvases using neural upscaling networks. Create high-resolution campaign assets.'
   }
 };

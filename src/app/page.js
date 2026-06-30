@@ -264,6 +264,15 @@ export default function Home() {
       icon: Camera,
       image: '/hover-photoshoots.jpg',
       features: ['Flawless macro precision', 'Infinite virtual lighting setups', 'Structural integrity masking']
+    },
+    {
+      id: 'brand-poster',
+      slug: 'brand-poster-creation',
+      title: 'Brand Poster Creation',
+      description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
+      icon: ImageIcon,
+      image: '/hover-brand-poster.jpg',
+      features: ['Print-ready canvas upscaling', 'Impactful graphic composition', 'Unified campaign styling']
     }
   ];
 
