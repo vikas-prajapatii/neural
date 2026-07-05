@@ -45,7 +45,8 @@ export default function InquiryForm({ serviceTitle = 'General Inquiry' }) {
             email: form.email,
             mobile: form.phone,
             project_types: [serviceTitle],
-            project_scope: `[BUDGET: ${finalBudget || 'Not specified'}]\n\n${form.philosophy}`
+            budget: finalBudget || 'Not specified',
+            project_scope: form.philosophy
           }
         ]);
 

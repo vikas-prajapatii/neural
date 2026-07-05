@@ -60,7 +60,8 @@ export default function ContactModal() {
             email: formState.email,
             mobile: formState.phone,
             project_types: formState.types,
-            project_scope: `[BUDGET: ${finalBudget || 'Not specified'}]\n\n${formState.philosophy}`
+            budget: finalBudget || 'Not specified',
+            project_scope: formState.philosophy
           }
         ]);
 
