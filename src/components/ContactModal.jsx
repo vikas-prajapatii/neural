@@ -38,17 +38,7 @@ export default function ContactModal() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     
-    // Validate corporate email
-    const emailStr = formState.email.trim().toLowerCase();
-    const publicDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com', 'protonmail.com', 'zoho.com', 'mail.com', 'yandex.com', 'gmx.com'];
-    const emailParts = emailStr.split('@');
-    if (emailParts.length === 2) {
-      const domain = emailParts[1];
-      if (publicDomains.includes(domain)) {
-        alert('Please provide a corporate email address (standard email addresses like @gmail.com are not accepted).');
-        return;
-      }
-    }
+
 
     const finalBudget = formState.budget === 'Custom Budget' ? formState.customBudget : formState.budget;
     try {

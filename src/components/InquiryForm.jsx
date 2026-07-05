@@ -22,18 +22,7 @@ export default function InquiryForm({ serviceTitle = 'General Inquiry' }) {
     setLoading(true);
     setError(null);
     
-    // Validate corporate email
-    const emailStr = form.email.trim().toLowerCase();
-    const publicDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com', 'protonmail.com', 'zoho.com', 'mail.com', 'yandex.com', 'gmx.com'];
-    const emailParts = emailStr.split('@');
-    if (emailParts.length === 2) {
-      const domain = emailParts[1];
-      if (publicDomains.includes(domain)) {
-        setError('Please provide a corporate email address (standard email addresses like @gmail.com are not accepted).');
-        setLoading(false);
-        return;
-      }
-    }
+
 
     const finalBudget = form.budget === 'Custom Budget' ? form.customBudget : form.budget;
     try {
