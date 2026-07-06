@@ -29,32 +29,7 @@ export default function Footer() {
             <p className="mt-4 text-sm text-slate-400 max-w-sm leading-relaxed">
               An ultra-premium Global AI Video Production Studio. We blend raw creative vision with cutting-edge AI to forge cinematic realities for forward-thinking brands.
             </p>
-            <div className="flex space-x-5 mt-6">
-              <a href="#" className="text-slate-400 hover:text-cyan-400 transition-colors duration-200" aria-label="YouTube">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-                </svg>
-              </a>
-              <a href="#" className="text-slate-400 hover:text-cyan-400 transition-colors duration-200" aria-label="Instagram">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-              </a>
-              <a href="#" className="text-slate-400 hover:text-cyan-400 transition-colors duration-200" aria-label="Twitter">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                  <path d="M4 20l6.768-6.768m2.46-2.46L20 4" />
-                </svg>
-              </a>
-              <a href="#" className="text-slate-400 hover:text-cyan-400 transition-colors duration-200" aria-label="Discord">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-              </a>
-            </div>
+
           </div>
 
           {/* Quick Links */}
