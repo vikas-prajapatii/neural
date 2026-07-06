@@ -60,10 +60,10 @@ export default function Footer() {
               Operating Globally. Borderless Production.
             </p>
             <a 
-              href="mailto:hello@neuralnoirstudios.com" 
+              href="mailto:contact@neuralnoirstudio.com" 
               className="text-sm text-cyan-400/80 hover:text-cyan-300 font-medium transition-colors"
             >
-              hello@neuralnoirstudios.com
+              contact@neuralnoirstudio.com
             </a>
             <p className="text-sm text-slate-500 mt-2">
               By appointment only.
