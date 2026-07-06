@@ -7,7 +7,7 @@ export const servicesData = {
     title: 'AI Video Production',
     description: 'Lock-in character consistency, photorealistic lighting synthesis, and custom world-building environments.',
     icon: Video,
-    image: '/hover-ai-video.jpg',
+    image: '/assets/services/hover-ai-video.jpg',
     featureSectionTitle: 'The Neural Noir Production Standard',
     features: [
       { 
@@ -44,7 +44,7 @@ export const servicesData = {
     title: 'Short-Form Video Content',
     description: 'Engineered for viral velocity with 2-second visual hooks, vertical layout optimizations, and high-volume iterations.',
     icon: Smartphone,
-    image: '/hover-short-form.jpg',
+    image: '/assets/services/hover-short-form.jpg',
     featureSectionTitle: 'The Short-Form Architecture',
     features: [
       { 
@@ -81,7 +81,7 @@ export const servicesData = {
     title: 'Video Ads Production',
     description: 'Direct-Response psychological marketing layouts blended with premium material texture rendering and persona-targeted color grading.',
     icon: BarChart3,
-    image: '/hover-video-ads.jpg',
+    image: '/assets/services/hover-video-ads.jpg',
     featureSectionTitle: 'The Neural Noir Ad Framework',
     features: [
       {
@@ -118,7 +118,7 @@ export const servicesData = {
     title: 'Branded Film Production',
     description: 'Unified visual bibles, complex emotional storytelling pacing, and deep "noir" cinematic atmospheres.',
     icon: Film,
-    image: '/hover-branded-film.jpg',
+    image: '/assets/services/hover-branded-film.jpg',
     featureSectionTitle: 'The Cinematic Standard',
     features: [
       {
@@ -155,7 +155,7 @@ export const servicesData = {
     title: 'Music AI Video Content',
     description: 'Audio-reactive frequency mapping with rhythmic continuity transitions and surreal digital art direction.',
     icon: Music,
-    image: '/hover-music-video.jpg',
+    image: '/assets/services/hover-music-video.jpg',
     featureSectionTitle: 'The Audio-Visual Pipeline',
     features: [
       {
@@ -192,7 +192,7 @@ export const servicesData = {
     title: 'Product Photoshoots',
     description: 'AI Commercial Photography delivering flawless macro precision with infinite virtual lighting setups and structural integrity masking.',
     icon: Camera,
-    image: '/hover-photoshoots.jpg',
+    image: '/assets/services/hover-photoshoots.jpg',
     featureSectionTitle: 'The Virtual Studio Advantage',
     features: [
       {
@@ -229,7 +229,7 @@ export const servicesData = {
     title: 'Brand Poster Creation',
     description: 'High-resolution print canvas upscaling, impactful graphic composition, and unified campaign styling.',
     icon: ImageIcon,
-    image: '/hover-brand-poster.jpg',
+    image: '/assets/services/hover-brand-poster.jpg',
     featureSectionTitle: 'The Key Art Process',
     features: [
       {

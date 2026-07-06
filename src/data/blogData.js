@@ -2,7 +2,7 @@ export const blogData = {
   'shift-to-genai-video': {
     slug: 'shift-to-genai-video',
     title: 'The Shift to GenAI Video: How Brands Save 80% on Production Overhead',
-    image: '/shift-to-genai-video.jpg',
+    image: '/assets/blog/shift-to-genai-video.jpg',
     summary: 'An analytical breakdown of traditional commercial video production economics vs. Neural Noir\'s virtual staging pipelines.',
     date: 'July 02, 2026',
     readingTime: '5 min read',
@@ -72,7 +72,7 @@ export const blogData = {
   'data-isolation-copyright-safety-enterprise-ai': {
     slug: 'data-isolation-copyright-safety-enterprise-ai',
     title: 'Data Isolation & Copyright Safety in Enterprise Generative Media by Neural Noir',
-    image: '/data-isolation-copyright-safety-enterprise-ai.jpg',
+    image: '/assets/blog/data-isolation-copyright-safety-enterprise-ai.jpg',
     summary: 'How Neural Noir enforces complete data isolation, implements strict copyright safeguards, and protects corporate intellectual property.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -152,7 +152,7 @@ export const blogData = {
   'viral-velocity-social-pipelines': {
     slug: 'viral-velocity-social-pipelines',
     title: 'Viral Velocity: Engineering High-Volume Social Pipelines for TikTok & Reels',
-    image: '/viral-velocity-social-pipelines.png',
+    image: '/assets/blog/viral-velocity-social-pipelines.png',
     summary: 'How DTC brand directors scale vertical video content production to maintain continuous social feed presence.',
     date: 'June 28, 2026',
     readingTime: '4 min read',
@@ -224,7 +224,7 @@ export const blogData = {
   'character-consistency-diffusion-models': {
     slug: 'character-consistency-diffusion-models',
     title: 'Maintaining Character & World Consistency in Generative Video Workflows by Neural Noir',
-    image: '/character-consistency-diffusion-models.jpg',
+    image: '/assets/blog/character-consistency-diffusion-models.jpg',
     summary: 'A technical walkthrough of LoRA training pipelines, visual bibles, and multi-angle scene consistency.',
     date: 'June 20, 2026',
     readingTime: '7 min read',
@@ -315,7 +315,7 @@ export const blogData = {
   'enterprise-ai-solutions-decoupling-costs': {
     slug: 'enterprise-ai-solutions-decoupling-costs',
     title: 'Enterprise AI Solutions: Decoupling Production Costs from Creative Scale',
-    image: '/enterprise-ai-solutions-decoupling-costs.jpg',
+    image: '/assets/blog/enterprise-ai-solutions-decoupling-costs.jpg',
     summary: 'How Neural Noir unlinks physical constraints from high-end corporate media creation, giving global CMOs the leverage of infinite visual deployment with absolute brand protection.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -392,7 +392,7 @@ export const blogData = {
   'growth-marketing-infrastructure-retention-engines': {
     slug: 'growth-marketing-infrastructure-retention-engines',
     title: 'Growth Marketing Infrastructure: Engineering High-Converting Algorithmic Retention Engines',
-    image: '/growth-marketing-infrastructure-retention-engines.jpg',
+    image: '/assets/blog/growth-marketing-infrastructure-retention-engines.jpg',
     summary: 'How Neural Noir merges high-fidelity neural media generation with conversion-focused ad frameworks, allowing brand directors to maintain a persistent, high-converting social feed presence across global channels.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -471,7 +471,7 @@ export const blogData = {
   'tech-fx-architecture-temporal-stabilization': {
     slug: 'tech-fx-architecture-temporal-stabilization',
     title: 'Neural Architecture: Deterministic Engineering and Temporal Stabilization for Neural Media Pipelines',
-    image: '/tech-fx-architecture-temporal-stabilization.jpg',
+    image: '/assets/blog/tech-fx-architecture-temporal-stabilization.jpg',
     summary: 'How Neural Noir anchors character identities, enforces product geometry tracking, and removes frame-to-frame noise in neural media pipelines.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -562,7 +562,7 @@ export const blogData = {
   'ai-technology-infrastructure-staging-workflows': {
     slug: 'ai-technology-infrastructure-staging-workflows',
     title: 'AI Technology Infrastructure: Advanced Generative Networks, Diffusion Stacking, and Neural Staging Workflows',
-    image: '/ai-technology-infrastructure-staging-workflows.jpg',
+    image: '/assets/blog/ai-technology-infrastructure-staging-workflows.jpg',
     summary: 'How the engineering ecosystem at Neural Noir structures advanced generative diffusion stacks and custom neural staging nodes to transform text-to-video spaces into asset-locked mathematical pipelines.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -645,7 +645,7 @@ export const blogData = {
   'cinematic-synthesis-digital-storytelling': {
     slug: 'cinematic-synthesis-digital-storytelling',
     title: 'Cinematic Synthesis Architecture: Strategies for Scaling High-Fidelity Visual Assets and Digital Storytelling',
-    image: '/cinematic-synthesis-digital-storytelling.jpg',
+    image: '/assets/blog/cinematic-synthesis-digital-storytelling.jpg',
     summary: 'How Neural Noir merges high-end narrative layouts with custom machine-learning nodes, allowing forward-thinking brands to scale premium digital storytelling without inflating design overhead.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -723,7 +723,7 @@ export const blogData = {
   'content-marketing-architecture-direct-response': {
     slug: 'content-marketing-architecture-direct-response',
     title: 'Content Marketing Architecture: Direct-Response Video Frameworks for High-Retention Conversion Pipelines',
-    image: '/content-marketing-architecture-direct-response.jpg',
+    image: '/assets/blog/content-marketing-architecture-direct-response.jpg',
     summary: 'How Neural Noir engineers automated, high-retention direct-response video frameworks designed to convert cold digital traffic into locked revenue.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -802,7 +802,7 @@ export const blogData = {
   'algorithmic-scaling-architecture-ab-testing': {
     slug: 'algorithmic-scaling-architecture-ab-testing',
     title: 'Algorithmic Scaling Architecture: Programmatic A/B Testing, Multi-Model Upscaling, and Adaptive Vertical Layout Feed Adjustments',
-    image: '/algorithmic-scaling-architecture-ab-testing.jpg',
+    image: '/assets/blog/algorithmic-scaling-architecture-ab-testing.jpg',
     summary: 'How Neural Noir handles real-time visual variations, resolution upscaling, and spatial adjustments to optimize direct response performance.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -880,7 +880,7 @@ export const blogData = {
   'creative-process-architecture-human-directorial-vision': {
     slug: 'creative-process-architecture-human-directorial-vision',
     title: 'Creative Process Architecture: Blending Raw Human Directorial Vision with Scalable AI Generation Pipelines',
-    image: '/creative-process-architecture-human-directorial-vision.jpg',
+    image: '/assets/blog/creative-process-architecture-human-directorial-vision.jpg',
     summary: 'How Neural Noir balances visceral human directorial vision with scalable, deterministic neural systems to ensure machine-driven cinema inherits intentional texture and human pacing.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
@@ -960,7 +960,7 @@ export const blogData = {
   'video-production-infrastructure-virtual-studios': {
     slug: 'video-production-infrastructure-virtual-studios',
     title: 'Video Production Infrastructure: Replacing Traditional Film Logistics with Next-Gen Virtual Studio Setups',
-    image: '/video-production-infrastructure-virtual-studios.jpg',
+    image: '/assets/blog/video-production-infrastructure-virtual-studios.jpg',
     summary: 'How Neural Noir completely dismantles physical constraints, enabling global creative directors to deploy blockbuster-fidelity commercial assets via automated neural rendering pipelines.',
     date: 'July 04, 2026',
     readingTime: '6 min read',

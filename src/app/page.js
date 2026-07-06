@@ -137,7 +137,7 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
             
             {/* Image */}
             <Image 
-              src={service.image} 
+              src={service.image || '/assets/placeholder/default-placeholder.png'} 
               alt={`Neural Noir ${service.title} - AI generated photorealistic 4K cinematic commercial preview`}
               fill
               className="object-cover"

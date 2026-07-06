@@ -106,7 +106,7 @@ export default function BlogPostPage({ params }) {
             {post.image && (
               <div className="w-full rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-950/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] my-8">
                 <Image 
-                  src={post.image} 
+                  src={post.image || '/assets/placeholder/default-placeholder.png'} 
                   alt={`Neural Noir Blog - ${post.title} - AI generated photorealistic infographic`}
                   width={1200}
                   height={630}

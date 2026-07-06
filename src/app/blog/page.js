@@ -13,20 +13,20 @@ const getPostImage = (slug, index) => {
     return post.image;
   }
   const images = [
-    '/hover-ai-video.jpg',
-    '/hover-short-form.jpg',
-    '/hover-video-ads.jpg',
-    '/hover-branded-film.jpg',
-    '/hover-music-video.jpg',
-    '/hover-photoshoots.jpg',
-    '/hover-brand-poster.jpg',
-    '/ai-video-hover.jpg',
-    '/ai-video-preview.jpg',
-    '/branded-film-hover.jpg',
-    '/short-form-hover.jpg',
-    '/video-ads-hover.jpg'
+    '/assets/services/hover-ai-video.jpg',
+    '/assets/services/hover-short-form.jpg',
+    '/assets/services/hover-video-ads.jpg',
+    '/assets/services/hover-branded-film.jpg',
+    '/assets/services/hover-music-video.jpg',
+    '/assets/services/hover-photoshoots.jpg',
+    '/assets/services/hover-brand-poster.jpg',
+    '/assets/blog/ai-video-hover.jpg',
+    '/assets/blog/ai-video-preview.jpg',
+    '/assets/blog/branded-film-hover.jpg',
+    '/assets/blog/short-form-hover.jpg',
+    '/assets/blog/video-ads-hover.jpg'
   ];
-  return images[index % images.length];
+  return images[index % images.length] || '/assets/placeholder/default-placeholder.png';
 };
 
 // Category slug helper
