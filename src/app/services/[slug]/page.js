@@ -19,9 +19,33 @@ export async function generateMetadata({ params }) {
       description: 'The requested service could not be located.',
     };
   }
+  const title = `${service.title} | Neural Noir Studios`;
+  const description = service.description || service.seoDescription || 'Explore our ultra-premium global AI Video Production services at Neural Noir Studios.';
+  const url = `https://neuralnoirstudio.com/services/${params.slug}`;
+  const featuredImage = service.image || '/logo.png';
   return {
-    title: service.seoTitle,
-    description: service.seoDescription,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      type: 'website',
+      images: [
+        {
+          url: `https://neuralnoirstudio.com${featuredImage}`,
+          width: 1200,
+          height: 630,
+          alt: service.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`https://neuralnoirstudio.com${featuredImage}`],
+    },
   };
 }
 

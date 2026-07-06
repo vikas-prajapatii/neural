@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { 
@@ -135,10 +136,12 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-cyan-400/10 z-20 pointer-events-none" />
             
             {/* Image */}
-            <img 
+            <Image 
               src={service.image} 
               alt={`Neural Noir ${service.title} - AI generated photorealistic 4K cinematic commercial preview`}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="256px"
             />
           </motion.div>
         )}

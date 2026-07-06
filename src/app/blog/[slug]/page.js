@@ -1,6 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Calendar, Clock, BookOpen } from 'lucide-react';
 import { blogData } from '@/data/blogData';
 import BlogCTA from '@/components/BlogCTA';
@@ -19,9 +20,35 @@ export async function generateMetadata({ params }) {
       description: 'The requested article could not be located.',
     };
   }
+  const title = `${post.title} | Neural Noir Studios`;
+  const description = post.summary || post.seoDescription || 'Read the latest technical insights on high-fidelity AI video pipelines and generative studio engineering from Neural Noir Studios.';
+  const url = `https://neuralnoirstudio.com/blog/${params.slug}`;
+  const featuredImage = post.image || '/logo.png';
   return {
-    title: post.seoTitle,
-    description: post.seoDescription,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Neural Noir Studios'],
+      images: [
+        {
+          url: `https://neuralnoirstudio.com${featuredImage}`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`https://neuralnoirstudio.com${featuredImage}`],
+    },
   };
 }
 
@@ -78,9 +105,12 @@ export default function BlogPostPage({ params }) {
 
             {post.image && (
               <div className="w-full rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-950/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] my-8">
-                <img 
+                <Image 
                   src={post.image} 
-                  alt={post.title}
+                  alt={`Neural Noir Blog - ${post.title} - AI generated photorealistic infographic`}
+                  width={1200}
+                  height={630}
+                  priority
                   className="w-full h-auto max-h-[600px] object-contain mx-auto block"
                 />
               </div>

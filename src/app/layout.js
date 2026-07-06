@@ -24,8 +24,26 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Neural Noir Studios",
+    "url": "https://neuralnoirstudio.com",
+    "logo": "https://neuralnoirstudio.com/logo-icon-blue-final.png",
+    "description": "Ultra-premium AI Video Production house building insane visual dimensions for visionary brands.",
+    "sameAs": [
+      "https://github.com/vikas-prajapatii/neural"
+    ]
+  };
+
   return (
     <html lang="en" className="scroll-smooth bg-[#02040c]">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${outfit.variable} text-slate-100 font-sans antialiased relative min-h-screen bg-transparent`}
       >

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, BookOpen, Calendar, ArrowRight } from 'lucide-react';
 import { blogData } from '@/data/blogData';
 
@@ -73,10 +74,12 @@ function BlogCard({ post, postIndex, postImg }) {
         onMouseLeave={() => setLens(prev => ({ ...prev, show: false }))}
         onMouseMove={handleMouseMove}
       >
-        <img 
+        <Image 
           src={postImg} 
-          alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          alt={`Neural Noir - ${post.title} - AI cinematic artwork`}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 768px) 100vw, 40vw"
         />
         
         {/* LENS EFFECT */}
@@ -254,10 +257,12 @@ export default function BlogFeedPage() {
                       className="flex gap-4 items-center group/recent"
                     >
                       <div className="w-16 h-16 rounded-lg overflow-hidden bg-neutral-900 border border-neutral-800 relative flex-shrink-0">
-                        <img 
+                        <Image 
                           src={postImg} 
-                          alt={post.title} 
-                          className="w-full h-full object-cover group-hover/recent:scale-105 transition-transform duration-300"
+                          alt={`Recent - ${post.title}`} 
+                          fill
+                          className="object-cover group-hover/recent:scale-105 transition-transform duration-300"
+                          sizes="64px"
                         />
                       </div>
                       <div className="flex-grow min-w-0">

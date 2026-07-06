@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
@@ -44,10 +45,12 @@ export default function Navbar() {
           href="/" 
           className="flex items-center space-x-3 group"
         >
-          <img 
+          <Image 
             src="/logo-icon-blue-final.png" 
             alt="Neural Noir Logo" 
-            className="h-8 w-auto object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.45)] transition-transform duration-300 group-hover:scale-105" 
+            width={32}
+            height={32}
+            className="object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.45)] transition-transform duration-300 group-hover:scale-105" 
           />
           <span className="text-xl font-bold tracking-[0.3em] text-white group-hover:text-cyan-400 transition-colors duration-300">
             NEURAL <span className="text-cyan-400">NOIR</span>
