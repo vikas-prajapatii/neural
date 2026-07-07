@@ -137,7 +137,7 @@ function BlogCard({ post, postIndex, postImg }) {
 }
 
 export default function BlogFeedPage() {
-  const allPosts = Object.values(blogData).sort((a, b) => new Date(b.date) - new Date(a.date));
+  const allPosts = Object.values(blogData);
 
   // 3 static posts shown forever
   const staticSlugs = [
@@ -151,7 +151,7 @@ export default function BlogFeedPage() {
   const categories = Array.from(new Set(allPosts.map((post) => post.category)));
 
   // Recent posts
-  const recentPosts = allPosts.slice(0, 3);
+  const recentPosts = allPosts.slice(0, 4);
 
   // Tags
   const tags = [
@@ -276,16 +276,6 @@ export default function BlogFeedPage() {
                     </Link>
                   );
                 })}
-                
-                <div className="pt-2">
-                  <Link
-                    href="/blog/recent"
-                    className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group"
-                  >
-                    Show More
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
               </div>
             </div>
 
