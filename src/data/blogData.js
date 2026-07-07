@@ -1111,8 +1111,8 @@ export const blogData = {
           '<a href="#ai-video-ads-across-every-platform" class="text-cyan-400 hover:text-white transition-colors duration-200">AI Video Ads Across Every Platform</a>',
           '<a href="#data-driven-creative-optimization" class="text-cyan-400 hover:text-white transition-colors duration-200">Data-Driven Creative Optimization</a>',
           '<a href="#why-speed-matters-more-than-ever" class="text-cyan-400 hover:text-white transition-colors duration-200">Why Speed Matters More Than Ever</a>',
-          '<a href="#frequently-asked-questions" class="text-cyan-400 hover:text-white transition-colors duration-200">Frequently Asked Questions</a>',
-          '<a href="#neural-noir-s-cinematic-ai-production-workflow" class="text-cyan-400 hover:text-white transition-colors duration-200">Neural Noir\'s Cinematic AI Production Workflow</a>'
+          '<a href="#neural-noir-s-cinematic-ai-production-workflow" class="text-cyan-400 hover:text-white transition-colors duration-200">Neural Noir\'s Cinematic AI Production Workflow</a>',
+          '<a href="#frequently-asked-questions" class="text-cyan-400 hover:text-white transition-colors duration-200">Frequently Asked Questions</a>'
         ]
       },
       {
@@ -1268,6 +1268,20 @@ export const blogData = {
         ]
       },
       {
+        sectionTitle: 'Neural Noir\'s Cinematic AI Production Workflow',
+        sectionImage: '/assets/blog/video-production-infrastructure-virtual-studios.jpg',
+        sectionImageAlt: 'Virtual camera arrays and rendering pipeline infrastructure layout',
+        paragraphs: [
+          'Artificial Intelligence has dramatically lowered the barrier to creating video content. Today, almost anyone can generate a short AI clip using publicly available tools. Yet despite this accessibility, very few AI-generated videos achieve the level of quality required for premium advertising campaigns. The difference isn\'t the software; it\'s the production methodology.',
+          'At Neural Noir, AI is treated as one component of a much larger cinematic production pipeline. Every commercial follows a structured workflow designed to deliver consistency, emotional storytelling, and broadcast-quality visuals rather than random AI-generated clips.',
+          'Professional AI Video Production is not about generating a single impressive shot. It is about maintaining visual consistency, narrative flow, brand identity, and cinematic quality across an entire campaign. Our production process combines strategic planning, creative direction, advanced AI generation, post-production expertise, and meticulous quality control into one unified workflow.',
+          'We guide our partners through every step of this pipeline to build robust assets:',
+          '1. Strategic Brand Discovery: Aligning campaigns with target user personas and marketing goals.<br/>2. Concept Development: Building high-impact visual stories.<br/>3. Pre-Visualization: Defining lens, camera tracks, and color palettes.<br/>4. AI Asset Generation: Synthesizing luxury sets, motion plates, and environments.<br/>5. Visual Consistency Engineering: Guaranteeing 100% face and product preservation.<br/>6. Editorial Storytelling: Guiding pacing and narrative tension.<br/>7. Color Grading & Cinematic Finishing: Applying custom LUTs and ACEScg color science.<br/>8. Motion Graphics & VFX: Overlaying text tracks and interface callouts.<br/>9. Sound Design: Mixing foley, score, and ambient layers.<br/>10. Multi-Platform Delivery: Adapting dimensions and format for final deployment.',
+          'Ready to upgrade your acquisition loops and build high-performance creative pipelines at scale? To discuss your next project, you can <a href="/#contact" class="text-cyan-400 hover:underline">contact Neural Noir</a> today.'
+        ],
+        ctaText: 'integrate our high-velocity AI Growth Marketing pipelines into your acquisition loops.'
+      },
+      {
         sectionTitle: 'Frequently Asked Questions',
         paragraphs: [
           '<strong>What is AI Video Production?</strong><br/>AI Video Production combines artificial intelligence with professional filmmaking techniques to create commercial-quality videos faster and more efficiently than traditional production methods.',
@@ -1281,20 +1295,6 @@ export const blogData = {
           '<strong>Can AI maintain brand consistency?</strong><br/>Yes. Structured production workflows help preserve products, characters, colors, typography, and overall visual identity across campaigns.',
           '<strong>Is AI Video Production suitable for startups?</strong><br/>Absolutely. AI allows startups to access high-quality commercial production without the large budgets traditionally required for cinematic advertising.'
         ]
-      },
-      {
-        sectionTitle: 'Neural Noir\'s Cinematic AI Production Workflow',
-        sectionImage: '/assets/blog/video-production-infrastructure-virtual-studios.jpg',
-        sectionImageAlt: 'Virtual camera arrays and rendering pipeline infrastructure layout',
-        paragraphs: [
-          'Artificial Intelligence has dramatically lowered the barrier to creating video content. Today, almost anyone can generate a short AI clip using publicly available tools. Yet despite this accessibility, very few AI-generated videos achieve the level of quality required for premium advertising campaigns. The difference isn\'t the software; it\'s the production methodology.',
-          'At Neural Noir, AI is treated as one component of a much larger cinematic production pipeline. Every commercial follows a structured workflow designed to deliver consistency, emotional storytelling, and broadcast-quality visuals rather than random AI-generated clips.',
-          'Professional AI Video Production is not about generating a single impressive shot. It is about maintaining visual consistency, narrative flow, brand identity, and cinematic quality across an entire campaign. Our production process combines strategic planning, creative direction, advanced AI generation, post-production expertise, and meticulous quality control into one unified workflow.',
-          'We guide our partners through every step of this pipeline to build robust assets:',
-          '1. Strategic Brand Discovery: Aligning campaigns with target user personas and marketing goals.<br/>2. Concept Development: Building high-impact visual stories.<br/>3. Pre-Visualization: Defining lens, camera tracks, and color palettes.<br/>4. AI Asset Generation: Synthesizing luxury sets, motion plates, and environments.<br/>5. Visual Consistency Engineering: Guaranteeing 100% face and product preservation.<br/>6. Editorial Storytelling: Guiding pacing and narrative tension.<br/>7. Color Grading & Cinematic Finishing: Applying custom LUTs and ACEScg color science.<br/>8. Motion Graphics & VFX: Overlaying text tracks and interface callouts.<br/>9. Sound Design: Mixing foley, score, and ambient layers.<br/>10. Multi-Platform Delivery: Adapting dimensions and format for final deployment.',
-          'Ready to upgrade your acquisition loops and build high-performance creative pipelines at scale? To discuss your next project, you can <a href="/#contact" class="text-cyan-400 hover:underline">contact Neural Noir</a> today.'
-        ],
-        ctaText: 'integrate our high-velocity AI Growth Marketing pipelines into your acquisition loops.'
       }
     ]
   }
