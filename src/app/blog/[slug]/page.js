@@ -52,6 +52,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
+const getSectionId = (title) => {
+  if (!title) return '';
+  return title.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 export default function BlogPostPage({ params }) {
   const post = blogData[params.slug];
 
@@ -125,7 +132,11 @@ export default function BlogPostPage({ params }) {
             {/* Article Sections */}
             <div className="space-y-12 text-neutral-400 font-light leading-relaxed text-sm md:text-base">
               {post.content.map((sec, sIdx) => (
-                <section key={sIdx} className="space-y-6">
+                <section 
+                  key={sIdx} 
+                  id={sec.sectionTitle ? getSectionId(sec.sectionTitle) : undefined} 
+                  className="space-y-6 scroll-mt-28"
+                >
                   {sec.sectionTitle && (
                     <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
                       {sec.sectionTitle}
@@ -157,7 +168,7 @@ export default function BlogPostPage({ params }) {
                       {sec.bullets.map((b, bIdx) => (
                         <li key={bIdx} className="flex items-start text-sm md:text-base text-neutral-300">
                           <span className="text-cyan-400 mr-3 mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
-                          <span>{b}</span>
+                          <span dangerouslySetInnerHTML={{ __html: b }} />
                         </li>
                       ))}
                     </ul>
