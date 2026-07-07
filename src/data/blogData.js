@@ -6,7 +6,7 @@ export const blogData = {
     summary: 'An analytical breakdown of traditional commercial video production economics vs. Neural Noir\'s virtual staging pipelines.',
     date: 'July 02, 2026',
     readingTime: '5 min read',
-    category: 'Enterprise AI',
+    category: 'Enterprise AI Solutions',
     seoTitle: 'How GenAI Video Cuts Brand Production Overhead by 80% | Neural Noir',
     seoDescription: 'Discover how top brands leverage generative video pipelines to eliminate location, crew, and scheduling costs, rendering high-end ads in days.',
     content: [
@@ -76,7 +76,7 @@ export const blogData = {
     summary: 'How Neural Noir enforces complete data isolation, implements strict copyright safeguards, and protects corporate intellectual property.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Enterprise AI',
+    category: 'Enterprise AI Solutions',
     seoTitle: 'Data Isolation & Copyright Safety in Generative Video | Neural Noir',
     seoDescription: 'Learn how Neural Noir protects corporate intellectual property and mitigates copyright invalidation through zero-data leakage silos.',
     content: [
@@ -156,7 +156,7 @@ export const blogData = {
     summary: 'How DTC brand directors scale vertical video content production to maintain continuous social feed presence.',
     date: 'June 28, 2026',
     readingTime: '4 min read',
-    category: 'Growth Marketing',
+    category: 'AI Growth Marketing',
     seoTitle: 'Scale Vertical Social Video Volume with AI | TikTok & Reels Strategy',
     seoDescription: 'Learn how DTC brand directors deploy high-volume vertical video pipelines, data-backed hooks, and layout optimization to win on TikTok and Reels.',
     content: [
@@ -228,7 +228,7 @@ export const blogData = {
     summary: 'A technical walkthrough of LoRA training pipelines, visual bibles, and multi-angle scene consistency.',
     date: 'June 20, 2026',
     readingTime: '7 min read',
-    category: 'Neural Architecture',
+    category: 'AI Production Workflow',
     seoTitle: 'Lock-in Character Consistency in Generative Video | Neural Noir',
     seoDescription: 'Read our technical playbook on dataset curation, low-rank adaptation weights training, and temporal stabilization mapping.',
     content: [
@@ -319,7 +319,7 @@ export const blogData = {
     summary: 'How Neural Noir unlinks physical constraints from high-end corporate media creation, giving global CMOs the leverage of infinite visual deployment with absolute brand protection.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Enterprise AI',
+    category: 'Enterprise AI Solutions',
     seoTitle: 'Enterprise AI Solutions: Decoupling Production Costs | Neural Noir',
     seoDescription: 'Learn how Neural Noir decouples production costs from creative scale for B2B enterprises through server-scaled computational media rendering.',
     content: [
@@ -396,7 +396,7 @@ export const blogData = {
     summary: 'How Neural Noir merges high-fidelity neural media generation with conversion-focused ad frameworks, allowing brand directors to maintain a persistent, high-converting social feed presence across global channels.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Growth Marketing',
+    category: 'AI Growth Marketing',
     seoTitle: 'Growth Marketing Infrastructure & Ad Automation | Neural Noir',
     seoDescription: 'Learn how Neural Noir engineers high-volume, high-converting ad variants for TikTok and Reels, optimizing ROAS through automated multi-variant hooks.',
     content: [
@@ -475,7 +475,7 @@ export const blogData = {
     summary: 'How Neural Noir anchors character identities, enforces product geometry tracking, and removes frame-to-frame noise in neural media pipelines.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Neural Architecture',
+    category: 'AI Production Workflow',
     seoTitle: 'Neural Architecture & Temporal Stabilization | Neural Noir',
     seoDescription: 'Learn how Neural Noir locks down character consistency and stabilizes temporal noise in AI video pipelines using LoRAs and ControlNet.',
     content: [
@@ -566,7 +566,7 @@ export const blogData = {
     summary: 'How the engineering ecosystem at Neural Noir structures advanced generative diffusion stacks and custom neural staging nodes to transform text-to-video spaces into asset-locked mathematical pipelines.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'AI Technology',
+    category: 'AI Tools & Technology',
     seoTitle: 'AI Technology Infrastructure & Neural Staging | Neural Noir',
     seoDescription: 'Explore our advanced generative network stacking and custom neural staging workflows designed for deterministic enterprise B2B video pipelines.',
     content: [
@@ -649,7 +649,7 @@ export const blogData = {
     summary: 'How Neural Noir merges high-end narrative layouts with custom machine-learning nodes, allowing forward-thinking brands to scale premium digital storytelling without inflating design overhead.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Cinematic Synthesis',
+    category: 'Cinematic AI Production',
     seoTitle: 'Cinematic Synthesis Architecture & Digital Storytelling | Neural Noir',
     seoDescription: 'Learn how Neural Noir scales high-fidelity visual assets and digital B2B storytelling through automated node-based rendering workflows.',
     content: [
@@ -727,7 +727,7 @@ export const blogData = {
     summary: 'How Neural Noir engineers automated, high-retention direct-response video frameworks designed to convert cold digital traffic into locked revenue.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Content Marketing',
+    category: 'AI Content Strategy',
     seoTitle: 'Content Marketing Architecture & Direct Response | Neural Noir',
     seoDescription: 'Learn how Neural Noir engineers B2B direct-response video frameworks for high-retention conversion pipelines.',
     content: [
@@ -806,7 +806,7 @@ export const blogData = {
     summary: 'How Neural Noir handles real-time visual variations, resolution upscaling, and spatial adjustments to optimize direct response performance.',
     date: 'July 04, 2026',
     readingTime: '6 min read',
-    category: 'Algorithmic Scaling',
+    category: 'Creative Scaling',
     seoTitle: 'Algorithmic Scaling Architecture & A/B Testing | Neural Noir',
     seoDescription: 'Learn how Neural Noir optimizes visual content through programmatic A/B testing, resolution upscaling, and vertical layout feed adjustments.',
     content: [

@@ -39,13 +39,18 @@ export default function sitemap() {
   }));
 
   // Dynamic blog categories routes
-  const categories = ['Enterprise AI', 'Growth Marketing', 'Neural Architecture', 'Cinematic Synthesis', 'Algorithmic Scaling'];
-  const categoryRoutes = categories.map((cat) => ({
-    url: `${baseUrl}/blog/category/${cat.toLowerCase().replace(/\s+/g, '-')}`,
-    lastModified: new Date().toISOString().split('T')[0],
-    changeFrequency: 'weekly',
-    priority: 0.5,
-  }));
+  const categories = Array.from(new Set(Object.values(blogData).map((post) => post.category)));
+  const categoryRoutes = categories.map((cat) => {
+    const slug = cat.toLowerCase()
+      .replace(/ & /g, '-and-')
+      .replace(/[^a-z0-9]+/g, '-');
+    return {
+      url: `${baseUrl}/blog/category/${slug}`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    };
+  });
 
   return [...routes, ...serviceRoutes, ...blogRoutes, ...categoryRoutes];
 }
