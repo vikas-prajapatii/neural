@@ -240,8 +240,7 @@ export const blogData = {
           'We guide our partners through every step of this pipeline to build robust assets:',
           '1. Strategic Brand Discovery: Aligning campaigns with target user personas and marketing goals.<br/>2. Concept Development: Building high-impact visual stories.<br/>3. Pre-Visualization: Defining lens, camera tracks, and color palettes.<br/>4. AI Asset Generation: Synthesizing luxury sets, motion plates, and environments.<br/>5. Visual Consistency Engineering: Guaranteeing 100% face and product preservation.<br/>6. Editorial Storytelling: Guiding pacing and narrative tension.<br/>7. Color Grading & Cinematic Finishing: Applying custom LUTs and ACEScg color science.<br/>8. Motion Graphics & VFX: Overlaying text tracks and interface callouts.<br/>9. Sound Design: Mixing foley, score, and ambient layers.<br/>10. Multi-Platform Delivery: Adapting dimensions and format for final deployment.',
           'Ready to upgrade your acquisition loops and build high-performance creative pipelines at scale? To discuss your next project, you can <a href="/#contact" class="text-cyan-400 hover:underline">contact Neural Noir</a> today.'
-        ],
-        ctaText: 'integrate our high-velocity AI Growth Marketing pipelines into your acquisition loops.'
+        ]
       },
       {
         sectionTitle: 'Frequently Asked Questions',
@@ -256,7 +255,8 @@ export const blogData = {
           '<strong>How does AI improve growth marketing?</strong><br/>AI enables rapid creative testing, faster campaign production, personalized advertising, and continuous creative optimization based on performance data.',
           '<strong>Can AI maintain brand consistency?</strong><br/>Yes. Structured production workflows help preserve products, characters, colors, typography, and overall visual identity across campaigns.',
           '<strong>Is AI Video Production suitable for startups?</strong><br/>Absolutely. AI allows startups to access high-quality commercial production without the large budgets traditionally required for cinematic advertising.'
-        ]
+        ],
+        ctaText: 'integrate our high-velocity AI Growth Marketing pipelines into your acquisition loops.'
       }
     ]
   },
