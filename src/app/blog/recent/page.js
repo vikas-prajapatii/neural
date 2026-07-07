@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, BookOpen, Calendar, ArrowRight } from 'lucide-react';
@@ -37,7 +37,7 @@ const getCategorySlug = (cat) => {
 };
 
 function BlogCard({ post, postIndex, postImg }) {
-  const [lens, setLens] = React.useState({
+  const [lens, setLens] = useState({
     show: false,
     x: 0,
     y: 0,
@@ -50,13 +50,14 @@ function BlogCard({ post, postIndex, postImg }) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
+    // Scale lens mapping relative to the 256x384 image dimensions
     const bgX = (x / rect.width) * 100;
     const bgY = (y / rect.height) * 100;
-
+    
     setLens({
       show: true,
-      x: x - 60,
-      y: y - 60,
+      x: x - 64, // Center offset
+      y: y - 64,
       bgX,
       bgY
     });
@@ -65,64 +66,58 @@ function BlogCard({ post, postIndex, postImg }) {
   return (
     <Link 
       href={`/blog/${post.slug}`}
-      className="group flex flex-col md:flex-row gap-6 p-6 rounded-2xl border border-neutral-800 bg-neutral-950/40 backdrop-blur-md hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(6,182,212,0.3),inset_0_0_15px_rgba(6,182,212,0.1)] transition-all duration-300"
+      className="group relative flex flex-col md:flex-row gap-6 p-6 rounded-2xl border border-neutral-800/80 bg-neutral-950/40 backdrop-blur-md hover:border-cyan-500/20 transition-all duration-300 min-h-[220px]"
     >
-      {/* Left Side: Image Container */}
+      {/* Article Image Frame */}
       <div 
-        className="w-full md:w-2/5 aspect-[4/3] rounded-xl overflow-hidden relative flex-shrink-0 border border-neutral-800/80 bg-slate-950 cursor-zoom-in"
-        onMouseEnter={() => setLens(prev => ({ ...prev, show: true }))}
-        onMouseLeave={() => setLens(prev => ({ ...prev, show: false }))}
+        className="w-full md:w-56 h-48 md:h-auto rounded-xl overflow-hidden bg-neutral-900 border border-neutral-800 relative flex-shrink-0 cursor-crosshair select-none"
         onMouseMove={handleMouseMove}
+        onMouseLeave={() => setLens(prev => ({ ...prev, show: false }))}
       >
         <Image 
           src={postImg} 
-          alt={`Neural Noir - ${post.title} - AI cinematic artwork`}
+          alt={post.title} 
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, 40vw"
+          className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+          sizes="(max-width: 768px) 100vw, 224px"
         />
-        
-        {/* LENS EFFECT */}
+
+        {/* Magnifying Glass Lens */}
         {lens.show && (
-          <div
+          <div 
+            className="absolute hidden md:block border-2 border-cyan-400/80 shadow-[0_0_15px_rgba(6,182,212,0.4)] pointer-events-none rounded-full"
             style={{
-              position: 'absolute',
+              width: '128px',
+              height: '128px',
               left: `${lens.x}px`,
               top: `${lens.y}px`,
-              width: '120px',
-              height: '120px',
-              borderRadius: '50%',
-              border: '2px solid #06b6d4',
-              boxShadow: '0 0 15px rgba(6, 182, 212, 0.6), inset 0 0 10px rgba(0,0,0,0.5)',
-              pointerEvents: 'none',
               backgroundImage: `url(${postImg})`,
               backgroundPosition: `${lens.bgX}% ${lens.bgY}%`,
               backgroundSize: '200% 200%',
-              backgroundRepeat: 'no-repeat',
-              zIndex: 20
+              backgroundRepeat: 'no-repeat'
             }}
           />
         )}
       </div>
-      
-      {/* Right Side: Text Content */}
-      <div className="w-full md:w-3/5 flex flex-col justify-between">
+
+      {/* Article Copy Details */}
+      <div className="flex flex-col justify-between flex-grow">
         <div>
-          <div className="flex items-center justify-between text-xs text-neutral-500 mb-3 font-mono">
-            <span className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] uppercase font-semibold text-cyan-400 tracking-wider">
+          <div className="flex items-center gap-3 text-neutral-500 text-[10px] font-mono mb-4">
+            <span className="px-2 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400">
               {post.category}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5">
               <Calendar className="w-3 h-3" />
               {post.date}
             </span>
           </div>
           
-          <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2 leading-snug mb-3">
+          <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300 leading-snug mb-3">
             {post.title}
           </h3>
           
-          <p className="text-neutral-400 text-sm leading-relaxed mb-4 line-clamp-3 font-light">
+          <p className="text-neutral-400 text-sm leading-relaxed mb-6 font-light line-clamp-2">
             {post.summary}
           </p>
         </div>
@@ -136,24 +131,25 @@ function BlogCard({ post, postIndex, postImg }) {
   );
 }
 
-export default function BlogFeedPage() {
+export default function RecentBlogFeedPage() {
+  // Sort posts by date (newest first)
   const allPosts = Object.values(blogData).sort((a, b) => new Date(b.date) - new Date(a.date));
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
 
-  // 3 static posts shown forever
-  const staticSlugs = [
-    'shift-to-genai-video',
-    'data-isolation-copyright-safety-enterprise-ai',
-    'enterprise-ai-solutions-decoupling-costs'
-  ];
-  const staticPosts = staticSlugs.map(slug => blogData[slug]).filter(Boolean);
-
-  // Categories list
+  // Retrieve unique categories
   const categories = Array.from(new Set(allPosts.map((post) => post.category)));
 
-  // Recent posts
+  // Pagination logic
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Recent posts list (first 3 posts)
   const recentPosts = allPosts.slice(0, 3);
 
-  // Tags
+  // Tags list
   const tags = [
     '2026',
     '3D Studio',
@@ -176,35 +172,33 @@ export default function BlogFeedPage() {
         
         {/* Back button */}
         <Link 
-          href="/" 
+          href="/blog" 
           className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group mb-10"
         >
           <ArrowLeft className="w-3.5 h-3.5 mr-2 group-hover:-translate-x-1 transition-transform" />
-          Back to Home
+          Back to Blog Home
         </Link>
 
         {/* Title Header */}
         <header className="max-w-3xl mb-16 md:mb-20">
           <div className="flex items-center space-x-2 text-cyan-400 text-xs font-semibold uppercase tracking-[0.25em] mb-4">
             <BookOpen className="w-3.5 h-3.5" />
-            <span>[ 🎥 CINEMATIC INTELLIGENCE ]</span>
+            <span>[ 🕒 TIMELINE OF INTEL ]</span>
           </div>
           <h1 className="text-4xl md:text-7xl font-extrabold tracking-tighter uppercase mb-6 leading-none text-white">
-            THE NOIR <span className="text-neutral-500">{"//"}</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">INTELLIGENCE</span>
-            <br />
-            FUTURE OF CINEMA.
+            RECENT <span className="text-neutral-500">{"//"}</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">POSTS</span>
           </h1>
           <p className="text-neutral-400 text-base md:text-lg max-w-xl leading-relaxed font-light">
-            Inside the machine. Deep technical breakdowns, raw creative manifestos, and operational playbooks on deploying next-gen generative video pipelines for global brands.
+            All publications sorted by newest first. Operational breakdowns, technical guides, and cinematic strategies.
           </p>
         </header>
 
         {/* Main 2-Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Left Column: 3 Static Articles */}
+          {/* Left Column: List of paginated recent posts */}
           <div className="lg:col-span-8 space-y-8">
-            {staticPosts.map((post) => {
+            {currentPosts.map((post, index) => {
               const postIndex = allPosts.findIndex((p) => p.slug === post.slug);
               const postImg = getPostImage(post.slug, postIndex);
               return (
@@ -216,6 +210,29 @@ export default function BlogFeedPage() {
                 />
               );
             })}
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-4 pt-10">
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-xl border border-neutral-800 bg-neutral-950/40 text-neutral-400 hover:text-white hover:border-neutral-700 disabled:opacity-30 disabled:pointer-events-none transition-all"
+                >
+                  Previous
+                </button>
+                <span className="text-xs font-mono text-neutral-500">
+                  Page <span className="text-cyan-400 font-bold">{currentPage}</span> of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-xl border border-neutral-800 bg-neutral-950/40 text-neutral-400 hover:text-white hover:border-neutral-700 disabled:opacity-30 disabled:pointer-events-none transition-all"
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Right Column: Sidebar */}
@@ -233,7 +250,7 @@ export default function BlogFeedPage() {
                       href={`/blog/category/${getCategorySlug(cat)}`}
                       className="group flex items-center gap-3 text-sm font-medium py-2.5 w-full text-left text-slate-300 hover:text-cyan-400 transition-colors"
                     >
-                      <span className="w-2 h-2 rounded-sm bg-neutral-850 group-hover:bg-cyan-400 group-hover:shadow-[0_0_8px_rgba(6,182,212,0.6)] transition-all duration-300"></span>
+                      <span className="w-2 h-2 rounded-sm bg-neutral-855 group-hover:bg-cyan-400 group-hover:shadow-[0_0_8px_rgba(6,182,212,0.6)] transition-all duration-300"></span>
                       {cat}
                     </Link>
                   </li>
@@ -276,31 +293,21 @@ export default function BlogFeedPage() {
                     </Link>
                   );
                 })}
-                
-                <div className="pt-2">
-                  <Link
-                    href="/blog/recent"
-                    className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group"
-                  >
-                    Show More
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
               </div>
             </div>
 
             {/* Tags widget */}
             <div>
               <h4 className="text-sm font-bold text-white uppercase tracking-widest border-b border-neutral-800 pb-3 mb-4">
-                Tags
+                Popular Tags
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 pt-2">
                 {tags.map((tag) => (
-                  <span
+                  <span 
                     key={tag}
-                    className="px-3 py-1.5 rounded-lg bg-neutral-950 border border-neutral-800 hover:border-cyan-500/30 text-[10px] uppercase font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer"
+                    className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-lg bg-neutral-950 border border-neutral-900 text-neutral-450 hover:text-white hover:border-neutral-800 transition-colors"
                   >
-                    {tag}
+                    #{tag}
                   </span>
                 ))}
               </div>
