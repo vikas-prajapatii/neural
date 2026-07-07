@@ -80,6 +80,12 @@ export default function BlogPostPage({ params }) {
           
           {/* Main Article Content */}
           <article className="space-y-12">
+            {post.schema && (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(post.schema) }}
+              />
+            )}
             
             {/* Meta Headers */}
             <header className="space-y-6">
@@ -125,11 +131,23 @@ export default function BlogPostPage({ params }) {
                       {sec.sectionTitle}
                     </h2>
                   )}
+
+                  {sec.sectionImage && (
+                    <div className="w-full rounded-xl overflow-hidden border border-neutral-900/60 bg-neutral-950/20 my-6">
+                      <Image 
+                        src={sec.sectionImage} 
+                        alt={sec.sectionImageAlt || 'Neural Noir Diagram'} 
+                        width={800}
+                        height={450}
+                        className="w-full h-auto max-h-[400px] object-contain mx-auto"
+                      />
+                    </div>
+                  )}
                   
                   {sec.paragraphs && sec.paragraphs.length > 0 && (
                     <div className="space-y-4">
                       {sec.paragraphs.map((pText, pIdx) => (
-                        <p key={pIdx}>{pText}</p>
+                        <p key={pIdx} dangerouslySetInnerHTML={{ __html: pText }} />
                       ))}
                     </div>
                   )}
@@ -148,7 +166,7 @@ export default function BlogPostPage({ params }) {
                   {sec.afterParagraphs && sec.afterParagraphs.length > 0 && (
                     <div className="space-y-4 mt-4">
                       {sec.afterParagraphs.map((pText, pIdx) => (
-                        <p key={pIdx}>{pText}</p>
+                        <p key={pIdx} dangerouslySetInnerHTML={{ __html: pText }} />
                       ))}
                     </div>
                   )}
