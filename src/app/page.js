@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
@@ -152,7 +152,6 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
 
 export default function Home() {
   const { isModalOpen, closeModal, openModal } = useModal();
-  const [isMuted, setIsMuted] = useState(true);
   const [activeCard, setActiveCard] = useState(null);
 
   useEffect(() => {
@@ -161,31 +160,6 @@ export default function Home() {
     };
     window.addEventListener('click', handleOutsideClick);
     return () => window.removeEventListener('click', handleOutsideClick);
-  }, []);
-  
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      
-      const playVideo = () => {
-        video.play().catch((err) => {
-          console.log("Mockup video autoplay blocked:", err);
-        });
-      };
-
-      if (video.readyState >= 2) {
-        playVideo();
-      } else {
-        video.addEventListener('canplay', playVideo);
-        return () => {
-          video.removeEventListener('canplay', playVideo);
-        };
-      }
-    }
   }, []);
 
   // 3D Hover Tilt Effect
@@ -209,12 +183,7 @@ export default function Home() {
     mouseY.set(0);
   };
 
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
-    }
-  };
+
 
 
 
@@ -364,18 +333,14 @@ export default function Home() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950 border border-white/10">
               {/* Loop Video in Normal Form */}
-              <video
-                key="mockup-video"
-                ref={videoRef}
-                className="w-full h-full object-cover opacity-90 rounded-2xl"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                src="/bg-cinematic-v2.mp4?v=2"
-                aria-label="Neural Noir - AI generated photorealistic 4K commercial video mockup"
-                title="Neural Noir - AI generated photorealistic 4K commercial video mockup"
+              <iframe
+                src="https://player.vimeo.com/video/1207651789?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 w-full h-full opacity-90 rounded-2xl"
+                style={{ border: 0 }}
+                title="Neural Noir Mockup Video"
               />
             </div>
           </motion.div>

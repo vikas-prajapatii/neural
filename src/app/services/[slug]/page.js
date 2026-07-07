@@ -83,16 +83,24 @@ export default function ServiceSlugPage({ params }) {
       {/* Hero Video Section */}
       <div className="relative w-full h-[55vh] min-h-[400px] flex items-center justify-center overflow-hidden border-b border-neutral-900/50">
         <div className="absolute inset-0 z-0">
-          <video 
-            key="service-bg-video"
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            className="w-full h-full object-cover opacity-[0.48] scale-[1.01]"
-            src="/bg-cinematic-v2.mp4?v=2"
-            aria-label={`Neural Noir ${service.title} - AI generated photorealistic 4K cinematic background loop`}
-            title={`Neural Noir ${service.title} - AI generated photorealistic 4K cinematic background loop`}
+          <iframe
+            src="https://player.vimeo.com/video/1207651789?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+            frameBorder="0"
+            allow="autoplay; fullscreen"
+            referrerPolicy="strict-origin-when-cross-origin"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '100vw',
+              height: '56.25vw',
+              minHeight: '100%',
+              minWidth: '177.77%',
+              transform: 'translate(-50%, -50%) scale(1.01)',
+              pointerEvents: 'none',
+              opacity: 0.48
+            }}
+            title={`Neural Noir ${service.title} Background Video`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#02040c] via-[#02040c]/30 to-[#02040c]/10 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#02040c]/65 via-transparent to-[#02040c]/65 z-10" />

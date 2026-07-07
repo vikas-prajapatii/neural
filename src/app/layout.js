@@ -1,5 +1,6 @@
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import { ModalProvider } from "@/context/ModalContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -49,21 +50,30 @@ export default function RootLayout({ children }) {
       >
         {/* Global Continuous Background Video Layer */}
         <div className="fixed inset-0 -z-10 overflow-hidden select-none pointer-events-none">
-          <video
-            key="bg-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            src="/bg-cinematic-v2.mp4?v=2"
-            className="w-full h-full object-cover opacity-[0.88] scale-[1.02]"
-            aria-label="Neural Noir - AI generated photorealistic 4K cinematic background video loop"
-            title="Neural Noir - AI generated photorealistic 4K cinematic background video loop"
+          <iframe
+            src="https://player.vimeo.com/video/1207651789?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+            frameBorder="0"
+            allow="autoplay; fullscreen"
+            referrerPolicy="strict-origin-when-cross-origin"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '100vw',
+              height: '56.25vw',
+              minHeight: '100vh',
+              minWidth: '177.77vh',
+              transform: 'translate(-50%, -50%) scale(1.02)',
+              pointerEvents: 'none',
+              opacity: 0.88
+            }}
+            title="Neural Noir Background Video"
           />
           {/* Ambient Overlay Mask - Deep Navy & Midnight Tints */}
           <div className="absolute inset-0 bg-gradient-to-tr from-[#02040a] via-[#080d1a]/20 to-[#0b152d]/15 mix-blend-multiply"></div>
           <div className="absolute inset-0 bg-slate-950/5"></div>
         </div>
+        <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload" />
 
         {/* Content Container (Lying on top of video layer) */}
         <div className="relative z-10 flex flex-col min-h-screen">
