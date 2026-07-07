@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
@@ -149,67 +149,10 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
     </div>
   );
 }
+
 export default function Home() {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [activeCard, setActiveCard] = useState(null);
-
-  const [player, setPlayer] = useState(null);
-  const [isMuted, setIsMuted] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
-  const iframeRef = useRef(null);
-
-  useEffect(() => {
-    let vimeoPlayer = null;
-    
-    const initPlayer = () => {
-      if (window.Vimeo && iframeRef.current) {
-        vimeoPlayer = new window.Vimeo.Player(iframeRef.current);
-        setPlayer(vimeoPlayer);
-        
-        // Synchronize initial state
-        vimeoPlayer.getMuted().then((muted) => {
-          setIsMuted(muted);
-        });
-      }
-    };
-
-    if (window.Vimeo) {
-      initPlayer();
-    } else {
-      const interval = setInterval(() => {
-        if (window.Vimeo) {
-          initPlayer();
-          clearInterval(interval);
-        }
-      }, 100);
-      return () => clearInterval(interval);
-    }
-
-    return () => {
-      if (vimeoPlayer) {
-        vimeoPlayer.unload();
-      }
-    };
-  }, []);
-
-  const handleToggleMute = (e) => {
-    e.stopPropagation();
-    if (player) {
-      player.setMuted(!isMuted).then(() => {
-        setIsMuted(!isMuted);
-      }).catch((err) => console.log("Failed to set mute:", err));
-    }
-  };
-
-  const handleChangeSpeed = (speed) => {
-    if (player) {
-      player.setPlaybackRate(speed).then(() => {
-        setPlaybackSpeed(speed);
-        setShowSettings(false);
-      }).catch((err) => console.log("Failed to set speed:", err));
-    }
-  };
 
   useEffect(() => {
     const handleOutsideClick = () => {
@@ -391,8 +334,7 @@ export default function Home() {
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950 border border-white/10">
               {/* Loop Video in Normal Form */}
               <iframe
-                ref={iframeRef}
-                src="https://player.vimeo.com/video/1207651789?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0&loop=1&controls=0"
+                src="https://player.vimeo.com/video/1207651789?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
@@ -400,61 +342,6 @@ export default function Home() {
                 style={{ border: 0 }}
                 title="Neural Noir Mockup Video"
               />
-
-              {/* Custom Controls Overlay (Volume & Settings only) */}
-              <div className="absolute bottom-4 right-4 z-30 flex items-center space-x-2">
-                {showSettings && (
-                  <div className="absolute bottom-12 right-0 bg-slate-950/90 backdrop-blur-md border border-white/10 rounded-xl p-2 flex flex-col space-y-1 text-xs text-neutral-300 min-w-[90px] shadow-xl">
-                    <div className="px-2 py-1 text-[10px] font-bold text-neutral-500 uppercase tracking-wider border-b border-white/5 mb-1">Speed</div>
-                    {[0.5, 1, 1.5, 2].map((speed) => (
-                      <button
-                        key={speed}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleChangeSpeed(speed);
-                        }}
-                        className={`px-2 py-1.5 rounded-lg text-left transition-colors hover:bg-white/10 ${
-                          playbackSpeed === speed ? 'text-cyan-400 font-bold bg-white/5' : ''
-                        }`}
-                      >
-                        {speed === 1 ? 'Normal' : `${speed}x`}
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                <div 
-                  className="flex items-center space-x-1.5 bg-slate-950/70 backdrop-blur-md border border-white/10 rounded-xl p-1.5 shadow-lg"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {/* Mute Button */}
-                  <button
-                    onClick={handleToggleMute}
-                    className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/10 transition-all duration-200"
-                    aria-label={isMuted ? "Unmute" : "Mute"}
-                    title={isMuted ? "Unmute" : "Mute"}
-                  >
-                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                  </button>
-
-                  <div className="w-[1px] h-4 bg-white/10" />
-
-                  {/* Settings Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowSettings(!showSettings);
-                    }}
-                    className={`p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/10 transition-all duration-200 ${
-                      showSettings ? 'text-cyan-400 bg-white/5' : ''
-                    }`}
-                    aria-label="Settings"
-                    title="Settings"
-                  >
-                    <Settings className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
