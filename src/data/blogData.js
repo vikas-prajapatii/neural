@@ -227,8 +227,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "Why Traditional Advertising Is No Longer Enough",
-      "sectionImage": "/assets/blog/shift-to-genai-video.jpg",
-      "sectionImageAlt": "Infographic contrasting traditional video production logistics costs with generative AI video production workflow efficiency",
+      "sectionImage": "/assets/blog/ai-powered-ads-small-business.jpg",
+      "sectionImageAlt": "Ultra-premium cinematic scene of a small business owner standing inside a futuristic AI production studio surrounded by glowing holographic dashboards",
       "paragraphs": [
         "To understand why AI-powered ads are essential for modern survival, one must examine the critical points of traditional digital marketing. For years, small businesses relied on bidding hacks, audience hyper-targeting, and media buying tricks to run profitable campaigns on platforms like Meta, Google, and TikTok. But privacy regulations like Apple iOS 14.5 and the automated bidding engines of Meta Advantage+ have leveled the targeting playing field. Today, the advertising algorithms of major networks operate as self-optimizing black boxes. They handle bidding, placement, and targeting automatically. The only variable that a business can directly control to influence performance is the creative itself.",
         "This shift has triggered a sharp rise in customer acquisition costs (CPA). Because targeting is automated, the algorithm distributes ads based on immediate engagement signals: watch time, hook retention, scroll-stopping visual appeal, and click-through rates. Cheap, low-quality stock videos or flat graphics are quickly ignored by users, prompting the platform algorithms to charge a premium for distribution or suppress the ad entirely. Audiences have developed a sophisticated filter for promotional content. They ignore generic ads, meaning brands must achieve cinematic, highly polished aesthetics just to earn a few seconds of consumer attention.",
@@ -239,8 +239,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "How AI Is Transforming Small Business Advertising",
-      "sectionImage": "/assets/blog/growth-marketing-infrastructure-retention-engines.jpg",
-      "sectionImageAlt": "Systems architecture diagram illustrating real-time audience feedback loops and AI-assisted creative optimization engines",
+      "sectionImage": "/assets/blog/ai-powered-ads-control-room.jpg",
+      "sectionImageAlt": "Luxury AI creative control room generating multiple campaigns simultaneously with holographic timelines and cyan neural displays",
       "paragraphs": [
         "Generative AI has fundamentally changed the advertising production pipeline by replacing physical cameras, sets, and actors with advanced neural rendering models. Instead of organizing a physical shoot, creative teams now use text prompts, image inputs, and motion vectors to generate hyper-realistic visual sequences. This allows small business owners to bypass physical production hurdles, translating raw creative concepts into broadcast-grade commercial spots. The technology spans across every critical stage of content creation, offering a unified workflow for visual asset generation.",
         "AI image generation models like Midjourney and Flux can synthesize ultra-photorealistic product placements, stylized backgrounds, and high-fashion model photography in seconds. By inputting a clean photo of a physical product, these systems place the item in any luxury setting imaginable—from a marble tabletop in a Parisian penthouse to a sleek display in a neon-lit cyberpunk metropolis. This eliminates the need for expensive product photographers, specialized lighting setups, and studio bookings, allowing small brands to present their products with the same premium aesthetics as luxury fashion houses.",
@@ -252,8 +252,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "Why AI-Powered Ads Deliver Better ROI",
-      "sectionImage": "/assets/blog/tech-fx-architecture-temporal-stabilization.jpg",
-      "sectionImageAlt": "Detailed schematic diagram highlighting temporal stabilization nodes and video frame consistency algorithms",
+      "sectionImage": "/assets/blog/ai-powered-ads-studio.jpg",
+      "sectionImageAlt": "Futuristic cinematic AI studio with robotic camera rig filming a luxury product in dramatic key and blue rim lighting",
       "paragraphs": [
         "The primary argument for AI-powered advertising is its impact on campaign profitability. In paid media, Return on Investment (ROI) is directly tied to two key variables: the upfront cost of producing the creative asset, and the ongoing efficiency of the ad campaign (determined by Click-Through Rates, Cost Per Click, and Conversion Rates). Traditional production methods front-load campaigns with massive capital expenditures, requiring weeks of high-performance returns just to cover the cost of creating the video. AI-powered production, by contrast, lowers the cost of entry, allowing campaigns to run profitably from day one.",
         "By eliminating physical shoots, AI-powered ads reduce creative production overhead by up to 80% to 90%. A small business can allocate these saved funds directly to their media buying budget, purchasing more impressions and targeting more potential customers. This shift in budget allocation is crucial for early-stage brands that need to maximize the reach of every marketing dollar. Instead of spending $10,000 on a single video and $2,000 on ads, a brand can spend $1,500 on a suite of cinematic AI ads and $10,500 on distribution, driving more traffic and sales.",
@@ -264,8 +264,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "Cinematic AI Advertising: Competing with Big Brands",
-      "sectionImage": "/assets/blog/character-consistency-diffusion-models.jpg",
-      "sectionImageAlt": "Visual consistency model diagram illustrating facial feature preservation and product label lock-in techniques",
+      "sectionImage": "/assets/blog/ai-powered-ads-competing.jpg",
+      "sectionImageAlt": "High-end product film set showcasing luxury brand visual consistency and dramatic reflections",
       "paragraphs": [
         "For years, the distinction between small businesses and enterprise brands was immediately apparent in their visual marketing. Big brands used expensive agencies to produce glossy, cinematic brand films that established authority and trust, while small businesses relied on basic, functional ads that struggled to project the same level of credibility. Cinematic AI advertising levels this playing field. It gives small businesses the tools to project a premium, high-end brand identity without needing a massive corporate budget.",
         "With generative AI, a small cosmetics brand can produce a commercial set in a luxury marble showroom with complex volumetric lighting, slow-motion water splashes, and high-fashion model close-ups. A boutique watchmaker can place their product in a zero-gravity environment or a sleek, futuristic wind tunnel, highlighting the watch's design with macro camera moves. These high-end visuals build immediate trust, making a small business look like an established, premium brand from the first impression.",
@@ -276,8 +276,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "AI Video Production Workflow for Small Businesses",
-      "sectionImage": "/assets/blog/video-production-infrastructure-virtual-studios.jpg",
-      "sectionImageAlt": "Production pipeline flowchart outlining stages from strategic discovery to AI generation and final cinematic finishing",
+      "sectionImage": "/assets/blog/ai-powered-ads-pipeline.jpg",
+      "sectionImageAlt": "Overhead cinematic view of holographic production pipeline detailing script, storyboard, and edit tracks",
       "paragraphs": [
         "To produce consistent, high-converting commercials, businesses must move away from unstructured experimentation and follow a disciplined production pipeline. While generative AI tools are powerful, they require a structured workflow to deliver professional results. A scattershot approach to prompting yields inconsistent visual styles and weak messaging. At Neural Noir, we follow a rigorous 8-stage production workflow that combines strategic marketing with advanced technical execution to build high-performing campaign assets.",
         "<strong>1. Strategic Discovery</strong>: The workflow begins by defining the campaign's goals, target audience, and primary hooks. We identify the product's key benefits, analyze competitor ads, and select the core visual style (e.g., moody noir, minimalist luxury, or high-energy tech). This step ensures that all visual assets are designed to drive conversions.",
@@ -292,8 +292,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "Best AI Tools for Small Businesses",
-      "sectionImage": "/assets/blog/ai-technology-infrastructure-staging-workflows.jpg",
-      "sectionImageAlt": "Workflow interface mockup showcasing generative AI tools and asset staging pipelines",
+      "sectionImage": "/assets/blog/ai-powered-ads-workstation.jpg",
+      "sectionImageAlt": "Futuristic workstation display showcasing creative interfaces for Runway, Kling, Flux, and Google Veo",
       "paragraphs": [
         "The generative AI ecosystem is evolving rapidly, with new models and platforms emerging regularly. For small businesses looking to build an in-house production setup, navigating these tools can be challenging. Each platform has its own strengths, rendering styles, and interface designs. Understanding what each tool does best helps businesses build a workflow that meets their creative requirements.",
         "<strong>Google Veo</strong>: Google's advanced generative video model excels at rendering hyper-realistic details, complex environmental physics, and natural human movement. It is a powerful tool for brands that need highly accurate physics, clean lighting, and consistent action in their commercial video sequences.",
@@ -307,8 +307,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "Common Mistakes Businesses Make with AI Ads",
-      "sectionImage": "/assets/blog/algorithmic-scaling-architecture-ab-testing.jpg",
-      "sectionImageAlt": "Dashboard showing creative testing analytics and common performance drop-off indicators in ad campaigns",
+      "sectionImage": "/assets/blog/ai-powered-ads-split-screen.jpg",
+      "sectionImageAlt": "Split-screen comparison showing a low-quality inconsistent AI ad on the left vs a premium color-graded cinematic commercial on the right",
       "paragraphs": [
         "As generative AI tools become more accessible, many small businesses rush to deploy AI-generated ads without a clear strategy. While these tools make it easy to create content, they also make it easy to produce low-quality, generic advertising that fails to connect with audiences. Recognizing common mistakes helps brands avoid wasting ad spend on ineffective campaigns.",
         "The most common pitfall is relying on raw, unedited AI outputs. Raw video generations often contain minor visual glitches, unnatural motion, or weird artifacts that immediately signal \"AI-generated\" to the viewer. Without professional post-production—such as editing, color grading, stabilization, and sound design—these ads look cheap and unprofessional, which can damage brand credibility.",
@@ -321,8 +321,8 @@ export const blogData = {
     },
     {
       "sectionTitle": "Why Human Creativity Still Matters",
-      "sectionImage": "/assets/blog/creative-process-architecture-human-directorial-vision.jpg",
-      "sectionImageAlt": "Illustration highlighting the intersection of human creative direction and generative AI rendering pipelines",
+      "sectionImage": "/assets/blog/ai-powered-ads-director.jpg",
+      "sectionImageAlt": "Creative director inside a futuristic studio guiding massive holographic storyboards and neural video rendering feeds",
       "paragraphs": [
         "The rapid rise of generative AI has led some to believe that human copywriters, directors, and designers are becoming obsolete. The reality is quite the opposite. As AI tools lower the barrier to content creation, the volume of generic, low-effort advertising is increasing. In a crowded marketplace, the only way to stand out is through genuine human creativity, strategic storytelling, and refined artistic direction. AI is a powerful tool, but it requires a human artist to make it sing.",
         "AI models do not understand human emotion, cultural nuances, or brand strategy. They generate pixels based on mathematical probabilities, matching prompts with patterns in their training data. An AI can write a grammatically correct headline, but it cannot create a deeply emotional story that resonates with a specific audience's challenges, values, and desires. That emotional connection requires human empathy and strategic insight.",
