@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowLeft, Calendar, Clock, BookOpen } from 'lucide-react';
 import { blogData } from '@/data/blogData';
 import BlogCTA from '@/components/BlogCTA';
+import SpotlightHeading from '@/components/SpotlightHeading';
 
 export async function generateStaticParams() {
   return Object.keys(blogData).map((slug) => ({
@@ -100,9 +101,7 @@ export default function BlogPostPage({ params }) {
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>{post.category}</span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                {post.title}
-              </h1>
+              <SpotlightHeading title={post.title} />
               
               <div className="flex items-center space-x-6 text-xs text-neutral-500 font-mono border-y border-neutral-900 py-4">
                 <span className="flex items-center gap-1.5">
