@@ -1,7 +1,7 @@
 export const blogData = {
   'ai-powered-ads-small-business': {
   "slug": "ai-powered-ads-small-business",
-  "title": "AI-Powered Ads for Small Business: Your Strategic Advantage in a Digital World",
+  "title": "AI-powered video production helping small businesses create cinematic commercial advertising campaigns",
   "image": "/assets/blog/ai-powered-ads-small-business.jpg",
   "summary": "Discover how AI-powered ads help small businesses create cinematic commercials, reduce production costs, improve ROI, and compete with enterprise brands. Learn how AI video production is transforming modern digital marketing.",
   "date": "July 08, 2026",
@@ -15,7 +15,7 @@ export const blogData = {
       "BlogPosting",
       "FAQPage"
     ],
-    "headline": "AI-Powered Ads for Small Business: Your Strategic Advantage in a Digital World",
+    "headline": "AI-powered video production helping small businesses create cinematic commercial advertising campaigns",
     "description": "Discover how AI-powered ads help small businesses create cinematic commercials, reduce production costs, improve ROI, and compete with enterprise brands. Learn how AI video production is transforming modern digital marketing.",
     "image": "https://neuralnoirstudio.com/assets/blog/ai-powered-ads-small-business.jpg",
     "author": {
