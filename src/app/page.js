@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
@@ -153,6 +153,33 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
 export default function Home() {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [activeCard, setActiveCard] = useState(null);
+  const iframeRef = useRef(null);
+
+  useEffect(() => {
+    const handleLoad = () => {
+      if (iframeRef.current) {
+        iframeRef.current.style.opacity = "0.88";
+        const placeholder = document.getElementById("hero-video-placeholder");
+        if (placeholder) {
+          placeholder.style.opacity = "0";
+        }
+      }
+    };
+
+    const iframe = iframeRef.current;
+    if (iframe) {
+      // Attach load listener
+      iframe.addEventListener("load", handleLoad);
+      
+      // Fallback timeout to guarantee it shows even if cached
+      const timeoutId = setTimeout(handleLoad, 1000);
+
+      return () => {
+        iframe.removeEventListener("load", handleLoad);
+        clearTimeout(timeoutId);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = () => {
@@ -277,14 +304,49 @@ export default function Home() {
   ];
 
   return (
-    <div id="home" className="relative bg-transparent overflow-hidden min-h-screen">
+    <div id="home" className="relative bg-transparent overflow-hidden">
       
-      {/* BACKGROUND EFFECTS */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
-      <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-blue-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
-      
-      {/* HERO SECTION */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-36 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      {/* Hero Section Container (wraps background video & Hero content) */}
+      <div className="relative overflow-hidden min-h-screen flex items-center justify-center w-full">
+        
+        {/* Background Video Layer - ONLY visible on the Hero section */}
+        <div className="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none w-full h-full flex items-center justify-center bg-[#02040c]">
+          {/* Fallback Ambient Gradient Mesh (instant loading) */}
+          <div 
+            id="hero-video-placeholder"
+            className="absolute inset-0 bg-gradient-to-br from-[#02040c] via-[#09152b] to-[#02040c] transition-opacity duration-1000 z-0 opacity-100"
+          />
+          
+          <div style={{ padding: "56.25% 0 0 0", position: "relative", width: "177.77vh", minWidth: "100vw", minHeight: "100vh", zIndex: 5 }}>
+            <iframe
+              ref={iframeRef}
+              src="https://player.vimeo.com/video/1207651789?autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+                opacity: 0,
+                transition: "opacity 1.2s ease-in-out"
+              }}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Neural Noir Studios Hero Video"
+            />
+          </div>
+          {/* Ambient Overlay Mask - Deep Navy & Midnight Tints */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#02040a] via-[#080d1a]/20 to-[#0b152d]/15 mix-blend-multiply z-10"></div>
+          <div className="absolute inset-0 bg-slate-950/5 z-10"></div>
+        </div>
+        
+        {/* BACKGROUND EFFECTS */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-blue-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
+        
+        {/* HERO SECTION */}
+        <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-36 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full">
         
         {/* Left Content */}
         <div className="lg:col-span-6 flex flex-col justify-center">
@@ -347,6 +409,8 @@ export default function Home() {
         </div>
 
       </section>
+      
+      </div> {/* Closing Hero Section Container */}
 
       {/* SECTION 2: SERVICES */}
       <section id="services" className="relative z-10 py-24 md:py-32 border-t border-white/5 bg-transparent">
