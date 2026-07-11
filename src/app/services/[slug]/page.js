@@ -168,7 +168,7 @@ export default function ServiceSlugPage({ params }) {
                   {service.featureSectionTitle || 'Operational Scope'}
                 </h2>
               </div>
-              <ul className="space-y-8">
+              <ul className="list-none space-y-8">
                 {service.features.map((feature, i) => {
                   const isObject = typeof feature === 'object';
                   const title = isObject ? feature.title : feature;
@@ -176,7 +176,7 @@ export default function ServiceSlugPage({ params }) {
                   
                   return (
                     <li key={i} className="flex items-start text-sm font-light">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 mr-3.5 mt-1 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 mr-3.5 mt-1 flex-shrink-0 notranslate" translate="no" />
                       <div className="space-y-1.5">
                         <span className="font-bold text-white block text-sm uppercase tracking-wider">{title}</span>
                         {desc && (

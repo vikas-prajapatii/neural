@@ -163,10 +163,10 @@ export default function BlogPostPage({ params }) {
                   )}
 
                   {sec.bullets && sec.bullets.length > 0 && (
-                    <ul className="space-y-4 my-6">
+                    <ul className="list-none space-y-4 my-6">
                       {sec.bullets.map((b, bIdx) => (
                         <li key={bIdx} className="flex items-start text-sm md:text-base text-neutral-300">
-                          <span className="text-cyan-400 mr-3 mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
+                          <span className="text-cyan-400 mr-3 mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0 notranslate" translate="no" />
                           <span dangerouslySetInnerHTML={{ __html: b }} />
                         </li>
                       ))}

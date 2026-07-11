@@ -86,7 +86,7 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
       }`}
     >
       <div>
-        <div className="w-12 h-12 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 mb-6 group-hover:text-white group-hover:border-neutral-500 transition-all duration-300">
+        <div className="w-12 h-12 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-300 mb-6 group-hover:text-white group-hover:border-neutral-500 transition-all duration-300 notranslate" translate="no">
           <Icon className="w-6 h-6" />
         </div>
         <h3 className="text-xl font-bold mb-4 text-white group-hover:text-neutral-200 transition-colors">
@@ -97,12 +97,12 @@ function ServiceCard({ service, index, activeCard, setActiveCard }) {
         </p>
       </div>
       
-      <ul className="space-y-2.5 border-t border-neutral-800 pt-5 relative z-10">
+      <ul className="list-none space-y-2.5 border-t border-neutral-800 pt-5 relative z-10">
         {service.features.map((feat, i) => {
           const title = typeof feat === 'object' ? feat.title : feat;
           return (
             <li key={i} className="flex items-center text-xs text-neutral-300">
-              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 mr-2 flex-shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 mr-2 flex-shrink-0 notranslate" translate="no" />
               {title}
             </li>
           );
