@@ -346,11 +346,10 @@ export default function Home() {
         <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-blue-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
         
         {/* HERO SECTION */}
-        <section className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-36 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full">
+        <section className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-36 flex flex-col items-center justify-center text-center w-full">
         
-        {/* Left Content */}
-        <div className="lg:col-span-6 flex flex-col justify-center">
-          <div className="relative border-l-4 border-cyan-400 pl-6 py-5 mb-8 bg-slate-950/65 border border-white/5 backdrop-blur-md rounded-r-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] select-none">
+          {/* Quote Block */}
+          <div className="relative border-l-4 border-cyan-400 pl-6 py-5 mb-8 bg-slate-950/65 border border-white/5 backdrop-blur-md rounded-r-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] select-none text-left max-w-xl">
             {/* Absolute Background Quote Icon */}
             <span className="absolute -top-3 left-2 text-7xl font-serif text-cyan-400/20 pointer-events-none select-none">&ldquo;</span>
             
@@ -361,15 +360,15 @@ export default function Home() {
             <p className="text-[10px] text-slate-400 mt-2.5 font-mono tracking-widest relative z-10">— Augustus Saint-Gaudens</p>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-2xl leading-tight">
             We only hire <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 neon-text-cyan">insanes</span>.
           </h2>
 
-          <p className="text-slate-400 text-base md:text-lg mb-10 max-w-xl leading-relaxed">
+          <p className="text-slate-400 text-base md:text-lg mb-10 max-w-2xl leading-relaxed">
             We are an ultra-premium AI Video Production house. We do not copy realities; we build insane visual dimensions for visionary brands.
           </p>
 
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-wrap gap-5 justify-center">
             <button
               onClick={openModal}
               className="relative px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105"
@@ -383,32 +382,8 @@ export default function Home() {
               Studio Services
             </a>
           </div>
-        </div>
 
-        {/* Right Video Mockup with 3D Hover */}
-        <div className="lg:col-span-6 flex justify-center items-center">
-          <motion.div
-            style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="relative w-full max-w-[500px] aspect-[16/10] rounded-2xl p-1 bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-transparent shadow-[0_30px_60px_-15px_rgba(3,7,18,0.9)] cursor-pointer animate-fade-in-up"
-          >
-            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-950 border border-white/10">
-              {/* Loop Video in Normal Form */}
-              <iframe
-                src="https://player.vimeo.com/video/1207651789?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="absolute inset-0 w-full h-full opacity-90 rounded-2xl"
-                style={{ border: 0 }}
-                title="Neural Noir Mockup Video"
-              />
-            </div>
-          </motion.div>
-        </div>
-
-      </section>
+        </section>
       
       </div> {/* Closing Hero Section Container */}
 
