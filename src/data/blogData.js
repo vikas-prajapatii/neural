@@ -60,18 +60,18 @@ export const blogData = {
         "sectionTitle": "Table of Contents",
         "bullets": [
           "<a href=\"#introduction\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">Introduction</a>",
-          "<a href=\"#what-is-an-ai-cinematic-production-agency\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">1. What Is an AI Cinematic Production Agency?</a>",
-          "<a href=\"#why-traditional-commercial-production-is-no-longer-enough\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">2. Why Traditional Commercial Production Is No Longer Enough</a>",
-          "<a href=\"#the-rise-of-ai-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">3. The Rise of AI Cinematic Production</a>",
-          "<a href=\"#inside-a-professional-ai-cinematic-production-workflow\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">4. Inside a Professional AI Cinematic Production Workflow</a>",
-          "<a href=\"#the-art-of-cinematic-storytelling-in-ai-commercials\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">5. The Art of Cinematic Storytelling in AI Commercials</a>",
-          "<a href=\"#hollywood-filmmaking-techniques-used-in-ai-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">6. Hollywood Filmmaking Techniques Used in AI Production</a>",
-          "<a href=\"#essential-ai-tools-powering-modern-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">7. Essential AI Tools Powering Modern Cinematic Production</a>",
-          "<a href=\"#industries-transforming-with-ai-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">8. Industries Transforming with AI Cinematic Production</a>",
-          "<a href=\"#why-ai-cinematic-commercials-deliver-better-marketing-results\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">9. Why AI Cinematic Commercials Deliver Better Marketing Results</a>",
-          "<a href=\"#common-mistakes-that-make-ai-commercials-look-cheap\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">10. Common Mistakes That Make AI Commercials Look Cheap</a>",
-          "<a href=\"#why-human-creativity-remains-the-heart-of-ai-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">11. Why Human Creativity Remains the Heart of AI Production</a>",
-          "<a href=\"#the-future-of-ai-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">12. The Future of AI Cinematic Production</a>"
+          "<a href=\"#1-what-is-an-ai-cinematic-production-agency\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">1. What Is an AI Cinematic Production Agency?</a>",
+          "<a href=\"#2-why-traditional-commercial-production-is-no-longer-enough\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">2. Why Traditional Commercial Production Is No Longer Enough</a>",
+          "<a href=\"#3-the-rise-of-ai-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">3. The Rise of AI Cinematic Production</a>",
+          "<a href=\"#4-inside-a-professional-ai-cinematic-production-workflow\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">4. Inside a Professional AI Cinematic Production Workflow</a>",
+          "<a href=\"#5-the-art-of-cinematic-storytelling-in-ai-commercials\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">5. The Art of Cinematic Storytelling in AI Commercials</a>",
+          "<a href=\"#6-hollywood-filmmaking-techniques-used-in-ai-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">6. Hollywood Filmmaking Techniques Used in AI Production</a>",
+          "<a href=\"#7-essential-ai-tools-powering-modern-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">7. Essential AI Tools Powering Modern Cinematic Production</a>",
+          "<a href=\"#8-industries-transforming-with-ai-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">8. Industries Transforming with AI Cinematic Production</a>",
+          "<a href=\"#9-why-ai-cinematic-commercials-deliver-better-marketing-results\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">9. Why AI Cinematic Commercials Deliver Better Marketing Results</a>",
+          "<a href=\"#10-common-mistakes-that-make-ai-commercials-look-cheap\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">10. Common Mistakes That Make AI Commercials Look Cheap</a>",
+          "<a href=\"#11-why-human-creativity-remains-the-heart-of-ai-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">11. Why Human Creativity Remains the Heart of AI Production</a>",
+          "<a href=\"#12-the-future-of-ai-cinematic-production\" class=\"text-cyan-400 hover:text-white transition-colors duration-200\">12. The Future of AI Cinematic Production</a>"
         ]
       },
       {
