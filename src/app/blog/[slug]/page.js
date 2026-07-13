@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, Clock, BookOpen } from 'lucide-react';
 import { blogData } from '@/data/blogData';
 import BlogCTA from '@/components/BlogCTA';
 import SpotlightHeading from '@/components/SpotlightHeading';
+import FAQAccordion from '@/components/FAQAccordion';
 
 export async function generateStaticParams() {
   return Object.keys(blogData).map((slug) => ({
@@ -155,11 +156,15 @@ export default function BlogPostPage({ params }) {
                   )}
                   
                   {sec.paragraphs && sec.paragraphs.length > 0 && (
-                    <div className="space-y-4">
-                      {sec.paragraphs.map((pText, pIdx) => (
-                        <p key={pIdx} dangerouslySetInnerHTML={{ __html: pText }} />
-                      ))}
-                    </div>
+                    sec.sectionTitle === 'Frequently Asked Questions' ? (
+                      <FAQAccordion paragraphs={sec.paragraphs} />
+                    ) : (
+                      <div className="space-y-4">
+                        {sec.paragraphs.map((pText, pIdx) => (
+                          <p key={pIdx} dangerouslySetInnerHTML={{ __html: pText }} />
+                        ))}
+                      </div>
+                    )
                   )}
 
                   {sec.bullets && sec.bullets.length > 0 && (
