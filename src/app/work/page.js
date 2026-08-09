@@ -53,6 +53,47 @@ const workVideos = [
   }
 ];
 
+// Carousel video player wrapper component
+function CarouselVideo({ src, isActive, title }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isActive) {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Catch standard browser autoplay restriction warnings
+        });
+      }
+    } else {
+      video.pause();
+      // Safely reset seek position
+      try {
+        video.currentTime = 0;
+      } catch (e) {}
+    }
+  }, [isActive]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="w-full h-full object-cover relative z-10"
+      controls={isActive}
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={title}
+    >
+      <source src={src} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  );
+}
+
 export default function Work() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef(null);
@@ -211,17 +252,7 @@ export default function Work() {
                         <div className="w-12 h-1 bg-neutral-950 rounded-full"></div>
                       </div>
                       
-                      <video
-                        className="w-full h-full object-cover relative z-10"
-                        controls={isActive}
-                        autoPlay={isActive}
-                        muted={true}
-                        loop
-                        playsInline
-                        preload="metadata"
-                      >
-                        <source src={video.src} type="video/mp4" />
-                      </video>
+                      <CarouselVideo src={video.src} isActive={isActive} title={video.title} />
                     </div>
                   ) : (
                     /* Widescreen landscape mockup */
@@ -230,17 +261,7 @@ export default function Work() {
                         ? 'border-cyan-400 shadow-[0_20px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(6,182,212,0.3)]' 
                         : 'border-neutral-800'
                     }`}>
-                      <video
-                        className="w-full h-full object-cover"
-                        controls={isActive}
-                        autoPlay={isActive}
-                        muted={true}
-                        loop
-                        playsInline
-                        preload="metadata"
-                      >
-                        <source src={video.src} type="video/mp4" />
-                      </video>
+                      <CarouselVideo src={video.src} isActive={isActive} title={video.title} />
                     </div>
                   )}
                 </div>

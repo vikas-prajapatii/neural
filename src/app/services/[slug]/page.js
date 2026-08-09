@@ -139,11 +139,11 @@ export default function ServiceSlugPage({ params }) {
                   {/* Video Player */}
                   <video
                     className="w-full h-full object-cover relative z-10"
-                    controls
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                    controls={true}
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    playsInline={true}
                     preload="metadata"
                   >
                     <source src={video.src} type="video/mp4" />
