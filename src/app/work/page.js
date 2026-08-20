@@ -6,6 +6,17 @@ import { ArrowLeft, Sparkles } from 'lucide-react';
 
 const workVideos = [
   {
+    id: 3,
+    src: '/work-3.mp4',
+    title: 'Luxury Jewelry Campaign',
+    category: 'PRODUCT AD',
+    duration: '0:23',
+    aspect: 'landscape',
+    views: '3.1K views',
+    time: '2 weeks ago',
+    description: 'Ultra-precise macro visual detailing of precious metal textures and luxury gemstone sparkle synthesis.'
+  },
+  {
     id: 1,
     src: '/work-1.mp4',
     title: 'Vlog Casual Type Video Production',
@@ -26,17 +37,6 @@ const workVideos = [
     views: '1.8K views',
     time: '1 week ago',
     description: 'Atmospheric brand intro showcasing consistent character workflows and shadow rendering.'
-  },
-  {
-    id: 3,
-    src: '/work-3.mp4',
-    title: 'Luxury Jewelry Campaign',
-    category: 'PRODUCT AD',
-    duration: '0:23',
-    aspect: 'landscape',
-    views: '3.1K views',
-    time: '2 weeks ago',
-    description: 'Ultra-precise macro visual detailing of precious metal textures and luxury gemstone sparkle synthesis.'
   },
   {
     id: 4,
