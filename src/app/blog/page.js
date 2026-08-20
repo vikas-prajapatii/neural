@@ -168,7 +168,7 @@ export default function BlogFeedPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-transparent pt-32 pb-24 md:pt-40 md:pb-32 relative z-10 flex flex-col justify-center select-none">
+    <main className="min-h-screen bg-[#030612] pt-32 pb-24 md:pt-40 md:pb-32 relative z-10 flex flex-col justify-center select-none">
       {/* Background radial effects */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/10 rounded-full blur-[150px] pointer-events-none"></div>
       
@@ -177,22 +177,16 @@ export default function BlogFeedPage() {
         {/* Back button */}
         <Link 
           href="/" 
-          className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group mb-10"
+          className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group mb-4"
         >
           <ArrowLeft className="w-3.5 h-3.5 mr-2 group-hover:-translate-x-1 transition-transform" />
           Back to Home
         </Link>
 
         {/* Title Header */}
-        <header className="max-w-3xl mb-16 md:mb-20">
-          <div className="flex items-center space-x-2 text-cyan-400 text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>[ 🎥 CINEMATIC INTELLIGENCE ]</span>
-          </div>
-          <h1 className="text-4xl md:text-7xl font-extrabold tracking-tighter uppercase mb-6 leading-none text-white">
-            THE NOIR <span className="text-neutral-500">{"//"}</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">INTELLIGENCE</span>
-            <br />
-            FUTURE OF CINEMA.
+        <header className="max-w-3xl mb-8">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter uppercase mb-3 leading-none text-cyan-400">
+            BLOGS
           </h1>
           <p className="text-neutral-400 text-base md:text-lg max-w-xl leading-relaxed font-light">
             Inside the machine. Deep technical breakdowns, raw creative manifestos, and operational playbooks on deploying next-gen generative video pipelines for global brands.
