@@ -157,35 +157,10 @@ function PrivateIslandVideoCard({ video, isFeatured }) {
 
 export default function Work() {
   return (
-    <main className="flex-grow bg-[#02040c] pt-32 pb-24 md:pt-40 md:pb-32 relative z-10 min-h-screen flex flex-col justify-center">
+    <main className="flex-grow bg-[#02040c] pt-20 pb-24 md:pt-24 md:pb-32 relative z-10 min-h-screen flex flex-col justify-center">
       {/* Background ambient radial gradients */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/10 rounded-full blur-[150px] pointer-events-none"></div>
       <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-cyan-950/10 rounded-full blur-[150px] pointer-events-none"></div>
-
-      <div className="max-w-6xl mx-auto px-6 w-full mb-12">
-        {/* Back button */}
-        <Link 
-          href="/" 
-          className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-white transition-colors duration-200 group mb-8"
-        >
-          <ArrowLeft className="w-3.5 h-3.5 mr-2 group-hover:-translate-x-1 transition-transform" />
-          Back to Home
-        </Link>
-        
-        {/* Title Header */}
-        <header className="max-w-3xl animate-fade-in-up">
-          <div className="flex items-center space-x-2 text-cyan-400 text-xs font-semibold uppercase tracking-[0.25em] mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Portfolio Vault</span>
-          </div>
-          <h1 className="text-4xl md:text-7xl font-extrabold tracking-tighter uppercase mb-6 leading-none">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">CINEMATIC REELS</span>
-          </h1>
-          <p className="text-slate-400 text-base md:text-lg max-w-xl leading-relaxed font-light">
-            Browse our latest ultra-premium visual archives. Each clip features frame-consistent character generation, physical lighting synthesis, and custom environment design.
-          </p>
-        </header>
-      </div>
 
       {/* Video Portfolio Grid: Private Island Style */}
       <section className="w-full bg-black border-y border-neutral-900/60">
