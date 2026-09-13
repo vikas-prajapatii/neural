@@ -138,6 +138,81 @@ export const workVideos = [
       { start: 3.5, end: 7, text: 'Diffusion-rendered radiance and natural floral notes.' },
       { start: 7, end: 9, text: 'The essence of modern luxury.' }
     ]
+  },
+  {
+    id: 6,
+    src: '/work-6.mp4',
+    title: 'Ringa Refreshing Drink Commercial',
+    shortTitle: 'Ringa Drink',
+    tagline: 'TASTE THE REVOLUTION',
+    category: 'BEVERAGE AD',
+    filterCategory: 'Shorts',
+    duration: '0:11',
+    aspect: 'vertical',
+    client: 'Ringa Beverages',
+    agency: 'Pulse Creative',
+    director: 'Marcus Vance',
+    producer: 'Helen Power',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Fluid Dynamics Synthesis',
+    views: '15K views',
+    time: '1 day ago',
+    description: 'Ultra-high-speed beverage commercial featuring splash physics, ice condensation, and sparkling sensory immersion.',
+    captions: [
+      { start: 0, end: 4, text: 'Pure refreshment, captured at 1,000 frames per second.' },
+      { start: 4, end: 8, text: 'Crisp natural flavors with dynamic sensory immersion.' },
+      { start: 8, end: 11, text: 'Ringa — Awaken your senses.' }
+    ]
+  },
+  {
+    id: 7,
+    src: '/work-7.mp4',
+    title: 'Riviera Beach Club Showcase',
+    shortTitle: 'Beach Club',
+    tagline: 'SUMMER IN RETROGRADE',
+    category: 'HOSPITALITY REEL',
+    filterCategory: 'Shorts',
+    duration: '0:15',
+    aspect: 'vertical',
+    client: 'Riviera Club & Resorts',
+    agency: 'BarkleyOKRP',
+    director: 'Alex Rivers',
+    producer: 'Áine O\'Donnell',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Neural Noir Labs',
+    views: '9.2K views',
+    time: '3 days ago',
+    description: 'Sun-drenched luxury lifestyle commercial spotlighting coastal aesthetics, dynamic crowd flows, and vibrant ocean palette synthesis.',
+    captions: [
+      { start: 0, end: 5, text: 'Sun-drenched luxury where coastal aesthetics meet pure indulgence.' },
+      { start: 5, end: 10, text: 'Unfiltered summer energy and vibrant ocean horizons.' },
+      { start: 10, end: 15, text: 'Riviera Beach Club — The ultimate retreat.' }
+    ]
+  },
+  {
+    id: 8,
+    src: '/work-8.mp4',
+    title: 'Luxe Botanical Serum Campaign',
+    shortTitle: 'Botanical Serum',
+    tagline: 'RADIANCE FROM WITHIN',
+    category: 'SKINCARE AD',
+    filterCategory: 'Commercials',
+    duration: '0:20',
+    aspect: 'landscape',
+    client: 'Aura Botanicals',
+    agency: 'Neural Creative NYC',
+    director: 'Sasha Chen',
+    producer: 'Gerri McCarthy',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Micro-Texture Diffusion Core',
+    views: '6.7K views',
+    time: '5 days ago',
+    description: 'Microscopic botanical ingredient synthesis and luminous skin absorption detailing for luxury skincare brands.',
+    captions: [
+      { start: 0, end: 7, text: 'Next-generation botanical actives engineered for deep cellular radiance.' },
+      { start: 7, end: 14, text: 'Precision micro-textures and luminous skin absorption synthesis.' },
+      { start: 14, end: 20, text: 'Aura Botanical Serum — Transform your glow.' }
+    ]
   }
 ];
 
