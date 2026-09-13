@@ -148,12 +148,13 @@ function YoutubeVideoCard({ video }) {
   const [isMuted, setIsMuted] = useState(true);
   const [isCaptionsOn, setIsCaptionsOn] = useState(true);
   const [currentCaption, setCurrentCaption] = useState('');
-  const [progress, setProgress] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
 
   const videoRef = useRef(null);
+  const progressRef = useRef(null);
+  const currentCaptionRef = useRef('');
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -174,8 +175,11 @@ function YoutubeVideoCard({ video }) {
       try {
         videoEl.currentTime = 0;
       } catch (e) {}
-      setProgress(0);
+      if (progressRef.current) {
+        progressRef.current.style.width = '0%';
+      }
       setCurrentCaption('');
+      currentCaptionRef.current = '';
       setShowMenu(false);
     }
   }, [isHovered, isMuted]);
@@ -186,14 +190,22 @@ function YoutubeVideoCard({ video }) {
 
     const current = videoEl.currentTime;
     const dur = videoEl.duration;
-    setProgress((current / dur) * 100);
 
-    // Look up active caption
+    // Smooth direct DOM progress update without triggering React re-renders
+    if (progressRef.current) {
+      progressRef.current.style.width = `${(current / dur) * 100}%`;
+    }
+
+    // Only update caption state when subtitle text actually changes
     if (video.captions && video.captions.length > 0) {
       const activeCap = video.captions.find(
         (c) => current >= c.start && current <= c.end
       );
-      setCurrentCaption(activeCap ? activeCap.text : '');
+      const text = activeCap ? activeCap.text : '';
+      if (text !== currentCaptionRef.current) {
+        currentCaptionRef.current = text;
+        setCurrentCaption(text);
+      }
     }
   };
 
@@ -242,17 +254,22 @@ function YoutubeVideoCard({ video }) {
         <div className="aspect-[16/9] w-full rounded-2xl overflow-hidden bg-neutral-950 relative border border-neutral-900/60 group-hover:border-cyan-500/30 transition-all duration-300 shadow-md">
           <video
             ref={videoRef}
+            src={video.src}
             className={`w-full h-full bg-black transition-transform duration-500 ${
               isVertical ? 'object-contain' : 'object-cover'
             }`}
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             muted={isMuted}
             onTimeUpdate={handleTimeUpdate}
-          >
-            <source src={video.src} type="video/mp4" />
-          </video>
+            onEnded={() => {
+              if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.play().catch(() => {});
+              }
+            }}
+          />
 
           {/* YouTube Hover Quick Controls (Top-Right Action Bar) */}
           {isHovered && (
@@ -311,14 +328,17 @@ function YoutubeVideoCard({ video }) {
           )}
 
           {/* YouTube Red Progress Bar (Bottom of video on hover) */}
-          {isHovered && (
-            <div className="absolute bottom-0 inset-x-0 h-1 bg-white/20 z-30 overflow-hidden">
-              <div 
-                className="h-full bg-red-600 transition-all duration-100 ease-linear"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          )}
+          <div 
+            className={`absolute bottom-0 inset-x-0 h-1 bg-white/20 z-30 overflow-hidden transition-opacity duration-200 ${
+              isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+          >
+            <div 
+              ref={progressRef}
+              className="h-full bg-red-600 transition-all duration-100 ease-linear"
+              style={{ width: '0%' }}
+            />
+          </div>
 
           {/* Static Badges (When NOT Hovered) */}
           {!isHovered && (
