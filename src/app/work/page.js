@@ -15,6 +15,56 @@ import {
 
 export const workVideos = [
   {
+    id: 9,
+    src: '/work-9.mp4',
+    title: 'Toing Festive Celebration Campaign',
+    shortTitle: 'Toing Celebration',
+    tagline: 'MOMENTS OF PURE JOY',
+    category: 'COMMERCIAL',
+    filterCategory: 'Commercials',
+    duration: '0:22',
+    aspect: 'landscape',
+    client: 'Toing',
+    agency: 'Neural Noir Creative',
+    director: 'Marcus Vance',
+    producer: 'Áine O\'Donnell',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Generative Diffusion Nets',
+    views: '18K views',
+    time: 'Just added',
+    description: 'Vibrant festive brand commercial capturing high-emotion celebration, unboxing moments, and cinematic warmth.',
+    captions: [
+      { start: 0, end: 7, text: 'Celebrate every special moment with authentic warmth.' },
+      { start: 7, end: 14, text: 'Unwrap joy and create memories that last forever.' },
+      { start: 14, end: 22, text: 'Toing — Celebrate the good times with Neural Noir Studios.' }
+    ]
+  },
+  {
+    id: 6,
+    src: '/work-6.mp4',
+    title: 'Ringa Refreshing Drink Commercial',
+    shortTitle: 'Ringa Drink',
+    tagline: 'TASTE THE REVOLUTION',
+    category: 'BEVERAGE AD',
+    filterCategory: 'Shorts',
+    duration: '0:11',
+    aspect: 'vertical',
+    client: 'Ringa Beverages',
+    agency: 'Pulse Creative',
+    director: 'Marcus Vance',
+    producer: 'Helen Power',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Fluid Dynamics Synthesis',
+    views: '15K views',
+    time: 'Featured',
+    description: 'Ultra-high-speed beverage commercial featuring splash physics, ice condensation, and sparkling sensory immersion.',
+    captions: [
+      { start: 0, end: 4, text: 'Pure refreshment, captured at 1,000 frames per second.' },
+      { start: 4, end: 8, text: 'Crisp natural flavors with dynamic sensory immersion.' },
+      { start: 8, end: 11, text: 'Ringa — Awaken your senses.' }
+    ]
+  },
+  {
     id: 3,
     src: '/work-3.mp4',
     title: 'Luxury Jewelry Campaign',
@@ -137,31 +187,6 @@ export const workVideos = [
       { start: 0, end: 3.5, text: 'Elysian Rose Edition.' },
       { start: 3.5, end: 7, text: 'Diffusion-rendered radiance and natural floral notes.' },
       { start: 7, end: 9, text: 'The essence of modern luxury.' }
-    ]
-  },
-  {
-    id: 6,
-    src: '/work-6.mp4',
-    title: 'Ringa Refreshing Drink Commercial',
-    shortTitle: 'Ringa Drink',
-    tagline: 'TASTE THE REVOLUTION',
-    category: 'BEVERAGE AD',
-    filterCategory: 'Shorts',
-    duration: '0:11',
-    aspect: 'vertical',
-    client: 'Ringa Beverages',
-    agency: 'Pulse Creative',
-    director: 'Marcus Vance',
-    producer: 'Helen Power',
-    postProduction: 'Neural Noir Studios',
-    aiGeneration: 'Fluid Dynamics Synthesis',
-    views: '15K views',
-    time: '1 day ago',
-    description: 'Ultra-high-speed beverage commercial featuring splash physics, ice condensation, and sparkling sensory immersion.',
-    captions: [
-      { start: 0, end: 4, text: 'Pure refreshment, captured at 1,000 frames per second.' },
-      { start: 4, end: 8, text: 'Crisp natural flavors with dynamic sensory immersion.' },
-      { start: 8, end: 11, text: 'Ringa — Awaken your senses.' }
     ]
   },
   {
