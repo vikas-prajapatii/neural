@@ -504,13 +504,6 @@ function YoutubeVideoCard({ video }) {
               <span>Neural Noir Studios</span>
               <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 fill-cyan-400/20" />
             </div>
-
-            {/* Views & Timestamp */}
-            <div className="text-xs text-neutral-500 mt-0.5 font-mono">
-              <span>{video.views}</span>
-              <span className="mx-1">•</span>
-              <span>{video.time}</span>
-            </div>
           </div>
         </div>
       </Link>
