@@ -160,7 +160,7 @@ export default function Home() {
   const fadeIntervalRef = useRef(null);
   const [isBgMuted, setIsBgMuted] = useState(true);
 
-  // Smoothly enable sound by ramping volume
+  // Smoothly enable sound while ensuring playback never pauses
   const smoothlyEnableSound = () => {
     const video = bgVideoRef.current;
     if (!video) return;
@@ -175,22 +175,35 @@ export default function Home() {
     }
 
     video.muted = false;
-    setIsBgMuted(false);
+    const playPromise = video.play();
 
-    let vol = video.volume || 0;
-    fadeIntervalRef.current = setInterval(() => {
-      if (vol < 0.95) {
-        vol = Math.min(1, vol + 0.05);
-        video.volume = vol;
-      } else {
-        video.volume = 1;
-        clearInterval(fadeIntervalRef.current);
-        fadeIntervalRef.current = null;
-      }
-    }, 30);
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsBgMuted(false);
+          let vol = 0;
+          video.volume = vol;
+          fadeIntervalRef.current = setInterval(() => {
+            if (vol < 0.95) {
+              vol = Math.min(1, vol + 0.05);
+              video.volume = vol;
+            } else {
+              video.volume = 1;
+              clearInterval(fadeIntervalRef.current);
+              fadeIntervalRef.current = null;
+            }
+          }, 30);
+        })
+        .catch(() => {
+          // If browser policy prevents unmuted playback without prior interaction, keep video playing silently
+          video.muted = true;
+          video.play().catch(() => {});
+          setIsBgMuted(true);
+        });
+    }
   };
 
-  // Immediately mute audio as soon as cursor leaves
+  // Immediately mute audio as soon as cursor leaves and keep playing
   const immediatelyMuteSound = () => {
     if (hoverTimerRef.current) {
       clearTimeout(hoverTimerRef.current);
@@ -205,6 +218,9 @@ export default function Home() {
     if (video) {
       video.muted = true;
       video.volume = 0;
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
     }
     setIsBgMuted(true);
   };
@@ -390,6 +406,26 @@ export default function Home() {
             loop
             playsInline
             preload="auto"
+            onEnded={() => {
+              if (bgVideoRef.current) {
+                bgVideoRef.current.currentTime = 0;
+                bgVideoRef.current.play().catch(() => {});
+              }
+            }}
+            onPause={() => {
+              if (bgVideoRef.current && !bgVideoRef.current.ended) {
+                const p = bgVideoRef.current.play();
+                if (p !== undefined) {
+                  p.catch(() => {
+                    if (bgVideoRef.current) {
+                      bgVideoRef.current.muted = true;
+                      bgVideoRef.current.play().catch(() => {});
+                      setIsBgMuted(true);
+                    }
+                  });
+                }
+              }
+            }}
           />
           {/* Subtle Ambient Vignette & Gradient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#02040c] via-black/25 to-[#02040c]/60 pointer-events-none"></div>
