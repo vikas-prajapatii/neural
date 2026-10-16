@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useModal } from '@/context/ModalContext';
@@ -154,6 +154,91 @@ export default function Home() {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [activeCard, setActiveCard] = useState(null);
 
+  // Background Video & Interactive Sound Control
+  const bgVideoRef = useRef(null);
+  const hoverTimerRef = useRef(null);
+  const fadeIntervalRef = useRef(null);
+  const [isBgMuted, setIsBgMuted] = useState(true);
+
+  // Smoothly enable sound by ramping volume
+  const smoothlyEnableSound = () => {
+    const video = bgVideoRef.current;
+    if (!video) return;
+
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+      fadeIntervalRef.current = null;
+    }
+
+    video.muted = false;
+    setIsBgMuted(false);
+
+    let vol = video.volume || 0;
+    fadeIntervalRef.current = setInterval(() => {
+      if (vol < 0.95) {
+        vol = Math.min(1, vol + 0.05);
+        video.volume = vol;
+      } else {
+        video.volume = 1;
+        clearInterval(fadeIntervalRef.current);
+        fadeIntervalRef.current = null;
+      }
+    }, 30);
+  };
+
+  // Immediately mute audio as soon as cursor leaves
+  const immediatelyMuteSound = () => {
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+      fadeIntervalRef.current = null;
+    }
+
+    const video = bgVideoRef.current;
+    if (video) {
+      video.muted = true;
+      video.volume = 0;
+    }
+    setIsBgMuted(true);
+  };
+
+  const handleHeroMouseEnter = () => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    // Smoothly enable sound when hovering for > 5 seconds
+    hoverTimerRef.current = setTimeout(() => {
+      smoothlyEnableSound();
+    }, 5000);
+  };
+
+  const handleHeroMouseLeave = () => {
+    immediatelyMuteSound();
+  };
+
+  const handleHeroClick = (e) => {
+    // If clicking an interactive button or link, let default behavior proceed
+    if (e.target.closest('button, a, input, textarea')) return;
+
+    if (isBgMuted) {
+      smoothlyEnableSound();
+    } else {
+      immediatelyMuteSound();
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+      if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+    };
+  }, []);
+
   useEffect(() => {
     const handleOutsideClick = () => {
       setActiveCard(null);
@@ -279,8 +364,29 @@ export default function Home() {
   return (
     <div id="home" className="relative bg-transparent overflow-hidden">
       
-      {/* Hero Section Container */}
-      <div className="relative overflow-hidden min-h-screen flex items-center justify-center w-full bg-[#02040c]">
+      {/* Hero Section Container with Background Video & Interactive Sound Control */}
+      <div 
+        className="relative overflow-hidden min-h-screen flex items-center justify-center w-full bg-[#02040c]"
+        onMouseEnter={handleHeroMouseEnter}
+        onMouseLeave={handleHeroMouseLeave}
+        onClick={handleHeroClick}
+      >
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none w-full h-full flex items-center justify-center bg-[#02040c]">
+          <video
+            ref={bgVideoRef}
+            src="/bg-hero.mp4"
+            className="absolute inset-0 w-full h-full object-cover opacity-70 transition-opacity duration-700"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+          {/* Ambient Lighting & Dark Vignette Overlays for Maximum Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#02040c] via-black/40 to-[#02040c]/75 z-10"></div>
+          <div className="absolute inset-0 bg-black/25 z-10"></div>
+        </div>
         
         {/* BACKGROUND EFFECTS */}
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
@@ -290,7 +396,7 @@ export default function Home() {
         <section className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-36 flex flex-col items-center justify-center text-center w-full">
         
           {/* Quote Block */}
-          <div className="relative border-l-4 border-cyan-400 pl-6 py-5 mb-8 bg-slate-950/65 border border-white/5 backdrop-blur-md rounded-r-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] select-none text-left max-w-xl">
+          <div className="relative border-l-4 border-cyan-400 pl-6 py-5 mb-8 bg-slate-950/75 border border-white/5 backdrop-blur-md rounded-r-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] select-none text-left max-w-xl">
             {/* Absolute Background Quote Icon */}
             <span className="absolute -top-3 left-2 text-7xl font-serif text-cyan-400/20 pointer-events-none select-none">&ldquo;</span>
             
@@ -312,19 +418,50 @@ export default function Home() {
           <div className="flex flex-wrap gap-5 justify-center">
             <button
               onClick={openModal}
-              className="relative px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105"
+              className="relative px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105 cursor-pointer"
             >
               Launch Project
             </button>
             <a
               href="#services"
-              className="px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-slate-300 border border-slate-700 hover:border-cyan-500 hover:text-white transition-all duration-300 backdrop-blur-sm"
+              className="px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-slate-300 border border-slate-700 hover:border-cyan-500 hover:text-white transition-all duration-300 backdrop-blur-sm cursor-pointer"
             >
               Studio Services
             </a>
           </div>
 
         </section>
+
+        {/* Floating Interactive Sound Control Pill (Desktop & Mobile) */}
+        <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-30 pointer-events-auto">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isBgMuted) {
+                smoothlyEnableSound();
+              } else {
+                immediatelyMuteSound();
+              }
+            }}
+            className="group flex items-center space-x-2.5 px-3.5 py-2 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-white/10 hover:border-cyan-400/40 backdrop-blur-md text-white text-xs font-mono transition-all duration-300 shadow-xl cursor-pointer"
+            title={isBgMuted ? "Click to unmute sound" : "Click to mute"}
+          >
+            <div className="p-1 rounded-full bg-white/5 group-hover:bg-cyan-500/20 text-cyan-400 transition-colors">
+              {isBgMuted ? (
+                <VolumeX className="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400" />
+              ) : (
+                <Volume2 className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              )}
+            </div>
+            <span className="hidden sm:inline text-[11px] text-neutral-300 group-hover:text-white tracking-wider">
+              {isBgMuted ? "HOVER 5S OR CLICK FOR SOUND" : "SOUND ACTIVE"}
+            </span>
+            <span className="sm:hidden text-[11px] text-neutral-300">
+              {isBgMuted ? "TAP FOR SOUND" : "MUTED"}
+            </span>
+          </button>
+        </div>
       
       </div> {/* Closing Hero Section Container */}
 
