@@ -233,6 +233,14 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const video = bgVideoRef.current;
+    if (video) {
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+  }, []);
+
+  useEffect(() => {
     return () => {
       if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
       if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
@@ -372,20 +380,20 @@ export default function Home() {
         onClick={handleHeroClick}
       >
         {/* Background Video Layer */}
-        <div className="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none w-full h-full flex items-center justify-center bg-[#02040c]">
+        <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none w-full h-full">
           <video
             ref={bgVideoRef}
             src="/bg-hero.mp4"
-            className="absolute inset-0 w-full h-full object-cover opacity-70 transition-opacity duration-700"
+            className="w-full h-full object-cover opacity-85"
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
           />
-          {/* Ambient Lighting & Dark Vignette Overlays for Maximum Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#02040c] via-black/40 to-[#02040c]/75 z-10"></div>
-          <div className="absolute inset-0 bg-black/25 z-10"></div>
+          {/* Subtle Ambient Vignette & Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#02040c] via-black/25 to-[#02040c]/60 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-black/15 pointer-events-none"></div>
         </div>
         
         {/* BACKGROUND EFFECTS */}
