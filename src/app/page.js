@@ -279,26 +279,8 @@ export default function Home() {
   return (
     <div id="home" className="relative bg-transparent overflow-hidden">
       
-      {/* Hero Section Container (wraps background video & Hero content) */}
-      <div className="relative overflow-hidden min-h-screen flex items-center justify-center w-full">
-        
-        {/* Background Video Layer */}
-        <div className="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none w-full h-full flex items-center justify-center bg-[#02040c]">
-          <video
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          >
-            <source src="/bg-video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          {/* Ambient Overlay Mask - Deep Navy & Midnight Tints */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#02040a] via-[#080d1a]/20 to-[#0b152d]/15 mix-blend-multiply z-10"></div>
-          <div className="absolute inset-0 bg-slate-950/5 z-10"></div>
-        </div>
+      {/* Hero Section Container */}
+      <div className="relative overflow-hidden min-h-screen flex items-center justify-center w-full bg-[#02040c]">
         
         {/* BACKGROUND EFFECTS */}
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
