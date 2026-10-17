@@ -476,7 +476,7 @@ export default function Home() {
 
         </section>
 
-        {/* Floating Interactive Sound Control Pill (Desktop & Mobile) */}
+        {/* Floating Interactive Sound Control Button (Desktop & Mobile) */}
         <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-30 pointer-events-auto">
           <button
             type="button"
@@ -488,22 +488,19 @@ export default function Home() {
                 immediatelyMuteSound();
               }
             }}
-            className="group flex items-center space-x-2.5 px-3.5 py-2 rounded-full bg-slate-950/85 hover:bg-slate-900 border border-white/10 hover:border-cyan-400/40 backdrop-blur-md text-white text-xs font-mono transition-all duration-300 shadow-xl cursor-pointer"
-            title={isBgMuted ? "Click to unmute sound" : "Click to mute"}
+            className={`group p-3 rounded-full backdrop-blur-md border transition-all duration-300 shadow-2xl flex items-center justify-center hover:scale-110 cursor-pointer ${
+              isBgMuted
+                ? 'bg-slate-950/80 hover:bg-slate-900 border-white/10 hover:border-cyan-400/40 text-neutral-400 hover:text-white'
+                : 'bg-cyan-500/20 border-cyan-400/60 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.35)]'
+            }`}
+            title={isBgMuted ? "Sound Off - Click to turn sound on" : "Sound On - Click to mute"}
+            aria-label={isBgMuted ? "Sound Off" : "Sound On"}
           >
-            <div className="p-1 rounded-full bg-white/5 group-hover:bg-cyan-500/20 text-cyan-400 transition-colors">
-              {isBgMuted ? (
-                <VolumeX className="w-3.5 h-3.5 text-neutral-400 group-hover:text-cyan-400" />
-              ) : (
-                <Volume2 className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-              )}
-            </div>
-            <span className="hidden sm:inline text-[11px] text-neutral-300 group-hover:text-white tracking-wider">
-              {isBgMuted ? "HOVER 5S OR CLICK FOR SOUND" : "SOUND ACTIVE"}
-            </span>
-            <span className="sm:hidden text-[11px] text-neutral-300">
-              {isBgMuted ? "TAP FOR SOUND" : "MUTED"}
-            </span>
+            {isBgMuted ? (
+              <VolumeX className="w-5 h-5 text-neutral-400 group-hover:text-cyan-400 transition-colors" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-cyan-400 animate-pulse" />
+            )}
           </button>
         </div>
       

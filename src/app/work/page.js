@@ -10,10 +10,113 @@ import {
   CheckCircle2, 
   Share2, 
   Bookmark, 
-  ArrowLeft 
+  ArrowLeft,
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
+import { useModal } from '@/context/ModalContext';
 
 export const workVideos = [
+  {
+    id: 4,
+    src: '/work-4.mp4',
+    title: 'Midnight Scent Narrative',
+    shortTitle: 'Midnight Scent',
+    tagline: 'FLUID REFLECTIONS',
+    category: 'COSMETICS',
+    filterCategory: 'Shorts',
+    duration: '0:10',
+    aspect: 'vertical',
+    client: 'Midnight Paris',
+    agency: 'Aesthetic Alliance',
+    director: 'Sasha Chen',
+    producer: 'Gerri McCarthy',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Temporal Stabilization Core',
+    views: '12K views',
+    time: '5 days ago',
+    description: 'Abstract visual storytelling focusing on fluidity, reflection maps, and upscale product rendering.',
+    captions: [
+      { start: 0, end: 4, text: 'Midnight Paris — A fragrance born in liquid reflection.' },
+      { start: 4, end: 8, text: 'Fluid dynamics and upscale product rendering.' },
+      { start: 8, end: 10, text: 'Unveil your aura.' }
+    ]
+  },
+  {
+    id: 5,
+    src: '/work-5.mp4',
+    title: 'Elysian Perfume Commercial',
+    shortTitle: 'Elysian Perfume',
+    tagline: 'SCENT OF DIFFUSION',
+    category: 'FASHION AD',
+    filterCategory: 'Shorts',
+    duration: '0:09',
+    aspect: 'vertical',
+    client: 'Elysian Fashion',
+    agency: 'BarkleyOKRP',
+    director: 'Chris Boyle',
+    producer: 'Áine O\'Donnell / Helen Power',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Neural Noir Labs',
+    views: '8.5K views',
+    time: '4 days ago',
+    description: 'Dynamic character interaction coupled with premium material textures for high-end beauty brand campaigns.',
+    captions: [
+      { start: 0, end: 3.5, text: 'Elysian Rose Edition.' },
+      { start: 3.5, end: 7, text: 'Diffusion-rendered radiance and natural floral notes.' },
+      { start: 7, end: 9, text: 'The essence of modern luxury.' }
+    ]
+  },
+  {
+    id: 8,
+    src: '/work-8.mp4',
+    title: 'Luxe Botanical Serum Campaign',
+    shortTitle: 'Botanical Serum',
+    tagline: 'RADIANCE FROM WITHIN',
+    category: 'SKINCARE AD',
+    filterCategory: 'Commercials',
+    duration: '0:20',
+    aspect: 'landscape',
+    client: 'Aura Botanicals',
+    agency: 'Neural Creative NYC',
+    director: 'Sasha Chen',
+    producer: 'Gerri McCarthy',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Micro-Texture Diffusion Core',
+    views: '6.7K views',
+    time: '5 days ago',
+    description: 'Microscopic botanical ingredient synthesis and luminous skin absorption detailing for luxury skincare brands.',
+    captions: [
+      { start: 0, end: 7, text: 'Next-generation botanical actives engineered for deep cellular radiance.' },
+      { start: 7, end: 14, text: 'Precision micro-textures and luminous skin absorption synthesis.' },
+      { start: 14, end: 20, text: 'Aura Botanical Serum — Transform your glow.' }
+    ]
+  },
+  {
+    id: 10,
+    src: '/work-10.mp4',
+    title: 'Meesho Festive Finds Commercial',
+    shortTitle: 'Meesho Finds',
+    tagline: 'SHOPPING REDEFINED',
+    category: 'E-COMMERCE AD',
+    filterCategory: 'Commercials',
+    duration: '0:21',
+    aspect: 'landscape',
+    client: 'Meesho',
+    agency: 'Neural Noir Creative',
+    director: 'Marcus Vance',
+    producer: 'Áine O\'Donnell',
+    postProduction: 'Neural Noir Studios',
+    aiGeneration: 'Generative Diffusion Nets',
+    views: '22K views',
+    time: 'Brand New',
+    description: 'Festive retail spec commercial spotlighting vibrant ethnic style collections, smart shopping features, and cheerful unboxing moments.',
+    captions: [
+      { start: 0, end: 7, text: 'Discover trendy styles and festive collections at unbeatable prices.' },
+      { start: 7, end: 14, text: 'Lakhs of options, free cash on delivery, and effortless returns.' },
+      { start: 14, end: 21, text: 'Meesho Finds — Spec Commercial by Neural Noir Studios.' }
+    ]
+  },
   {
     id: 9,
     src: '/work-9.mp4',
@@ -140,56 +243,6 @@ export const workVideos = [
     ]
   },
   {
-    id: 4,
-    src: '/work-4.mp4',
-    title: 'Midnight Scent Narrative',
-    shortTitle: 'Midnight Scent',
-    tagline: 'FLUID REFLECTIONS',
-    category: 'COSMETICS',
-    filterCategory: 'Shorts',
-    duration: '0:10',
-    aspect: 'vertical',
-    client: 'Midnight Paris',
-    agency: 'Aesthetic Alliance',
-    director: 'Sasha Chen',
-    producer: 'Gerri McCarthy',
-    postProduction: 'Neural Noir Studios',
-    aiGeneration: 'Temporal Stabilization Core',
-    views: '12K views',
-    time: '5 days ago',
-    description: 'Abstract visual storytelling focusing on fluidity, reflection maps, and upscale product rendering.',
-    captions: [
-      { start: 0, end: 4, text: 'Midnight Paris — A fragrance born in liquid reflection.' },
-      { start: 4, end: 8, text: 'Fluid dynamics and upscale product rendering.' },
-      { start: 8, end: 10, text: 'Unveil your aura.' }
-    ]
-  },
-  {
-    id: 5,
-    src: '/work-5.mp4',
-    title: 'Elysian Perfume Commercial',
-    shortTitle: 'Elysian Perfume',
-    tagline: 'SCENT OF DIFFUSION',
-    category: 'FASHION AD',
-    filterCategory: 'Shorts',
-    duration: '0:09',
-    aspect: 'vertical',
-    client: 'Elysian Fashion',
-    agency: 'BarkleyOKRP',
-    director: 'Chris Boyle',
-    producer: 'Áine O\'Donnell / Helen Power',
-    postProduction: 'Neural Noir Studios',
-    aiGeneration: 'Neural Noir Labs',
-    views: '8.5K views',
-    time: '4 days ago',
-    description: 'Dynamic character interaction coupled with premium material textures for high-end beauty brand campaigns.',
-    captions: [
-      { start: 0, end: 3.5, text: 'Elysian Rose Edition.' },
-      { start: 3.5, end: 7, text: 'Diffusion-rendered radiance and natural floral notes.' },
-      { start: 7, end: 9, text: 'The essence of modern luxury.' }
-    ]
-  },
-  {
     id: 7,
     src: '/work-7.mp4',
     title: 'Riviera Beach Club Showcase',
@@ -212,31 +265,6 @@ export const workVideos = [
       { start: 0, end: 5, text: 'Sun-drenched luxury where coastal aesthetics meet pure indulgence.' },
       { start: 5, end: 10, text: 'Unfiltered summer energy and vibrant ocean horizons.' },
       { start: 10, end: 15, text: 'Riviera Beach Club — The ultimate retreat.' }
-    ]
-  },
-  {
-    id: 8,
-    src: '/work-8.mp4',
-    title: 'Luxe Botanical Serum Campaign',
-    shortTitle: 'Botanical Serum',
-    tagline: 'RADIANCE FROM WITHIN',
-    category: 'SKINCARE AD',
-    filterCategory: 'Commercials',
-    duration: '0:20',
-    aspect: 'landscape',
-    client: 'Aura Botanicals',
-    agency: 'Neural Creative NYC',
-    director: 'Sasha Chen',
-    producer: 'Gerri McCarthy',
-    postProduction: 'Neural Noir Studios',
-    aiGeneration: 'Micro-Texture Diffusion Core',
-    views: '6.7K views',
-    time: '5 days ago',
-    description: 'Microscopic botanical ingredient synthesis and luminous skin absorption detailing for luxury skincare brands.',
-    captions: [
-      { start: 0, end: 7, text: 'Next-generation botanical actives engineered for deep cellular radiance.' },
-      { start: 7, end: 14, text: 'Precision micro-textures and luminous skin absorption synthesis.' },
-      { start: 14, end: 20, text: 'Aura Botanical Serum — Transform your glow.' }
     ]
   }
 ];
@@ -462,21 +490,9 @@ function YoutubeVideoCard({ video }) {
         </div>
 
         {/* 2. Metadata Details Row Below Thumbnail */}
-        <div className="flex gap-3.5 mt-3.5 px-0.5">
-          {/* Circular Channel Profile Icon */}
-          <div className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-neutral-900 border border-neutral-800 shadow-sm mt-0.5">
-            <img 
-              src="/logo-icon-vibrant.png" 
-              alt="Neural Noir Studios" 
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.src = '/favicon-32x32.png';
-              }}
-            />
-          </div>
-
+        <div className="mt-3.5 px-0.5">
           {/* Details Column */}
-          <div className="flex-grow min-w-0">
+          <div className="w-full min-w-0">
             <div className="flex justify-between items-start gap-2">
               <h3 className="text-sm sm:text-base font-semibold text-neutral-100 group-hover:text-white transition-colors line-clamp-2 leading-snug break-words">
                 {video.title}
@@ -537,6 +553,7 @@ function YoutubeVideoCard({ video }) {
 }
 
 export default function Work() {
+  const { openModal } = useModal();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredVideos = selectedCategory === 'All'
@@ -588,10 +605,57 @@ export default function Work() {
           </div>
         </section>
 
+        {/* Engaging Spec Ads Callout Banner */}
+        <section className="mt-20 md:mt-28 relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-gradient-to-b from-slate-900/70 via-slate-950/80 to-slate-950/95 p-8 sm:p-12 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(6,182,212,0.08)]">
+          {/* Subtle Ambient Radial Glow */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 max-w-3xl">
+            {/* Pill Badge */}
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-widest bg-cyan-950/70 text-cyan-400 border border-cyan-400/30 mb-6 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <span>Speculative Commercial Showcase</span>
+            </div>
+
+            {/* Engaging Heading */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4 leading-tight font-sans">
+              These films are <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-200">spec ads crafted for brands</span> that refuse to blend in.
+            </h2>
+
+            {/* Engaging Narrative Body */}
+            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed mb-8">
+              Every video in this vault is a speculative brand commercial engineered to explore the bleeding edge of AI cinematic synthesis, hyper-realistic physics, and high-conversion visual storytelling. We build these concepts to demonstrate what is possible when bold creative direction meets next-generation generative technology.
+            </p>
+
+            {/* Interactive CTAs */}
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={openModal}
+                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105 cursor-pointer"
+              >
+                <span>Commission Your Brand Film</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <Link
+                href="/#services"
+                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest text-slate-300 border border-slate-700 hover:border-cyan-500 hover:text-white transition-all duration-300 backdrop-blur-sm cursor-pointer"
+              >
+                <span>Explore Production Capabilities</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Footer info text */}
-        <footer className="mt-16 md:mt-24 border-t border-white/5 pt-8 text-center md:text-left">
+        <footer className="mt-12 md:mt-16 border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-xs text-slate-500 font-mono uppercase tracking-[0.2em]">
-            Visual archive active. Fresh cinematic showcases compiled weekly.
+            Visual archive active • Fresh cinematic showcases compiled weekly
+          </p>
+          <p className="text-[11px] text-slate-600 font-mono">
+            Spec concept portfolio • All trademarks belong to their respective owners
           </p>
         </footer>
       </div>
